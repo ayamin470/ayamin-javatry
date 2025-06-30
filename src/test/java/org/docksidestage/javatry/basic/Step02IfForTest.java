@@ -47,40 +47,49 @@ public class Step02IfForTest extends PlainTestCase {
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_if_else_basic() {
         int sea = 904;
-        if (sea > 904) {
+        if (sea > 904)
+        {
             sea = 2001;
-        } else {
+        } else
+        {
             sea = 7;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_if_elseif_basic() {
         int sea = 904;
-        if (sea > 904) {
+        if (sea > 904)
+        {
             sea = 2001;
-        } else if (sea >= 904) {
+        } else if (sea >= 904)
+        {
             sea = 7;
-        } else if (sea >= 903) {
+        } else if (sea >= 903)
+        {
             sea = 8;
         } else {
             sea = 9;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_if_elseif_nested() {
         boolean land = false;
         int sea = 904;
-        if (sea > 904) {
+        if (sea > 904)
+        {
             sea = 2001;
-        } else if (land && sea >= 904) {
+        } else if (land && sea >= 904)
+        {
             sea = 7;
-        } else if (sea >= 903 || land) {
+        } else if (sea >= 903 || land)
+        {
             sea = 8;
-            if (!land) {
+            if (!land)
+            {
                 land = true;
             } else if (sea <= 903) {
                 sea++;
@@ -97,7 +106,7 @@ public class Step02IfForTest extends PlainTestCase {
         if (land) {
             sea = 10;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 10
     }
 
     // ===================================================================================
@@ -113,18 +122,20 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_basic() {
         List<String> stageList = prepareStageList();
         String sea = null;
-        for (String stage : stageList) {
+        for (String stage : stageList)
+        {
             sea = stage;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => magiclamp
     }
+    /** 拡張forループ(:) 要素をstageという変数に一つずつ取り出しながら、リストの最後に当たるまでforループを回す */
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_continueBreak() {
@@ -139,7 +150,7 @@ public class Step02IfForTest extends PlainTestCase {
                 break;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => hangar
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -155,8 +166,12 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
     }
+    /**
+     * StringBuilder：Stringと異なり変更可能。
+     * 文字列を追加したり、削除したり、置き換えたりしても、通常は新しいオブジェクトを生成せず、元のオブジェクトの中身を直接変更
+     */
 
     // ===================================================================================
     //                                                                           Challenge
@@ -166,7 +181,19 @@ public class Step02IfForTest extends PlainTestCase {
      * (prepareStageList()のリストから "a" が含まれているものだけのリストを作成して、それをループで回してログに表示しましょう。(Stream APIなしで))
      */
     public void test_iffor_making() {
-        // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> aContainedList = new ArrayList<>();
+        String sea = null;
+        for (String stage : stageList) {
+            if (stage.contains("a"))
+            {
+                aContainedList.add(stage);
+            }
+        }
+        for (String aStage : aContainedList)
+        {
+            log(aStage);
+        }
     }
 
     // ===================================================================================
@@ -176,7 +203,8 @@ public class Step02IfForTest extends PlainTestCase {
      * Change foreach statement to List's forEach() (keep result after fix) <br>
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
-    public void test_iffor_refactor_foreach_to_forEach() {
+    public void test_iffor_refactor_foreach_to_forEach()
+    {
         List<String> stageList = prepareStageList();
         String sea = null;
         for (String stage : stageList) {
@@ -190,6 +218,35 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // should be same as before-fix
     }
+    public void test_original_forEach()
+    {
+        List<String> stageList = prepareStageList();
+        final String[] resultSea = new String[1];
+        final boolean[] breakFlag = new boolean[1];
+
+        stageList.forEach(stage -> {
+            if (breakFlag[0]) {
+                return;
+            }
+            if (stage.startsWith("br")) {
+                return;
+            }
+            resultSea[0] = stage;
+            if (stage.contains("ga")) {
+                breakFlag[0] = true;
+            }
+        });
+
+        String sea = resultSea[0];
+        log(sea);
+    }
+
+    /**
+     * なぜ「boolean breakFlag = false;」ではなくfinal boolean[] breakFlag = new boolean[1];で配列にしているのか？
+     * ラムダ式のルール上、外側のローカル変数を直接変更できないため
+     * 配列の中身は上記の制約を受けないのでこのように書く
+     */
+
 
     /**
      * Make your original exercise as question style about if-for statement. <br>
@@ -197,12 +254,26 @@ public class Step02IfForTest extends PlainTestCase {
      * <pre>
      * _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
      * your question here (ここにあなたの質問を):
-     * 
+     * oが入るものだけを出力しなさい
      * _/_/_/_/_/_/_/_/_/_/
      * </pre>
      */
-    public void test_iffor_yourExercise() {
-        // write your code here
+    public void test_iffor_yourExercise()
+    {
+        List<String> stageList = prepareStageList();
+        List<String> aContainedList = new ArrayList<>();
+        String sea = null;
+        for (String stage : stageList) {
+            if (stage.contains("o"))
+            {
+                aContainedList.add(stage);
+            }
+        }
+        for (String aStage : aContainedList)
+        {
+            log(aStage);
+        }
+
     }
 
     // ===================================================================================
