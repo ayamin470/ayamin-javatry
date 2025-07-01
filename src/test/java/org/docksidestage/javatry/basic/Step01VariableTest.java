@@ -80,6 +80,9 @@ public class Step01VariableTest extends PlainTestCase
         log(sea); // your answer? => 416
     }
     /* sea.add(new BigDecimal(1));された結果は、どこにも参照されない */
+    // TODO ayamin そのとおりです。BigDecimal の add() は自分自身を変えるわけではなく... by jflute (2025/07/01)
+    // 変えたもの (足したもの) を新しく生み出して戻り値として戻します。
+    // そういったクラス(オブジェクト)のことを、なんて呼ぶかご存知でしょうか？
 
     // ===================================================================================
     //                                                                   Instance Variable
@@ -194,7 +197,8 @@ public class Step01VariableTest extends PlainTestCase
      * o すべての変数をlog()でカンマ区切りの文字列で表示
      * </pre>
      */
-
+    // TODO ayamin 中括弧が左に下がっているのは、これは意図してやっていますか？ by jflute (2025/07/01)
+    // フォーマットの一つのやり方なんですけど、あまりJavaだと中括弧が左に下げる方式は見ないので。
     public class original extends PlainTestCase
     {
         private int piari;
