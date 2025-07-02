@@ -222,6 +222,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     private void showTicketIfNeeds(Ticket ticket)
     {
+        // TODO ayamin 2DayのNightOnlyが紛れてしまいます。純粋なTwoDayPassportだけがヒットするようにしましょう by jflute (2025/07/02)
         if (ticket.getTicketDays() == 2) { // チケットの日数が2日ならTwoDayパスポート
             log("２日用パスポートだよ");
         } else {
@@ -269,6 +270,8 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_wonder_night() {
         TicketBooth booth = new TicketBooth();
 
+        // TODO ayamin log()かSystem.out.println()か統一しましょう。log()を推奨しています。 by jflute (2025/07/02)
+        // log()は内部でロギングフレームワークを使っているので、ログを多様に扱うことができてログ要件に対して柔軟に対応できます。
         System.out.println("--- NightOnly Two-Day Passport Test ---");
         int nightOnlyMoney = 10000; // 7400円なのでお釣りが出る金額
         TicketBuyResult nightOnlyResult = booth.buyNightOnlyTwoDayPassport(nightOnlyMoney);
@@ -321,9 +324,10 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_yourRefactoring() {
         // your confirmation code here
     }
-    // TODO jflute さん
+    // done jflute さん
     // 自分のコードを見ても改善箇所が思い浮かびませんでした
     // 何かするべきリファクタリングがありましたら、教えていただけますと幸いです
+    // TODO ayamin [へんじ]いったん、TicketBoothなどにtodoたくさん入れたので、そちらを直してもらえればと by jflute (2025/07/02)
 
     /**
      * Write intelligent comments on source code to the main code in buyticket package. <br>

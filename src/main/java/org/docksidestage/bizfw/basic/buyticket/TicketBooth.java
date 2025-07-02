@@ -15,6 +15,8 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO ayamin こちらにも、ぜひご自身の@authorを追加お願いします。(既存コードもさわったらauthor追加で) by jflute (2025/07/02)
+// https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#minjavadoc
 /**
  * @author jflute
  */
@@ -47,6 +49,8 @@ public class TicketBooth {
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
+    // TODO ayamin [いいね] 全体的にすごく丁寧に綺麗にコードが整ってますね、Good! by jflute (2025/07/02)
+    // JavaDocも、@returnの追加や、(NotNull) の表現などありがとうございます。呼び出し側が助かる情報です。
     /**
      * Buy one-day passport, method for park guest.
      *
@@ -68,6 +72,13 @@ public class TicketBooth {
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
+        // TODO ayamin 恐らく OneDay だけ要件的に Result を必要としないので... by jflute (2025/07/02)
+        // doBuyPassport()はチケットだけを戻して、後はpublicメソッド次第という風になっているのかと思いますが...
+        // 大半は必ず TicketBuyResult まで作って戻すので、doBuyPassport()で TicketBuyResult 戻しちゃって、
+        // OneDay は TicketBuyResult からチケットだけ取り出して戻す形にしちゃっても良いかなとは思います。
+        // 若干 OneDay で不要なデータを作ることになりますが(OneDayはお釣りが要らない)、微々たるものなので、
+        // 大きなパフォーマンス劣化にはならないので、ここはコードのスッキリさを優先しちゃってもいいかなと。
+
         // doBuyPassportでチケットを購入 (夜間専用ではないのでfalse)
         Ticket ticket = doBuyPassport(handedMoney, TWO_DAY_PRICE, TWO_DAY_TICKET, false);
 
@@ -128,12 +139,18 @@ public class TicketBooth {
     private Ticket doBuyPassport(Integer handedMoney, int price, int ticketDays, boolean isNightOnly) {
         // お金が足りているかを確認
         if (handedMoney < price) {
+            // TODO ayamin [いいね] 日本語の例外メッセージGoodです。全然OKです。 by jflute (2025/07/02)
+            // javatryは国籍問わずできるようにデフォルト英語にしているだけで、javadocとかも日本語でも全然OKですので。
             throw new TicketShortMoneyException("お金が足りません: 手持ち=" + handedMoney + "円, 必要=" + price + "円");
         }
         // チケットの在庫を確認
         if (quantity <= 0) {
             throw new TicketSoldOutException("チケットは売り切れです");
         }
+        // TODO jflute 1on1にて、良いコメント、不要なコメントのお話をする予定 (2025/07/02)
+        // でも良ければ、先にこのブログを読んでおいてもらえたらと。(ブログを読むのもjavatry!)
+        // // オートマティックおうむ返しコメントより背景や理由を
+        // https://jflute.hatenadiary.jp/entry/20180625/repeatablecomment
         --quantity; // チケットの数量を減らす
         if (salesProceeds != null) { // 2回目以降の購入
             salesProceeds = salesProceeds + price; // 売上をチケット価格分加算
@@ -144,6 +161,9 @@ public class TicketBooth {
         return new Ticket(price, ticketDays, isNightOnly);
     }
 
+    // TODO ayamin [いいね] publicの調整処理と、privateの実処理でうまく分かれててとてもわかりやすいです！ by jflute (2025/07/02)
+    // TODO ayamin メモが↓JavaDoc形式になってしまっているので、今これ TicketSoldOutException に紐づくコメントになってしまっています by jflute (2025/07/02)
+    // 最初の /** を /* だけにすると良いです。/** はJavaDoc, /* はただのコメント。
     /**
      * クラスをまとめる時に一つのメソッドでまとめてしまいそうになったけど、それぞれ違う処理はそれぞれで記述しつつ、
      * 同じ処理を別のメソッドとして書き込み、それを呼び出すという形にするとスマート

@@ -29,6 +29,7 @@ public class Ticket {
     private int remainingCount;
     private boolean nightOnly;
 
+    // TODO ayamin せっかくこういった Accessor を定義する場所がクラスの一番下にあるので、定義位置も統一した方がいいかなと by jflute (2025/07/02)
     public boolean isNightOnly() { // このメソッドが正しく定義されているはず
         return nightOnly;
     }
@@ -43,6 +44,11 @@ public class Ticket {
         this.remainingCount = ticketDays; // 初期状態では、日数分だけ利用可能
         this.nightOnly = nightOnly;
     }
+    // TODO ayamin [いいね] そういうことです。まあ同時に displayPrice という同じ名前の変数が二つ存在することになるので... by jflute (2025/07/02)
+    // 「this(このインスタンス)のdisplayPrice」と「引数のdisplayPrice」を区別するために、thisを付けています。
+    // 何も付けなかったときは、スコープが短い方 (宣言が近い方) が優先されるので、引数の方は何も付けなくてOKと。
+    // そういう意味では、this.remainingCount = ticketDays; は this. なくても良いということにはなります。
+    // でも、みんな付けてて縦に揃ってるのに、そこだけ this. 外すってのも変だから全然今のでOKです。
     /**
      * なぜコンストラクタでthis.をするのか？
      * そもそもコンストラクタはインスタンス変数を初期化するためにある
@@ -52,6 +58,8 @@ public class Ticket {
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
+    // TODO ayamin ここちょっと isNightTime の説明が欲しいところですね。(入った瞬間)今夜時間か？ってことだと思いますが... by jflute (2025/07/02)
+    // nightOnly変数もあって混同しやすいところですから。publicメソッドですし重要メソッドなのでJavaDocで@paramで説明あるといいなと。
     public void doInPark(boolean isNightTime) {
         // 残り利用可能回数が0以下の場合、エラーをスロー
         if (remainingCount <= 0) {
@@ -63,7 +71,12 @@ public class Ticket {
         }
 
         remainingCount--; // 利用可能回数を1減らす
+        
+        // TODO ayamin これはわからなくて当然ですが、ログはロギングフレームワークをぜひ使ってください by jflute (2025/07/02)
+        // javatryの中に、Bicycle.java がいるので、そこで logger の宣言を参考に。
+        
         System.out.println("残り利用可能回数: " + remainingCount);
+        // TODO jflute 1on1にて、なぜSystem.out.println()は使わないのか？の説明をする予定 (2025/07/02)
     }
     // ===================================================================================
     //                                                                            Accessor
