@@ -84,6 +84,11 @@ public class Step01VariableTest extends PlainTestCase
     // 変えたもの (足したもの) を新しく生み出して戻り値として戻します。
     // そういったクラス(オブジェクト)のことを、なんて呼ぶかご存知でしょうか？
 
+    // DONE dbfluteさん
+    // イミュータブル (Immutable) オブジェクトだと思います
+    // 今回はBigDecimalですが、ほかにもBigIntegerや、String クラス: concat(), substring(), replace() など、Stringイミュータブルです メソッドも
+    // これらは一度作られた後は変更できないので、元のオブジェクトを変更するのではなく、新しいオブジェクトを生成してその結果を返します
+
     // ===================================================================================
     //                                                                   Instance Variable
     //                                                                   =================
@@ -158,6 +163,7 @@ public class Step01VariableTest extends PlainTestCase
 
     private void helpMethodArgumentMethodcall(StringBuilder sea, int land) {
         ++land;
+
         sea.append(land);
     }
 
@@ -199,6 +205,10 @@ public class Step01VariableTest extends PlainTestCase
      */
     // TODO ayamin 中括弧が左に下がっているのは、これは意図してやっていますか？ by jflute (2025/07/01)
     // フォーマットの一つのやり方なんですけど、あまりJavaだと中括弧が左に下げる方式は見ないので。
+
+    //    意図してやっています
+    //    何が入れ子構造になっているのかよく混乱してしまうため。レビューしにくくなってしまうようであれば、左下げをしないよう気をつけます。
+
     public class original extends PlainTestCase
     {
         private int piari;
