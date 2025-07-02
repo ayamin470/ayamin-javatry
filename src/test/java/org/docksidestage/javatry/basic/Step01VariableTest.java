@@ -88,6 +88,12 @@ public class Step01VariableTest extends PlainTestCase
     // イミュータブル (Immutable) オブジェクトだと思います
     // 今回はBigDecimalですが、ほかにもBigIntegerや、String クラス: concat(), substring(), replace() など、Stringイミュータブルです メソッドも
     // これらは一度作られた後は変更できないので、元のオブジェクトを変更するのではなく、新しいオブジェクトを生成してその結果を返します
+    
+    // TODO ayamin [へんじ] Goodです。ありがとうございます！1on1のときに少しだけ補足する予定です。 by jflute (2025/07/02)
+    
+    // ちなみに、todoに対するdoneですが、
+    // ↓の「レビューのやり取り」の欄を参考にお願いします。
+    // https://dbflute.seasar.org/ja/tutorial/handson/review/jflutereview.html#review
 
     // ===================================================================================
     //                                                                   Instance Variable
@@ -209,6 +215,20 @@ public class Step01VariableTest extends PlainTestCase
     //    DONE dbfluteさん
     //    意図してやっています
     //    何が入れ子構造になっているのかよく混乱してしまうため。レビューしにくくなってしまうようであれば、左下げをしないよう気をつけます。
+    // TODO ayamin [へんじ] おっ、なるほど。見やすくするために工夫しようとしていること自体はとても素晴らしいです by jflute (2025/07/02)
+    // 大昔から、(些細なことですけど) どっちスタイル？っていうのがありまして...
+    //
+    // Wikipediaの「字下げスタイル」を見ると...このページ初めてみたのですが、こんなにたくさん種類があるとは!?
+    // https://ja.wikipedia.org/wiki/%E5%AD%97%E4%B8%8B%E3%81%92%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%AB
+    //
+    // ayaminさんのこのケースは「オールマン」スタイルのようですね。
+    // javatryデフォルトだと「K&R」スタイルに近いかもですね。
+    //
+    // 研修としては、ayaminさんの中での一貫性があるのであればOKという感じですね。
+    // (ケースバイケースでマチマチだったりすると、読む人は見づらいと感じるかもしれません)
+    // ここって現場に寄りますので、一番はこれから触るであろう現場のコードがどっちになってるか？
+    // それにjavatryのうちから合わせた方が良いかもというのはありますので、
+    // ぜひ現場の先輩に聞いてみてください(^^。
 
     public class original extends PlainTestCase
     {
