@@ -24,19 +24,24 @@ public class Ticket {
     //                                                                           Attribute
     //                                                                           =========
     private final int displayPrice; // written on ticket, park guest can watch this
-    // private boolean alreadyIn; // このフィールドは remainingCount で代替されるため、厳密には不要だが、isAlreadyIn() のために残す
-    private final int ticketDays;
+    // private boolean alreadyIn; // true means this ticket is unavailable (Old: single use)
+    private final int ticketDays; // 修正: final を追加し、コンストラクタで初期化されるように
     private int remainingCount;
-    private final boolean nightOnly; // nightOnly フィールドは final にする
+    private boolean nightOnly;
+
+    public boolean isNightOnly() { // このメソッドが正しく定義されているはず
+        return nightOnly;
+    }
+
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    // コンストラクタを displayPrice, ticketDays, nightOnly の3つの引数を持つように修正
-    public Ticket(int displayPrice, int ticketDays, boolean nightOnly) {
+    // 修正: コンストラクタが displayPrice と ticketDays の両方を受け取るように変更
+    public Ticket(int displayPrice, int ticketDays,boolean nightOnly) {
         this.displayPrice = displayPrice;
         this.ticketDays = ticketDays; // 引数で渡された ticketDays で初期化
         this.remainingCount = ticketDays; // 初期状態では、日数分だけ利用可能
-        this.nightOnly = nightOnly; // 引数で渡された nightOnly で初期化
+        this.nightOnly = nightOnly;
     }
     /**
      * なぜコンストラクタでthis.をするのか？
@@ -47,7 +52,6 @@ public class Ticket {
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
-    // doInPark メソッドに isNightTime 引数を追加
     public void doInPark(boolean isNightTime) {
         // 残り利用可能回数が0以下の場合、エラーをスロー
         if (remainingCount <= 0) {
@@ -61,7 +65,6 @@ public class Ticket {
         remainingCount--; // 利用可能回数を1減らす
         System.out.println("残り利用可能回数: " + remainingCount);
     }
-
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
@@ -71,7 +74,7 @@ public class Ticket {
 
     // isAlreadyIn() は remainingCount <= 0 と等価なので、そのまま残す
     public boolean isAlreadyIn() {
-        return remainingCount <= 0; // remainingCount をチェック
+        return remainingCount <= 0; // 修正: remainingCount をチェック
     }
 
     public int getTicketDays() {
@@ -79,8 +82,5 @@ public class Ticket {
     }
     public int getRemainingUseCount() {
         return remainingCount;
-    }
-    public boolean isNightOnly() {
-        return nightOnly;
     }
 }
