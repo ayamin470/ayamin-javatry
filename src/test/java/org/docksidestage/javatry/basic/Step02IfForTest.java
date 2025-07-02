@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.docksidestage.unit.PlainTestCase;
 
+// TODO ayamin javadocのauthorお願いしますー by jflute (2025/07/02)
 /**
  * The test of if-for. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -108,6 +109,8 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // your answer? => 10
     }
+    // TODO jflute 1on1にて、ソースコードリーディングの話の補足をする予定 (2025/07/02)
+    // (これはぼくのtodoになるので、そのまま残しておいてください)
 
     // ===================================================================================
     //                                                                       for Statement
@@ -183,6 +186,7 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_making() {
         List<String> stageList = prepareStageList();
         List<String> aContainedList = new ArrayList<>();
+        // TODO ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
         String sea = null;
         for (String stage : stageList) {
             if (stage.contains("a"))
@@ -220,6 +224,8 @@ public class Step02IfForTest extends PlainTestCase {
     }
     public void test_original_forEach()
     {
+        // TODO ayamin [いいね] おおぉ、すごい頑張りましたね！mutableな配列で回避するとは by jflute (2025/07/02)
+        // TODO ayamin 修行++: もう少し悩んでもらうために...breakFlag[]なくても同じ挙動実現できるはずです by jflute (2025/07/02)
         List<String> stageList = prepareStageList();
         final String[] resultSea = new String[1];
         final boolean[] breakFlag = new boolean[1];
@@ -246,7 +252,7 @@ public class Step02IfForTest extends PlainTestCase {
      * ラムダ式のルール上、外側のローカル変数を直接変更できないため
      * 配列の中身は上記の制約を受けないのでこのように書く
      */
-
+    // TODO ayamin [いいね] コードの意図をコメントで表現されてる読み手はとても助かりますね！ by jflute (2025/07/02)
 
     /**
      * Make your original exercise as question style about if-for statement. <br>
@@ -261,7 +267,9 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_yourExercise()
     {
         List<String> stageList = prepareStageList();
+        // TODO ayamin "a" Contained じゃなくて "o" Contained ですかね、ここでは by jflute (2025/07/02)
         List<String> aContainedList = new ArrayList<>();
+        // TODO ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
         String sea = null;
         for (String stage : stageList) {
             if (stage.contains("o"))
