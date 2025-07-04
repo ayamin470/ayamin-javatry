@@ -32,6 +32,13 @@ import org.docksidestage.unit.PlainTestCase;
  * @author jflute
  * @author your_name_here
  */
+
+    // TODO jflute さん
+    //　いまさらの質問にはなるのですが、なぜTicket,TicketBooth,でクラスを分けたのでしょうか？
+    //　プログラムの全体像がわからない一番最初の時点で、Ticket,TicketBoothでクラスを切り分けたら良さそうだな、と考えられるその根拠を知りたいです
+    //　この「クラスを切り分ける」というところがまさにオブジェクト指向の考え方の基礎の基礎になると思っています。ですので、より理解を深めたく、質問いたしました
+
+
 public class Step05ClassTest extends PlainTestCase {
 
     // ===================================================================================

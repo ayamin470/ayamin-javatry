@@ -26,7 +26,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author ayamin
  */
 public class Step02IfForTest extends PlainTestCase {
 
@@ -187,7 +187,6 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
         List<String> aContainedList = new ArrayList<>();
         // TODO ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
-        String sea = null;
         for (String stage : stageList) {
             if (stage.contains("a"))
             {
@@ -247,6 +246,10 @@ public class Step02IfForTest extends PlainTestCase {
         log(sea);
     }
 
+    public void test_original_forEach2()
+    {
+    }
+
     /**
      * なぜ「boolean breakFlag = false;」ではなくfinal boolean[] breakFlag = new boolean[1];で配列にしているのか？
      * ラムダ式のルール上、外側のローカル変数を直接変更できないため
@@ -268,16 +271,15 @@ public class Step02IfForTest extends PlainTestCase {
     {
         List<String> stageList = prepareStageList();
         // TODO ayamin "a" Contained じゃなくて "o" Contained ですかね、ここでは by jflute (2025/07/02)
-        List<String> aContainedList = new ArrayList<>();
+        List<String> oContainedList = new ArrayList<>();
         // TODO ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
-        String sea = null;
         for (String stage : stageList) {
             if (stage.contains("o"))
             {
-                aContainedList.add(stage);
+                oContainedList.add(stage);
             }
         }
-        for (String aStage : aContainedList)
+        for (String aStage : oContainedList)
         {
             log(aStage);
         }

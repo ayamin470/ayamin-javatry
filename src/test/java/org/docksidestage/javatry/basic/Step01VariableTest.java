@@ -95,6 +95,9 @@ public class Step01VariableTest extends PlainTestCase
     // ↓の「レビューのやり取り」の欄を参考にお願いします。
     // https://dbflute.seasar.org/ja/tutorial/handson/review/jflutereview.html#review
 
+    // TODO done jflute さん by ayamin
+    // TODOにはこのように返事をすると言うこと。理解しました。次回から修正いたします
+
     // ===================================================================================
     //                                                                   Instance Variable
     //                                                                   =================

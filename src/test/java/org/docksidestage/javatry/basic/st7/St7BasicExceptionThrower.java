@@ -35,8 +35,8 @@ public class St7BasicExceptionThrower {
         oneman();
     }
 
-    private void oneman() { // fixedly throws exception
+    private void oneman() {
         logger.debug("show");
-        throw new IllegalStateException("oneman at showbase");
+        throw new IllegalStateException("oneman at showbase");  //例外を伝える
     }
 }

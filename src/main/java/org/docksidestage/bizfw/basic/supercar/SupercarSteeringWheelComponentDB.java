@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,8 +13,8 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.bizfw.basic.supercar;
 
+package org.docksidestage.bizfw.basic.supercar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,22 +22,29 @@ import java.util.Map;
 /**
  * @author jflute
  */
+
 public class SupercarSteeringWheelComponentDB {
 
     private final Map<Integer, String> clincherSpecMap; // not null
 
     public SupercarSteeringWheelComponentDB() {
+
         clincherSpecMap = new HashMap<>();
         clincherSpecMap.put(1, "-[@_@]-");
         clincherSpecMap.put(2, "/(>_<)\\");
         clincherSpecMap.put(3, "\\(^_^)/");
+
     }
 
     public String findClincherSpecText(Integer clincherSpecId) {
         return clincherSpecMap.get(clincherSpecId);
     }
 
+
+
     public Map<Integer, String> getClincherSpecMap() { // read-only
         return Collections.unmodifiableMap(clincherSpecMap);
+
     }
+
 }

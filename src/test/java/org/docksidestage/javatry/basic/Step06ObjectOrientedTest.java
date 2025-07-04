@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,8 +17,6 @@ package org.docksidestage.javatry.basic;
 
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
-import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
 import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
@@ -52,33 +50,31 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [ticket booth info]
         //
-        // simulation: actually these variables should be more wide scope (これはオブジェクト化すべきというヒント)
-        // int oneDayPrice = 7400; // TicketBoothクラスの定数として管理
-        // int quantity = 10;      // TicketBoothオブジェクトの属性として管理
-        // Integer salesProceeds = null; // TicketBoothオブジェクトの属性として管理
-
-        // 修正: TicketBoothオブジェクトを作成
-        TicketBooth booth = new TicketBooth();
+        // simulation: actually these variables should be more wide scope
+        int oneDayPrice = 7400;
+        int quantity = 10;
+        Integer salesProceeds = null;
 
         //
         // [buy one-day passport]
         //
         // simulation: actually this money should be from customer
         int handedMoney = 10000;
-
-        // 修正: TicketBoothのbuyOneDayPassportメソッドを呼び出す
-        // if (quantity <= 0) { ... } // これらはbuyOneDayPassportメソッド内部で行われる
-        // --quantity;
-        // if (handedMoney < oneDayPrice) { ... }
-        // salesProceeds = handedMoney;
-        Ticket oneDayPassport = booth.buyOneDayPassport(handedMoney); // Ticketオブジェクトが返ってくる
+        if (quantity <= 0) {
+            throw new IllegalStateException("Sold out");
+        }
+        --quantity;
+        if (handedMoney < oneDayPrice) {
+            throw new IllegalStateException("Short money: handedMoney=" + handedMoney);
+        }
+        salesProceeds = handedMoney;
 
         //
         // [ticket info]
         //
-        // simulation: actually these variables should be more wide scope (これもオブジェクト化すべきというヒント)
-        // int displayPrice = quantity; // Ticketクラスにカプセル化
-        // boolean alreadyIn = false;   // Ticketクラスにカプセル化
+        // simulation: actually these variables should be more wide scope
+        int displayPrice = quantity;
+        boolean alreadyIn = false;
 
         // other processes here...
         // ...
@@ -88,29 +84,25 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [do in park now!!!]
         //
         // simulation: actually this process should be called by other trigger
-        // 修正: TicketオブジェクトのdoInParkメソッドを呼び出す (isNightTime 引数を追加)
-        oneDayPassport.doInPark(false); // 昼間利用を想定
+        if (alreadyIn) {
+            throw new IllegalStateException("Already in park by this ticket: displayPrice=" + quantity);
+        }
+        alreadyIn = true;
 
         //
         // [final process]
         //
-        // 修正: saveBuyingHistoryにTicketBoothとTicketオブジェクトを渡す
-        saveBuyingHistory(booth, oneDayPassport);
+        saveBuyingHistory(quantity, displayPrice, salesProceeds, alreadyIn);
     }
 
-    // 修正: saveBuyingHistory メソッドが TicketBooth と Ticket オブジェクトを受け取るように変更
-    private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
-        // ticket.isAlreadyIn() は Ticket クラスのメソッド
-        if (ticket.isAlreadyIn()) {
+    private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
+        if (alreadyIn) {
             // simulation: only logging here (normally e.g. DB insert)
-            // 修正: showTicketBooth に booth オブジェクトから値を取り出して渡す
-            showTicketBooth(booth.getQuantity(), booth.getSalesProceeds());
-            // 修正: showYourTicket に ticket オブジェクトから値を取り出して渡す
-            showYourTicket(ticket.getDisplayPrice(), ticket.isAlreadyIn());
+            showTicketBooth(displayPrice, salesProceeds);
+            showYourTicket(quantity, alreadyIn);
         }
     }
 
-    // これらのメソッドの定義は変更しない (元のまま)
     private void showTicketBooth(int quantity, Integer salesProceeds) {
         log("Ticket Booth: quantity={}, salesProceeds={}", quantity, salesProceeds);
     }
@@ -141,10 +133,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [buy one-day passport]
         //
         // if step05 has been finished, you can use this code by jflute (2019/06/15)
-        // 修正: booth.buyOneDayPassport() から返されるTicketオブジェクトを直接使う
-        Ticket ticket = booth.buyOneDayPassport(10000);
-        // booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05 // 削除
-        // Ticket ticket = new Ticket(7400); // also here // 削除
+        //Ticket ticket = booth.buyOneDayPassport(10000);
+        booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05
+        Ticket ticket = new Ticket(7400); // also here
 
         // *buyOneDayPassport() has this process:
         //if (quantity <= 0) {
@@ -167,8 +158,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [do in park now!!!]
         //
-        // 修正: doInPark メソッドを呼び出す (isNightTime 引数を追加)
-        ticket.doInPark(false); // 昼間利用を想定
+        ticket.doInPark();
 
         // *doInPark() has this process:
         //if (alreadyIn) {
@@ -180,6 +170,22 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // [final process]
         //
         saveBuyingHistory(booth, ticket);
+    }
+
+    private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
+        if (ticket.isAlreadyIn()) {
+            // only logging here (normally e.g. DB insert)
+            doShowTicketBooth(booth);
+            doShowYourTicket(ticket);
+        }
+    }
+
+    private void doShowTicketBooth(TicketBooth booth) {
+        log("Ticket Booth: quantity={}, salesProceeds={}", booth.getQuantity(), booth.getSalesProceeds());
+    }
+
+    private void doShowYourTicket(Ticket ticket) {
+        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
     }
 
     // write your memo here:
@@ -199,7 +205,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         Dog dog = new Dog();
         BarkedSound sound = dog.bark();
         String sea = sound.getBarkWord();
-        log(sea); // your answer? =>　
+        log(sea); // your answer? =>
         int land = dog.getHitPoint();
         log(land); // your answer? =>
     }
@@ -211,13 +217,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         String sea = sound.getBarkWord();
         log(sea); // your answer? =>
         int land = animal.getHitPoint();
-        log(land); // your answer? =>　10
+        log(land); // your answer? =>
     }
-
-    // TODO jflute  by ayamin
-    // ログ出力ではwanが表示されるが、どこのファイルにwanが登場するのかわかりませんでした
-    //　なんでHPも7なのか本当にわからない
-
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_objectOriented_polymorphism_3rd_fromMethod() {
@@ -275,7 +276,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // write your memo here:
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // what is happy?
-        //DogやCatに共通する動きを効率よく実行できる？ちょっとよくわからない...
+        //
         // _/_/_/_/_/_/_/_/_/_/
     }
 
@@ -384,16 +385,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (BarkingProcessやBarkedSoundなど、barking関連のクラスをサブパッケージにまとめましょう)
      * <pre>
      * e.g.
-     * objanimal
-     * |-barking
-     * |  |-BarkedSound.java
-     * |  |-BarkingProcess.java
-     * |-loud
-     * |-runner
-     * |-Animal.java
-     * |-Cat.java
-     * |-Dog.java
-     * |-...
+     *  objanimal
+     *   |-barking
+     *   |  |-BarkedSound.java
+     *   |  |-BarkingProcess.java
+     *   |-loud
+     *   |-runner
+     *   |-Animal.java
+     *   |-Cat.java
+     *   |-Dog.java
+     *   |-...
      * </pre>
      */
     public void test_objectOriented_writing_withPackageRefactoring() {

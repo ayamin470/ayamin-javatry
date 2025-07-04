@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -13,19 +13,26 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.docksidestage.javatry.basic.st7;
+package org.docksidestage.bizfw.basic.supercar;
 
 /**
- * @author jflute
+ * Supercar client related exception.
+ * This exception indicates an issue originating from the client's request or a high-level process failure.
+ * <p>
+ * This is a runtime exception because it is expected to be handled at the application's boundary
+ * (e.g., web layer, service layer facade).
+ * </p>
+ * @author jflute (modified by your AI for this challenge)
  */
-public class St7ConstructorChallengeException extends RuntimeException {
+public class SupercarClientException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public St7ConstructorChallengeException(String msg) {
+    public SupercarClientException(String msg) {
         super(msg);
     }
-    public St7ConstructorChallengeException(String msg, Throwable cause) {
-        super(msg, cause); // 親クラス(RuntimeException)の、メッセージと原因を受け取るコンストラクタを呼び出す
+
+    public SupercarClientException(String msg, Throwable cause) {
+        super(msg, cause);
     }
 }

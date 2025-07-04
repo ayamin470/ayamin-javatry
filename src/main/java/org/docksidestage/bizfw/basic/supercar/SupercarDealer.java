@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,14 +25,25 @@ public class SupercarDealer {
 
     public Supercar orderSupercar(String clientRequirement) {
         SupercarManufacturer supercarManufacturer = createSupercarManufacturer();
+        String catalogKey;
         if (clientRequirement.contains("steering wheel is like sea")) {
-            return supercarManufacturer.makeSupercar("piari");
+            catalogKey = "sea";
         } else if (clientRequirement.contains("steering wheel is useful on land")) {
-            return supercarManufacturer.makeSupercar("land");
+            catalogKey = "land";
         } else if (clientRequirement.contains("steering wheel has many shop")) {
-            return supercarManufacturer.makeSupercar("piari");
+            catalogKey = "piari";
         } else {
-            throw new IllegalStateException("Cannot understand the client requirement: " + clientRequirement);
+            // クライアントの要求が理解できない場合、SupercarClientExceptionをスローするように変更
+            String msg = "Cannot understand the client requirement, please check your request: " + clientRequirement;
+            throw new SupercarClientException(msg);
+        }
+
+        try {
+
+            return supercarManufacturer.makeSupercar(catalogKey);
+        } catch (SupercarManufactureException e) { // SupercarManufacturerからの製造例外を捕捉
+            String msg = "Failed to order supercar due to manufacturing issue for client requirement: " + clientRequirement;
+            throw new SupercarClientException(msg, e);
         }
     }
 

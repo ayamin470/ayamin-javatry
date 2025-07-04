@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -27,11 +27,20 @@ public class SupercarManufacturer {
 
     public Supercar makeSupercar(String catalogKey) {
         Integer steeringWheelId = catalog.findSteeringWheelSpecId(catalogKey);
+        if (steeringWheelId == null) {
+            String msg = "Unknown catalog key for steering wheel: " + catalogKey + ", available: " + catalog.getSteeringWheelCatalogMap().keySet();
+            throw new SupercarManufactureException(msg);
+        }
 
         SupercarSteeringWheelManufacturer wheelManufacturer = createSupercarSteeringWheelManufacturer();
-        SteeringWheel steeringWheel = wheelManufacturer.makeSteeringWheel(steeringWheelId);
+        try {
 
-        return new Supercar(steeringWheel);
+            SteeringWheel steeringWheel = wheelManufacturer.makeSteeringWheel(steeringWheelId);
+            return new Supercar(steeringWheel);
+        } catch (RuntimeException e) {
+            String msg = "Failed to make supercar due to steering wheel manufacturing issue for ID: " + steeringWheelId;
+            throw new SupercarManufactureException(msg, e); // 製造上の問題として、原因を連結して再スロー
+        }
     }
 
     protected SupercarSteeringWheelManufacturer createSupercarSteeringWheelManufacturer() {

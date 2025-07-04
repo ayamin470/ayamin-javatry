@@ -22,7 +22,7 @@ import org.docksidestage.unit.PlainTestCase;
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
  * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
  * @author jflute
- * @author your_name_here
+ * @author ayamin
  */
 public class Step04MethodTest extends PlainTestCase {
 
@@ -120,7 +120,7 @@ public class Step04MethodTest extends PlainTestCase {
     }
     /**
      *インスタンス変数ということは、メソッドで変更があっても他のメソッドに変更が反映されない
-     *for文を回す時に、何がいんくりめんとされるのか？　に注意する
+     *for文を回す時に、何がインクリメントされるのか？　に注意する
      * */
 
 
