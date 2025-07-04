@@ -30,7 +30,7 @@ import org.docksidestage.unit.PlainTestCase;
  * (要件が曖昧なところがあれば、適切だと思われる仕様を決めても良いです)
  *
  * @author jflute
- * @author your_name_here
+ * @author ayamin
  */
 
     // TODO jflute さん

@@ -19,6 +19,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 // https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#minjavadoc
 /**
  * @author jflute
+ * @author ayamin
  */
 public class TicketBooth {
 
