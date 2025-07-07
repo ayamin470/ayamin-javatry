@@ -15,11 +15,20 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
+import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner; // FastRunnerインターフェースをインポート
+import org.slf4j.Logger; // Loggerクラスをインポート
+import org.slf4j.LoggerFactory; // LoggerFactoryクラスをインポート
+
 /**
  * The object for dog(犬).
  * @author jflute
+ * @author ayamin
  */
-public class Dog extends Animal {
+
+// TODO ayamin
+//  Animal を継承しているけど、getInitialHitPoint() と downHitPoint() はオーバーライドしていないことに注意
+public class Dog extends Animal implements FastRunner {
+    private static final Logger logger = LoggerFactory.getLogger(Dog.class);
 
     // ===================================================================================
     //                                                                         Constructor
@@ -30,7 +39,14 @@ public class Dog extends Animal {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
+    @Override
     protected String getBarkWord() {
         return "wan"; // bow? in English
+    }
+
+    @Override
+    public void run() {
+        logger.debug("...Running now");
+        downHitPoint();
     }
 }

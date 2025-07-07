@@ -1,55 +1,73 @@
-///*
-// * Copyright 2019-2022 the original author or authors.
-// *
-// * Licensed under the Apache License, Version 2.0 (the "License");
-// * you may not use this file except in compliance with the License.
-// * You may obtain a copy of the License at
-// *
-// *     http://www.apache.org/licenses/LICENSE-2.0
-// *
-// * Unless required by applicable law or agreed to in writing, software
-// * distributed under the License is distributed on an "AS IS" BASIS,
-// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-// * either express or implied. See the License for the specific language
-// * governing permissions and limitations under the License.
-// */
-//package org.docksidestage.javatry.basic;
-//
-//import org.docksidestage.bizfw.basic.buyticket.Ticket;
-//import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
-//import org.docksidestage.bizfw.basic.objanimal.Animal;
-//import org.docksidestage.bizfw.basic.objanimal.BarkedSound;
-//import org.docksidestage.bizfw.basic.objanimal.Cat;
-//import org.docksidestage.bizfw.basic.objanimal.Dog;
-//import org.docksidestage.bizfw.basic.objanimal.Zombie;
-//import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
-//import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
-//import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
-//import org.docksidestage.unit.PlainTestCase;
-//
-///**
-// * The test of object-oriented. <br>
-// * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
-// * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
-// * @author jflute
-// * @author ayamin
-// */
-//public class Step06ObjectOrientedTest extends PlainTestCase {
-//
-//    // ===================================================================================
-//    //                                                                        About Object
-//    //                                                                        ============
-//    // -----------------------------------------------------
-//    //                                        Against Object
-//    //                                        --------------
-//    /**
-//     * Fix several mistakes (except simulation) in buying one-day passport and in-park process. <br>
-//     * (OneDayPassportを買って InPark する処理の中で、(simulationを除いて)間違いがいくつかあるので修正しましょう)
-//     */
-//    public void test_objectOriented_aboutObject_againstObject() {
-//
-//    }
-//
+/*
+ * Copyright 2019-2022 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+package org.docksidestage.javatry.basic;
+
+import org.docksidestage.bizfw.basic.buyticket.Ticket;
+import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
+import org.docksidestage.bizfw.basic.objanimal.Animal;
+import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
+import org.docksidestage.bizfw.basic.objanimal.Cat;
+import org.docksidestage.bizfw.basic.objanimal.Dog;
+import org.docksidestage.bizfw.basic.objanimal.Zombie;
+import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
+import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
+import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.unit.PlainTestCase;
+import org.docksidestage.bizfw.basic.objanimal.Panda;
+import org.docksidestage.bizfw.basic.objanimal.special.Nocturnal;
+
+import org.docksidestage.javatry.basic.st6.os.Mac;
+import org.docksidestage.javatry.basic.st6.os.Windows;
+import org.docksidestage.javatry.basic.st6.os.OldWindows;
+import org.docksidestage.javatry.basic.st6.os.OperationSystem;
+
+
+
+/**
+ * The test of object-oriented. <br>
+ * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
+ * (javadocの通りにエクササイズを実施。質問形式の場合はテストを実行する前に考えて答えを書いてみましょう)
+ * @author jflute
+ * @author ayamin
+ */
+public class Step06ObjectOrientedTest extends PlainTestCase {
+
+    // ===================================================================================
+    //                                                                        About Object
+    //                                                                        ============
+    // -----------------------------------------------------
+    //                                        Against Object
+    //                                        --------------
+    /**
+     * Fix several mistakes (except simulation) in buying one-day passport and in-park process. <br>
+     * (OneDayPassportを買って InPark する処理の中で、(simulationを除いて)間違いがいくつかあるので修正しましょう)
+     */
+    public void test_objectOriented_aboutObject_againstObject() {
+        //TODO ayamin チケットを購入し、入園するまでを書く
+
+        TicketBooth booth = new TicketBooth();
+
+        Ticket ticket = booth.buyOneDayPassport(10000);
+
+        ticket.doInPark();
+
+        saveBuyingHistory(booth, ticket);
+
+    }
+
 //    private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
 //        if (alreadyIn) {
 //            // simulation: only logging here (normally e.g. DB insert)
@@ -57,7 +75,8 @@
 //            showYourTicket(quantity, alreadyIn);
 //        }
 //    }
-//
+
+    //TODO ayamin Ticket や TicketBooth オブジェクトを使わずに直接 int や boolean の値を受け取っているため、オブジェクト指向ではない
 //    private void showTicketBooth(int quantity, Integer salesProceeds) {
 //        log("Ticket Booth: quantity={}, salesProceeds={}", quantity, salesProceeds);
 //    }
@@ -65,306 +84,406 @@
 //    private void showYourTicket(int displayPrice, boolean alreadyIn) {
 //        log("Ticket: displayPrice={}, alreadyIn={}", displayPrice, alreadyIn);
 //    }
-//
-//    // -----------------------------------------------------
-//    //                                          Using Object
-//    //                                          ------------
-//    /**
-//     * Read (analyze) this code and compare with the previous test method, and think "what is object?". <br>
-//     * (このコードを読んで(分析して)、一つ前のテストメソッドと比べて、「オブジェクトとは何か？」を考えてみましょう)
-//     */
-//    public void test_objectOriented_aboutObject_usingObject() {
-//        //
-//        // [ticket booth info]
-//        //
-//        TicketBooth booth = new TicketBooth();
-//
-//        // *booth has these properties:
-//        //int oneDayPrice = 7400;
-//        //int quantity = 10;
-//        //Integer salesProceeds = null;
-//
-//        //
-//        // [buy one-day passport]
-//        //
-//        // if step05 has been finished, you can use this code by jflute (2019/06/15)
-//        //Ticket ticket = booth.buyOneDayPassport(10000);
-//        booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05
+
+    // -----------------------------------------------------
+    //                                          Using Object
+    //                                          ------------
+    /**
+     * Read (analyze) this code and compare with the previous test method, and think "what is object?". <br>
+     * (このコードを読んで(分析して)、一つ前のテストメソッドと比べて、「オブジェクトとは何か？」を考えてみましょう)
+     */
+
+    // TODO jflute さん　オブジェクトとは何か？
+    //    現実にあるものをコードに書き起こしたものがオブジェクトだと思います
+    //    そもそも、オブジェクト指向とは、手続型で順番通りにコードを書き連ねるのではなく、
+    //    現実にある物体をイメージしながら、オブジェクト同士が何をやりとりするのか？
+    //    を考えるのがオブジェクト指向だと考えるからです
+
+    public void test_objectOriented_aboutObject_usingObject() {
+        //
+        // [ticket booth info]
+        //
+        TicketBooth booth = new TicketBooth();
+
+        // *booth has these properties:
+        //int oneDayPrice = 7400;
+        //int quantity = 10;
+        //Integer salesProceeds = null;
+
+        //
+        // [buy one-day passport]
+        //
+        // if step05 has been finished, you can use this code by jflute (2019/06/15)
+        //Ticket ticket = booth.buyOneDayPassport(10000);
+        booth.buyOneDayPassport(10000); // as temporary, remove if you finished step05
 //        Ticket ticket = new Ticket(7400); // also here
-//
-//        // *buyOneDayPassport() has this process:
-//        //if (quantity <= 0) {
-//        //    throw new TicketSoldOutException("Sold out");
-//        //}
-//        //if (handedMoney < oneDayPrice) {
-//        //    throw new TicketShortMoneyException("Short money: handedMoney=" + handedMoney);
-//        //}
-//        //--quantity;
-//        //salesProceeds = handedMoney;
-//
-//        // *ticket has these properties:
-//        //int displayPrice = oneDayPrice;
-//        //boolean alreadyIn = false;
-//
-//        // other processes here...
-//        // ...
-//        // ...
-//
-//        //
-//        // [do in park now!!!]
-//        //
+
+        // *buyOneDayPassport() has this process:
+        //if (quantity <= 0) {
+        //    throw new TicketSoldOutException("Sold out");
+        //}
+        //if (handedMoney < oneDayPrice) {
+        //    throw new TicketShortMoneyException("Short money: handedMoney=" + handedMoney);
+        //}
+        //--quantity;
+        //salesProceeds = handedMoney;
+
+        // *ticket has these properties:
+        //int displayPrice = oneDayPrice;
+        //boolean alreadyIn = false;
+
+        // other processes here...
+        // ...
+        // ...
+
+        //
+        // [do in park now!!!]
+        //
 //        ticket.doInPark();
-//
-//        // *doInPark() has this process:
-//        //if (alreadyIn) {
-//        //    throw new IllegalStateException("Already in park by this ticket: displayPrice=" + displayPrice);
-//        //}
-//        //alreadyIn = true;
-//
-//        //
-//        // [final process]
-//        //
+
+        // *doInPark() has this process:
+        //if (alreadyIn) {
+        //    throw new IllegalStateException("Already in park by this ticket: displayPrice=" + displayPrice);
+        //}
+        //alreadyIn = true;
+
+        //
+        // [final process]
+        //
 //        saveBuyingHistory(booth, ticket);
-//    }
-//
-//    private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
-//        if (ticket.isAlreadyIn()) {
-//            // only logging here (normally e.g. DB insert)
-//            doShowTicketBooth(booth);
-//            doShowYourTicket(ticket);
-//        }
-//    }
-//
-//    private void doShowTicketBooth(TicketBooth booth) {
-//        log("Ticket Booth: quantity={}, salesProceeds={}", booth.getQuantity(), booth.getSalesProceeds());
-//    }
-//
-//    private void doShowYourTicket(Ticket ticket) {
-//        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
-//    }
-//
-//    // write your memo here:
-//    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-//    // what is object?
-//    //
-//    // _/_/_/_/_/_/_/_/_/_/
-//
-//    // ===================================================================================
-//    //                                                              Polymorphism Beginning
-//    //                                                              ======================
-//    /**
-//     * What string is sea and land variable at the method end? <br>
-//     * (メソッド終了時の変数 sea, land の中身は？)
-//     */
-//    public void test_objectOriented_polymorphism_1st_concreteOnly() {
-//        Dog dog = new Dog();
-//        BarkedSound sound = dog.bark();
-//        String sea = sound.getBarkWord();
-//        log(sea); // your answer? =>
-//        int land = dog.getHitPoint();
-//        log(land); // your answer? =>
-//    }
-//
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_2nd_asAbstract() {
-//        Animal animal = new Dog();
-//        BarkedSound sound = animal.bark();
-//        String sea = sound.getBarkWord();
-//        log(sea); // your answer? =>
-//        int land = animal.getHitPoint();
-//        log(land); // your answer? =>
-//    }
-//
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_3rd_fromMethod() {
-//        Animal animal = createAnyAnimal();
-//        BarkedSound sound = animal.bark();
-//        String sea = sound.getBarkWord();
-//        log(sea); // your answer? =>
-//        int land = animal.getHitPoint();
-//        log(land); // your answer? =>
-//    }
-//
-//    private Animal createAnyAnimal() {
-//        return new Dog();
-//    }
-//
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_4th_toMethod() {
-//        Dog dog = new Dog();
-//        doAnimalSeaLand_for_4th(dog);
-//    }
-//
-//    private void doAnimalSeaLand_for_4th(Animal animal) {
-//        BarkedSound sound = animal.bark();
-//        String sea = sound.getBarkWord();
-//        log(sea); // your answer? =>
-//        int land = animal.getHitPoint();
-//        log(land); // your answer? =>
-//    }
-//
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_5th_overrideWithSuper() {
-//        Animal animal = new Cat();
-//        BarkedSound sound = animal.bark();
-//        String sea = sound.getBarkWord();
-//        log(sea); // your answer? =>
-//        int land = animal.getHitPoint();
-//        log(land); // your answer? =>
-//    }
-//
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_6th_overriddenWithoutSuper() {
-//        Animal animal = new Zombie();
-//        BarkedSound sound = animal.bark();
-//        String sea = sound.getBarkWord();
-//        log(sea); // your answer? =>
-//        int land = animal.getHitPoint();
-//        log(land); // your answer? =>
-//    }
-//
-//    /**
-//     * What is happy if you can assign Dog or Cat instance to Animal variable? <br>
-//     * (Animal型の変数に、DogやCatなどのインスタンスを代入できると何が嬉しいのでしょう？)
-//     */
-//    public void test_objectOriented_polymorphism_7th_whatishappy() {
-//        // write your memo here:
-//        // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-//        // what is happy?
-//        //
-//        // _/_/_/_/_/_/_/_/_/_/
-//    }
-//
-//    // ===================================================================================
-//    //                                                              Polymorphism Interface
-//    //                                                              ======================
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_interface_dispatch() {
-//        Loudable loudable = new Zombie();
-//        String sea = loudable.soundLoudly();
-//        log(sea); // your answer? =>
-//        String land = ((Zombie) loudable).bark().getBarkWord();
-//        log(land); // your answer? =>
-//    }
-//
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_interface_hierarchy() {
-//        Loudable loudable = new AlarmClock();
-//        String sea = loudable.soundLoudly();
-//        log(sea); // your answer? =>
-//        boolean land = loudable instanceof Animal;
-//        log(land); // your answer? =>
-//    }
-//
-//    /** Same as the previous method question. (前のメソッドの質問と同じ) */
-//    public void test_objectOriented_polymorphism_interface_partImpl() {
-//        Animal seaAnimal = new Cat();
-//        Animal landAnimal = new Zombie();
-//        boolean sea = seaAnimal instanceof FastRunner;
-//        log(sea); // your answer? =>
-//        boolean land = landAnimal instanceof FastRunner;
-//        log(land); // your answer? =>
-//    }
-//
-//    /**
-//     * Make Dog class implement FastRunner interface. (the method implementation is same as Cat class) <br>
-//     * (DogもFastRunnerインターフェースをimplementsしてみましょう (メソッドの実装はCatと同じで))
-//     */
-//    public void test_objectOriented_polymorphism_interface_runnerImpl() {
-//        // your confirmation code here
-//    }
-//
-//    /**
-//     * What is difference as concept between abstract class and interface? <br>
-//     * (抽象クラスとインターフェースの概念的な違いはなんでしょう？)
-//     */
-//    public void test_objectOriented_polymorphism_interface_whatisdifference() {
-//        // write your memo here:
-//        // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-//        // what is difference?
-//        //
-//        // _/_/_/_/_/_/_/_/_/_/
-//    }
-//
-//    // ===================================================================================
-//    //                                                                 Polymorphism Making
-//    //                                                                 ===================
-//    /**
-//     * Make concrete class of Animal, which is not FastRunner, in "objanimal" package. (implementation is as you like) <br>
-//     * (FastRunnerではないAnimalクラスのコンクリートクラスをobjanimalパッケージに作成しましょう (実装はお好きなように))
-//     */
-//    public void test_objectOriented_polymorphism_makeConcrete() {
-//        // your confirmation code here
-//    }
-//
-//    /**
-//     * Make interface implemented by part of Animal concrete class in new package under "objanimal" package. (implementation is as you like) <br>
-//     * (Animalクラスの一部のコンクリートクラスだけがimplementsするインターフェースをobjanimal配下の新しいパッケージに作成しましょう (実装はお好きなように))
-//     */
-//    public void test_objectOriented_polymorphism_makeInterface() {
-//        // your confirmation code here
-//    }
-//
-//    // ===================================================================================
-//    //                                                                           Challenge
-//    //                                                                           =========
-//    /**
-//     * Extract St6MySql, St6PostgreSql (basic.st6.dbms)'s process to abstract class (as super class and sub-class) <br>
-//     * (St6MySql, St6PostgreSql (basic.st6.dbms) から抽象クラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
-//     */
-//    public void test_objectOriented_writing_generalization_extractToAbstract() {
-//        // your confirmation code here
-//    }
-//
-//    /**
-//     * Extract St6OperationSystem (basic.st6.os)'s process to concrete classes (as super class and sub-class) <br>
-//     * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
-//     */
-//    public void test_objectOriented_writing_specialization_extractToConcrete() {
-//        // your confirmation code here
-//    }
-//
-//    // ===================================================================================
-//    //                                                                           Good Luck
-//    //                                                                           =========
-//    /**
-//     * Extract Animal's bark() process as BarkingProcess class to also avoid large abstract class. <br>
-//     * (抽象クラス肥大化を抑制するためにも、Animalのbark()のプロセス(処理)をBarkingProcessクラスとして切り出しましょう)
-//     */
-//    public void test_objectOriented_writing_withDelegation() {
-//        // your confirmation code here
-//    }
-//
-//    /**
-//     * Put barking-related classes, such as BarkingProcess and BarkedSound, into sub-package. <br>
-//     * (BarkingProcessやBarkedSoundなど、barking関連のクラスをサブパッケージにまとめましょう)
-//     * <pre>
-//     * e.g.
-//     *  objanimal
-//     *   |-barking
-//     *   |  |-BarkedSound.java
-//     *   |  |-BarkingProcess.java
-//     *   |-loud
-//     *   |-runner
-//     *   |-Animal.java
-//     *   |-Cat.java
-//     *   |-Dog.java
-//     *   |-...
-//     * </pre>
-//     */
-//    public void test_objectOriented_writing_withPackageRefactoring() {
-//        // your confirmation code here
-//    }
-//
-//    /**
-//     * Is Zombie correct as sub-class of Animal? Analyze it in thirty seconds. (thinking only) <br>
-//     * (ゾンビは動物クラスのサブクラスとして適切でしょうか？30秒だけ考えてみましょう (考えるだけでOK))
-//     */
-//    public void test_objectOriented_zoo() {
-//        // write your memo here:
-//        // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
-//        // is it corrent?
-//        //
-//        // _/_/_/_/_/_/_/_/_/_/
-//    }
-//}
+    }
+
+    private void saveBuyingHistory(TicketBooth booth, Ticket ticket) {
+        if (ticket.isAlreadyIn()) {
+            // only logging here (normally e.g. DB insert)
+            doShowTicketBooth(booth);
+            doShowYourTicket(ticket);
+        }
+    }
+
+    private void doShowTicketBooth(TicketBooth booth) {
+        log("Ticket Booth: quantity={}, salesProceeds={}", booth.getQuantity(), booth.getSalesProceeds());
+    }
+
+    private void doShowYourTicket(Ticket ticket) {
+        log("Your Ticket: displayPrice={}, alreadyIn={}", ticket.getDisplayPrice(), ticket.isAlreadyIn());
+    }
+
+    // write your memo here:
+    // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+    // what is object?
+    //
+    // _/_/_/_/_/_/_/_/_/_/
+
+    // ===================================================================================
+    //                                                              Polymorphism Beginning
+    //                                                              ======================
+    /**
+     * What string is sea and land variable at the method end? <br>
+     * (メソッド終了時の変数 sea, land の中身は？)
+     */
+    public void test_objectOriented_polymorphism_1st_concreteOnly() {
+        Dog dog = new Dog();
+        BarkedSound sound = dog.bark();
+        String sea = sound.getBarkWord();
+        log(sea); // your answer? =>wan
+        int land = dog.getHitPoint();
+        log(land); // your answer? =>7
+    }
+
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_2nd_asAbstract() {
+        Animal animal = new Dog();
+        BarkedSound sound = animal.bark();
+        String sea = sound.getBarkWord();
+        log(sea); // your answer? =>wan
+        int land = animal.getHitPoint();
+        log(land); // your answer? =>7
+    }
+
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_3rd_fromMethod() {
+        Animal animal = createAnyAnimal();
+        BarkedSound sound = animal.bark();
+        String sea = sound.getBarkWord();
+        log(sea); // your answer? =>wan
+        int land = animal.getHitPoint();
+        log(land); // your answer? =>7
+    }
+
+    private Animal createAnyAnimal() {
+        return new Dog();
+    }
+
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_4th_toMethod() {
+        Dog dog = new Dog();
+        doAnimalSeaLand_for_4th(dog);
+    }
+
+    private void doAnimalSeaLand_for_4th(Animal animal) {
+        BarkedSound sound = animal.bark();
+        String sea = sound.getBarkWord();
+        log(sea); // your answer? =>wan
+        int land = animal.getHitPoint();
+        log(land); // your answer? =>7
+    }
+
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_5th_overrideWithSuper() {
+        Animal animal = new Cat();
+        BarkedSound sound = animal.bark();
+        String sea = sound.getBarkWord();
+        log(sea); // your answer? =>nya-
+        int land = animal.getHitPoint();
+        log(land); // your answer? =>5
+    }
+
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_6th_overriddenWithoutSuper() {
+        Animal animal = new Zombie();
+        BarkedSound sound = animal.bark();
+        String sea = sound.getBarkWord();
+        log(sea); // your answer? =>uooo
+        int land = animal.getHitPoint();
+        log(land); // your answer? =>-1
+    }
+
+    /**
+     * What is happy if you can assign Dog or Cat instance to Animal variable? <br>
+     * (Animal型の変数に、DogやCatなどのインスタンスを代入できると何が嬉しいのでしょう？)
+     */
+    public void test_objectOriented_polymorphism_7th_whatishappy() {
+        // write your memo here:
+        // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+        // what is happy?
+        //「それっぽく扱う＝多様態」
+        // animalという大元のクラスがあることで、コードを書くのが楽になる
+        // 動物の種類ごとに異なるメソッドを呼び出す必要がなくなるから、他に動物が増えた時でも楽！
+        // _/_/_/_/_/_/_/_/_/_/
+    }
+
+    // ===================================================================================
+    //                                                              Polymorphism Interface
+    //                                                              ======================
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_interface_dispatch() {
+        Loudable loudable = new Zombie();
+        String sea = loudable.soundLoudly();
+        log(sea); // your answer? =>uooo
+        String land = ((Zombie) loudable).bark().getBarkWord();
+        log(land); // your answer? =>uooo
+    }
+
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_interface_hierarchy() {
+        Loudable loudable = new AlarmClock();
+        String sea = loudable.soundLoudly();
+        log(sea); // your answer? =>iri jiri jiri---
+        boolean land = loudable instanceof Animal;
+        log(land); // your answer? =>false
+    }
+
+    /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    public void test_objectOriented_polymorphism_interface_partImpl() {
+        Animal seaAnimal = new Cat();
+        Animal landAnimal = new Zombie();
+        boolean sea = seaAnimal instanceof FastRunner;
+        log(sea); // your answer? =>true
+
+
+        boolean land = landAnimal instanceof FastRunner;
+        log(land); // your answer? =>false
+    }
+
+    /**
+     * Make Dog class implement FastRunner interface. (the method implementation is same as Cat class) <br>
+     * (DogもFastRunnerインターフェースをimplementsしてみましょう (メソッドの実装はCatと同じで))
+     */
+    public void test_objectOriented_polymorphism_interface_runnerImpl() {
+        // Dogインスタンスを作成
+        Dog dog = new Dog();
+        log("最初のDog HP: " + dog.getHitPoint()); // 初期HPを確認
+
+        // DogがFastRunnerインターフェースを実装しているかを確認
+        assertTrue(dog instanceof FastRunner);
+        log(" DogはFastRunner? " + (dog instanceof FastRunner)); // true と表示されるはず
+
+        // FastRunner型の変数にDogインスタンスを代入し、run()メソッドを呼び出す
+        FastRunner runner = dog;
+        log("Dog is running...");
+        runner.run();
+
+        // run()メソッドが呼ばれた後にHPが減少しているか確認
+        log("DogのHP: " + dog.getHitPoint()); // 9
+
+        // DogがAnimalとしてのbark()もできるか確認
+        log("Dog: " + dog.bark().getBarkWord());
+        log("DogのHP " + dog.getHitPoint());
+    }
+
+    /**
+     * What is difference as concept between abstract class and interface? <br>
+     * (抽象クラスとインターフェースの概念的な違いはなんでしょう？)
+     */
+    public void test_objectOriented_polymorphism_interface_whatisdifference() {
+        // write your memo here:
+        // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+        // what is difference?
+        //抽象クラス：中身がまだ定まっていない大元のクラス。子クラスで詳しく情報を詰めることができる
+        //インターフェース：抽象度の中でも特に抽象度の高いクラス
+        // _/_/_/_/_/_/_/_/_/_/
+    }
+
+    // ===================================================================================
+    //                                                                 Polymorphism Making
+    //                                                                 ===================
+    /**
+     * Make concrete class of Animal, which is not FastRunner, in "objanimal" package. (implementation is as you like) <br>
+     * (FastRunnerではないAnimalクラスのコンクリートクラスをobjanimalパッケージに作成しましょう (実装はお好きなように))
+     */
+    public void test_objectOriented_polymorphism_makeConcrete() {
+        // your confirmation code here
+        Panda panda = new Panda();
+        log("最初の Panda HP: " + panda.getHitPoint()); // Animalの初期HP (10)
+
+        log("Panda HP: " + panda.getHitPoint()); // 7
+
+        // FastRunnerではないことを確認
+        boolean isFastRunner = panda instanceof FastRunner;
+        log("Is Panda a FastRunner? " + isFastRunner);
+        assertFalse(isFastRunner);
+    }
+
+    /**
+     * Make interface implemented by part of Animal concrete class in new package under "objanimal" package. (implementation is as you like) <br>
+     * (Animalクラスの一部のコンクリートクラスだけがimplementsするインターフェースをobjanimal配下の新しいパッケージに作成しましょう (実装はお好きなように))
+     */
+    public void test_objectOriented_polymorphism_makeInterface() {
+        log("--- Confirmation: Nocturnal interface for Cat only ---");
+
+        // Cat は Nocturnal を実装しているので、Nocturnal 型として扱える
+        Cat cat = new Cat();
+        log("Cat's normal bark: {}", cat.bark().getBarkWord()); // 通常の鳴き声
+        Nocturnal nocturnalCat = cat;
+        log("Cat's night sound: {}", nocturnalCat.makeNightSound()); // Nocturnal
+        assertTrue(true);
+    }
+
+    // ===================================================================================
+    //                                                                           Challenge
+    //                                                                           =========
+    /**
+     * Extract St6MySql, St6PostgreSql (basic.st6.dbms)'s process to abstract class (as super class and sub-class) <br>
+     * (St6MySql, St6PostgreSql (basic.st6.dbms) から抽象クラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
+     */
+
+    //TODO jfluteさん　SQLをよく勉強していないので、後で解きます　
+    public void test_objectOriented_writing_generalization_extractToAbstract() {
+        // your confirmation code here
+    }
+
+    /**
+     * Extract St6OperationSystem (basic.st6.os)'s process to concrete classes (as super class and sub-class) <br>
+     * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
+     */
+    public void test_objectOriented_writing_specialization_extractToConcrete() {
+        log("--- チェック ---");
+
+        OperationSystem macOs = new Mac("ayami");
+        String macPath = macOs.buildUserResourcePath("Desktop/my_file.txt");
+        log("Mac Path: {}", macPath); // /Users/haruna/Desktop/my_file.txt と表示されるはず
+        assertEquals("/Users/ayami/Desktop/my_file.txt", macPath);
+        assertEquals("/Users/", macOs.getUserDirectory() + macOs.getFileSeparator());
+
+
+        log("---");
+
+        // Windows OSのパスをOperationSystem型で構築
+        OperationSystem windowsOs = new Windows("jflute");
+        String windowsPath = windowsOs.buildUserResourcePath("Documents/report.docx");
+        log("Windows Path: {}", windowsPath); // \Users\jflute\Documents\report.docx と表示されるはず
+        assertEquals("\\Users\\jflute\\Documents\\report.docx", windowsPath);
+        assertEquals("\\Users\\", windowsOs.getUserDirectory() + windowsOs.getFileSeparator());
+
+        log("---");
+
+        // Old Windows OSのパスをOperationSystem型で構築
+        OperationSystem oldWindowsOs = new OldWindows("olduser");
+        String oldWindowsPath = oldWindowsOs.buildUserResourcePath("My Documents/photo.jpg");
+        log("Old Windows Path: {}", oldWindowsPath); // \Documents and Settings\olduser\My Documents\photo.jpg と表示されるはず
+        assertEquals("\\Documents and Settings\\olduser\\My Documents\\photo.jpg", oldWindowsPath);
+        assertEquals("\\Documents and Settings\\", oldWindowsOs.getUserDirectory() + oldWindowsOs.getFileSeparator());
+
+        log("--- Confirmation finished ---");
+
+    }
+
+    // ===================================================================================
+    //                                                                           Good Luck
+    //                                                                           =========
+    /**
+     * Extract Animal's bark() process as BarkingProcess class to also avoid large abstract class. <br>
+     * (抽象クラス肥大化を抑制するためにも、Animalのbark()のプロセス(処理)をBarkingProcessクラスとして切り出しましょう)
+     */
+
+    //TODO ayamin Animalクラスは、「HPを持つ」だけでなく、「鳴く」や「息を吸う」などまで責任を持っていて、保守性が低い
+    public void test_objectOriented_writing_withDelegation() {
+        log("--- Confirmation: BarkingProcess delegation ---");
+
+        Dog dog = new Dog();
+        log("Initial Dog HP: {}", dog.getHitPoint()); // 初期HP: 10
+        String dogBark = dog.bark().getBarkWord();
+        log("Dog barks: {}", dogBark); // "wan"
+        log("Dog HP after bark: {}", dog.getHitPoint()); // HP: 10 - 3 = 7
+
+        assertEquals("wan", dogBark);
+        assertEquals(7, dog.getHitPoint());
+
+        log("---");
+
+        Cat cat = new Cat();
+        log("Initial Cat HP: {}", cat.getHitPoint()); // 初期HP: 10
+        String catBark = cat.bark().getBarkWord();
+        log("Cat barks: {}", catBark); // "nya-"
+
+        log("Cat HP after bark: {}", cat.getHitPoint()); // HP: 10 - 5 = 5
+
+        assertEquals("nya-", catBark);
+        assertEquals(5, cat.getHitPoint());
+
+        log("--- Confirmation finished ---");
+    }
+    /**
+     * Put barking-related classes, such as BarkingProcess and BarkedSound, into sub-package. <br>
+     * (BarkingProcessやBarkedSoundなど、barking関連のクラスをサブパッケージにまとめましょう)
+     * <pre>
+     * e.g.
+     *  objanimal
+     *   |-barking
+     *   |  |-BarkedSound.java
+     *   |  |-BarkingProcess.java
+     *   |-loud
+     *   |-runner
+     *   |-Animal.java
+     *   |-Cat.java
+     *   |-Dog.java
+     *   |-...
+     * </pre>
+     */
+    public void test_objectOriented_writing_withPackageRefactoring() {
+        // your confirmation code here
+    }
+
+    /**
+     * Is Zombie correct as sub-class of Animal? Analyze it in thirty seconds. (thinking only) <br>
+     * (ゾンビは動物クラスのサブクラスとして適切でしょうか？30秒だけ考えてみましょう (考えるだけでOK))
+     */
+    public void test_objectOriented_zoo() {
+        // write your memo here:
+        // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+        // is it corrent?
+        //適切ではない
+        // _/_/_/_/_/_/_/_/_/_/
+    }
+}

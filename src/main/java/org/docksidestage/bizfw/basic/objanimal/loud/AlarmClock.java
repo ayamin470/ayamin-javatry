@@ -18,6 +18,7 @@ package org.docksidestage.bizfw.basic.objanimal.loud;
 /**
  * The object for alarm clock(目覚まし時計).
  * @author jflute
+ * @author ayamin
  */
 public class AlarmClock implements Loudable {
 

@@ -21,6 +21,7 @@ import java.util.Map;
 
 /**
  * @author jflute
+ * @author ayamin
  */
 public class SupercarEasyCatalog {
 

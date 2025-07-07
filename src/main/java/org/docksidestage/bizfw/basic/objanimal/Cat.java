@@ -18,12 +18,14 @@ package org.docksidestage.bizfw.basic.objanimal;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.docksidestage.bizfw.basic.objanimal.special.Nocturnal;
 
 /**
  * The object for cat(猫).
  * @author jflute
+ * @author ayamin
  */
-public class Cat extends Animal implements FastRunner {
+public class Cat extends Animal implements FastRunner, Nocturnal {
 
     // ===================================================================================
     //                                                                          Definition
@@ -49,7 +51,7 @@ public class Cat extends Animal implements FastRunner {
     //                                                                              ======
     @Override
     public void run() {
-        logger.debug("...Running now"); // dummy implementation
+        logger.debug("Running"); // dummy implementation
         downHitPoint();
     }
 
@@ -62,5 +64,12 @@ public class Cat extends Animal implements FastRunner {
         if (hitPoint % 2 == 0) {
             super.downHitPoint();
         }
+    }
+    // ===================================================================================
+    //                                                                           Nocturnal
+    //                                                                           =========
+    @Override
+    public String makeNightSound() {
+        return "zzzz... (night)";
     }
 }

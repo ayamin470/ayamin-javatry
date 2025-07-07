@@ -17,6 +17,7 @@ package org.docksidestage.bizfw.basic.objanimal.loud;
 
 /**
  * @author jflute
+ * @author ayamin
  */
 public interface Loudable {
 
