@@ -393,7 +393,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     //done jfluteさん　SQLをよく勉強していないので、後で解きます　
     // TODO ayamin SQLの知識は、エクササイズの本質的には関係ないので、やってみたらできると思います！ by jflute (2025/07/07)
-    // (気になるところあれば、ちょっと調べれもらえればと)
+    // (気になるところあっても、ちょっと調べたらわかる程度のものではあるかと思います)
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // your confirmation code here
     }
@@ -502,6 +502,6 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // is it corrent?
         //適切ではない
         // _/_/_/_/_/_/_/_/_/_/
-        // TODO ayamin その理由は書ける範囲で書いてもらっても良いでしょうか？ by jflute (2025/07/07)
+        // TODO ayamin その理由を書ける範囲で書いてもらっても良いでしょうか？ by jflute (2025/07/07)
     }
 }
