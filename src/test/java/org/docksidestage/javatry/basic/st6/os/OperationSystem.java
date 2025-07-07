@@ -3,6 +3,7 @@ package org.docksidestage.javatry.basic.st6.os;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// TODO ayamin ayaminさんがjavadocのタグになっています(^^。@author ayamin でお願いします by jflute (2025/07/07)
 /**
  * 様々なOSの抽象クラス
  * @ayamin
@@ -21,6 +22,7 @@ public abstract class OperationSystem {
     //                                                                         ===========
     public OperationSystem(String loginId) {
         this.loginId = loginId;
+        // TODO ayamin [いいね] loggerうまく使いこなしてますね！ by jflute (2025/07/07)
         logger.debug("OperationSystem created for loginId: {}", loginId);
     }
 
@@ -35,6 +37,10 @@ public abstract class OperationSystem {
         return resourcePath.replace("/", fileSeparator);
     }
 
+    // TODO ayamin タグコメント、フォーマットがちょっとズレてます!? (タグコメントうまく使く使えています！) by jflute (2025/07/07)
+    // こういう、右にばぁーっと伸ばしてタイトルみたいなコメント入れてるのをタグコメントと読んでいます。
+    // 参考例:
+    // https://github.com/lastaflute/lastaflute-example-harbor/blob/master/src/main/java/org/docksidestage/app/web/signup/SignupAction.java
     // ===================================================================================
     //                                                                      Abstract Methods
     //                                                                      ================

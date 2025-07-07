@@ -35,7 +35,10 @@ import org.docksidestage.javatry.basic.st6.os.OldWindows;
 import org.docksidestage.javatry.basic.st6.os.OperationSystem;
 
 
-
+// TODO ayamin 全体的に空行が、チグハグなところが見受けられますので、気をつけてみてください。 by jflute (2025/07/07)
+// ↓ぜひこちらを改めて読んでもらえればと:
+// ハンズオンのコーディングポリシー - 4. 空行マネジメント
+// https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#emptyline
 /**
  * The test of object-oriented. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -57,6 +60,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_aboutObject_againstObject() {
         //TODO ayamin チケットを購入し、入園するまでを書く
+        // TODO ayamin [ふぉろー] すごい、書き換えてるのびっくりしました(^^ by jflute (2025/07/07)
+        // 書き直すことで、ベタ書きの状態とオブジェクトを使った状態までの変化がわかりやすくなるので良いと思います。
+        // ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
 
         TicketBooth booth = new TicketBooth();
 
@@ -68,6 +74,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     }
 
+    // TODO ayamin [質問] ちょっとだけ元のコードが残ってるので、↓に間違いがまだ残ってますね。どこが間違ってるでしょうか？ by jflute (2025/07/07)
 //    private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
 //        if (alreadyIn) {
 //            // simulation: only logging here (normally e.g. DB insert)
@@ -93,11 +100,13 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (このコードを読んで(分析して)、一つ前のテストメソッドと比べて、「オブジェクトとは何か？」を考えてみましょう)
      */
 
-    // TODO jflute さん　オブジェクトとは何か？
+    // done jflute さん　オブジェクトとは何か？
     //    現実にあるものをコードに書き起こしたものがオブジェクトだと思います
     //    そもそも、オブジェクト指向とは、手続型で順番通りにコードを書き連ねるのではなく、
     //    現実にある物体をイメージしながら、オブジェクト同士が何をやりとりするのか？
     //    を考えるのがオブジェクト指向だと考えるからです
+    // TODO ayamin [ふぉろー] ありがとうございます。ただ、"現実" というのがちょっと曖昧な表現で難しいところですね by jflute (2025/07/07)
+    // TODO ayamin [質問] もう少し踏み込んで..."現実にある物体" と言っていますが、TicketBuyResultとかは現実の物体でしょうか？ by jflute (2025/07/07)
 
     public void test_objectOriented_aboutObject_usingObject() {
         //
@@ -261,6 +270,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // animalという大元のクラスがあることで、コードを書くのが楽になる
         // 動物の種類ごとに異なるメソッドを呼び出す必要がなくなるから、他に動物が増えた時でも楽！
         // _/_/_/_/_/_/_/_/_/_/
+        // TODO ayamin [いいね] それっぽく扱う、というのがなかなかおもしろい表現です^^ by jflute (2025/07/07)
+        // でも、的を得てはいると思います。「動物」って概念で (扱えるものは) 扱う、って感覚でしょうか。
+        // TODO jflute 1on1にて、少し補足する予定 (2025/07/07)
     }
 
     // ===================================================================================
@@ -333,6 +345,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //抽象クラス：中身がまだ定まっていない大元のクラス。子クラスで詳しく情報を詰めることができる
         //インターフェース：抽象度の中でも特に抽象度の高いクラス
         // _/_/_/_/_/_/_/_/_/_/
+        // TODO jflute 1on1にて、↑について詳しく説明してもらう予定 (2025/07/07)
     }
 
     // ===================================================================================
@@ -378,7 +391,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6MySql, St6PostgreSql (basic.st6.dbms) から抽象クラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
 
-    //TODO jfluteさん　SQLをよく勉強していないので、後で解きます　
+    //done jfluteさん　SQLをよく勉強していないので、後で解きます　
+    // TODO ayamin SQLの知識は、エクササイズの本質的には関係ないので、やってみたらできると思います！ by jflute (2025/07/07)
+    // (気になるところあれば、ちょっと調べれもらえればと)
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // your confirmation code here
     }
@@ -389,6 +404,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
         log("--- チェック ---");
+        // TODO ayamin テスト実行すると、アサートで落ちてます by jflute (2025/07/07)
 
         OperationSystem macOs = new Mac("ayami");
         String macPath = macOs.buildUserResourcePath("Desktop/my_file.txt");
@@ -429,6 +445,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     //TODO ayamin Animalクラスは、「HPを持つ」だけでなく、「鳴く」や「息を吸う」などまで責任を持っていて、保守性が低い
     public void test_objectOriented_writing_withDelegation() {
+        // TODO ayamin Zonbie でコンパイルエラーが出ています。 by jflute (2025/07/07)
         log("--- Confirmation: BarkingProcess delegation ---");
 
         Dog dog = new Dog();
@@ -485,5 +502,6 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // is it corrent?
         //適切ではない
         // _/_/_/_/_/_/_/_/_/_/
+        // TODO ayamin その理由は書ける範囲で書いてもらっても良いでしょうか？ by jflute (2025/07/07)
     }
 }
