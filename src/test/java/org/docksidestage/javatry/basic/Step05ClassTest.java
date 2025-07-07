@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2019-2022 the original author or authors.
  *
@@ -5,7 +6,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,6 +20,8 @@ import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
+import org.docksidestage.bizfw.basic.buyticket.ParkContext;
+
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -32,13 +35,6 @@ import org.docksidestage.unit.PlainTestCase;
  * @author jflute
  * @author ayamin
  */
-
-    // TODO jflute さん
-    //　いまさらの質問にはなるのですが、なぜTicket,TicketBooth,でクラスを分けたのでしょうか？
-    //　プログラムの全体像がわからない一番最初の時点で、Ticket,TicketBoothでクラスを切り分けたら良さそうだな、と考えられるその根拠を知りたいです
-    //　この「クラスを切り分ける」というところがまさにオブジェクト指向の考え方の基礎の基礎になると思っています。ですので、より理解を深めたく、質問いたしました
-
-
 public class Step05ClassTest extends PlainTestCase {
 
     // ===================================================================================
@@ -60,20 +56,20 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
-        log(sea); // your answer? =>7400 // 修正: 売上はチケット価格になる
+        log(sea); // your answer? =>10000
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_nosales() {
         TicketBooth booth = new TicketBooth();
         Integer sea = booth.getSalesProceeds();
-        log(sea); // your answer? =>0
+        log(sea); // your answer? =>null
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_wrongQuantity() {
         Integer sea = doTest_class_ticket_wrongQuantity();
-        log(sea); // your answer? =>10 // 修正: お金不足でチケットは減らない
+        log(sea); // your answer? =>9
     }
 
     private Integer doTest_class_ticket_wrongQuantity() {
@@ -116,19 +112,27 @@ public class Step05ClassTest extends PlainTestCase {
      * (TwoDayPassport (金額は13200) も買うメソッドを作りましょう (戻り値でお釣りをちゃんと返すように))
      */
     public void test_class_letsFix_makeMethod_twoday() {
+        // uncomment after making the method
         TicketBooth booth = new TicketBooth();
         int money = 14000;
-        // コメントアウトを解除
-        TicketBuyResult buyResult = booth.buyTwoDayPassport(money);
-        int change = buyResult.getChange();
-        Integer sea = booth.getSalesProceeds() + change;
-        log(sea); // should be same as money
+//        int change = booth.buyTwoDayPassport(money);
+//        Integer sea = booth.getSalesProceeds() + change;
+//        log(sea); // should be same as money
+
+        // and show two-day passport quantity here
     }
 
     /**
      * Recycle duplicate logics between one-day and two-day by e.g. private method in class. (And confirm result of both before and after) <br>
      * (OneDayとTwoDayで冗長なロジックがあったら、クラス内のprivateメソッドなどで再利用しましょう (修正前と修正後の実行結果を確認))
      */
+
+    // TODO ayamin 以下の点が重複しているはず
+    //    チケット在庫のチェック
+    //    支払われた金額が不足していないかのチェック
+    //    チケット在庫を減らす
+    //    売上金の更新
+    //    どうやるか？カプセル化してメソッドを呼び出す
     public void test_class_letsFix_refactor_recycle() {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
@@ -136,18 +140,19 @@ public class Step05ClassTest extends PlainTestCase {
     }
 
     // ===================================================================================
-    //                                                                           Challengef
+    //                                                                           Challenge
     //                                                                           =========
     /**
      * Now you cannot get ticket if you buy one-day passport, so return Ticket class and do in-park. <br>
      * (OneDayPassportを買ってもチケットをもらえませんでした。戻り値でTicketクラスを戻すようにしてインしましょう)
      */
     public void test_class_moreFix_return_ticket() {
+        // uncomment out after modifying the method
         TicketBooth booth = new TicketBooth();
         Ticket oneDayPassport = booth.buyOneDayPassport(10000);
         log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
         log(oneDayPassport.isAlreadyIn()); // should be false
-        oneDayPassport.doInPark(false); // 修正: isNightTime 引数を追加 (昼間を想定)
+        oneDayPassport.doInPark();
         log(oneDayPassport.isAlreadyIn()); // should be true
     }
 
@@ -155,6 +160,11 @@ public class Step05ClassTest extends PlainTestCase {
      * Now also you cannot get ticket if two-day passport, so return class that has ticket and change. <br>
      * (TwoDayPassportもチケットをもらえませんでした。チケットとお釣りを戻すクラスを作って戻すようにしましょう)
      */
+
+    //TODO ayamin そもそもなぜTicketBuyResult.javaを作る必要があったのか？
+    // Javaは、原則として一つの値しか直接返すことができない。そのままだとチケットとお釣りの両方を返せない
+    // TicketBuyResultとして一つのクラスにお釣りとチケットを内包することで、クリアできる
+
     public void test_class_moreFix_return_whole() {
         // uncomment after modifying the method
         TicketBooth booth = new TicketBooth();
@@ -169,46 +179,31 @@ public class Step05ClassTest extends PlainTestCase {
      * Now you can use only one in spite of two-day passport, so fix Ticket to be able to handle plural days. <br>
      * (TwoDayPassportなのに一回しか利用できません。複数日数に対応できるようにTicketを修正しましょう)
      */
+
     public void test_class_moreFix_usePluralDays() {
+        // your confirmation code here
         TicketBooth booth = new TicketBooth();
-        int twoDayMoney = 20000;
-        TicketBuyResult twoDayResult = booth.buyTwoDayPassport(twoDayMoney); // (1) ここでTwoDayPassportを購入
-        Ticket twoDayPassport = twoDayResult.getTicket();
+        // TwoDayPassport を購入 (14000円支払い)
+        TicketBuyResult buyResult = booth.buyTwoDayPassport(14000);
+        Ticket twoDayPassport = buyResult.getTicket();
 
-        System.out.println("--- TwoDay Passport Test ---");
-        System.out.println("購入したチケットの価格: " + twoDayPassport.getDisplayPrice());
-        System.out.println("有効日数: " + twoDayPassport.getTicketDays());
-        System.out.println("初期残り利用可能回数: " + twoDayPassport.getRemainingUseCount()); // (2) 初期値 (2) が表示される
+        log("--- TwoDayPassport Usage ---");
+        log("定価：" + twoDayPassport.getDisplayPrice() + ",残り日数：" + twoDayPassport.getValidDays() + ",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？：" + twoDayPassport.isAlreadyIn());
 
-        twoDayPassport.doInPark(true); // (3) 1回目の入園処理 (remainingUseCount が 2 -> 1 になる) // 修正: isNightTime 引数を追加
-        System.out.println("1回目入園後、残り利用可能回数: " + twoDayPassport.getRemainingUseCount()); // (4) 1 が表示される
-        System.out.println("1回目入園後、isAlreadyIn(): " + twoDayPassport.isAlreadyIn());
+        // 1回目入園
+        twoDayPassport.doInPark();
+        log(",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？：" + twoDayPassport.isAlreadyIn()); // EntryCount=1, AlreadyIn=true
 
-        twoDayPassport.doInPark(true); // (5) 2回目の入園処理 (remainingUseCount が 1 -> 0 になる) // 修正: isNightTime 引数を追加
-        System.out.println("2回目入園後、残り利用可能回数: " + twoDayPassport.getRemainingUseCount()); // (6) あなたが質問している行。ここで 0 が表示される
-        System.out.println("2回目入園後、isAlreadyIn(): " + twoDayPassport.isAlreadyIn());
+        // 2回目入園
+        twoDayPassport.doInPark();
+        log(",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？：" + twoDayPassport.isAlreadyIn()); // EntryCount=2, AlreadyIn=true
 
-        // 3回目入園を試みる (エラーになることを確認)
+        // 3回目入園 (例外が発生するはず)
         try {
-            twoDayPassport.doInPark(true); // 修正: isNightTime 引数を追加
-            fail("3回目入園はIllegalStateExceptionが発生するはず");
+            twoDayPassport.doInPark();
+            fail("例外処理"); // 例外が発生しなかったらテスト失敗
         } catch (IllegalStateException e) {
-            log("期待通り、3回目入園でエラー: " + e.getMessage()); // エラーメッセージが出力される
-        }
-
-        // OneDayPassportの動作も確認
-        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-        log("OneDayPassport 初期残り利用可能回数: " + oneDayPassport.getRemainingUseCount()); // 1
-        oneDayPassport.doInPark(false); // 修正: isNightTime 引数を追加
-        log("OneDayPassport 1回目入園後、残り利用可能回数: " + oneDayPassport.getRemainingUseCount()); // 0
-        log("OneDayPassport 1回目入園後、isAlreadyIn(): " + oneDayPassport.isAlreadyIn());
-
-        // 2回目の入園を試みて、IllegalStateExceptionが発生することを確認
-        try {
-            oneDayPassport.doInPark(false); // 修正: isNightTime 引数を追加
-            fail("OneDayPassportは1回で使い切れるので、2回目の入園で例外が発生するはずです。");
-        } catch (IllegalStateException e) {
-            log("期待通り、2回目入園でエラー: " + e.getMessage());
+            log("2日パスポートなので入園できないよ" + e.getMessage()); // 例外メッセージをログに出力
         }
     }
 
@@ -220,20 +215,18 @@ public class Step05ClassTest extends PlainTestCase {
         // uncomment when you implement this exercise
         TicketBooth booth = new TicketBooth();
         Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-        showTicketIfNeeds(oneDayPassport);
-        TicketBuyResult buyResult = booth.buyTwoDayPassport(10000); // TwoDayPassportは13200円なので、この金額では買えない（ShortMoneyException）
-        // テストをパスさせるなら、ここを20000などに変更する必要がある
+        showTicketIfNeeds(oneDayPassport); // "other" とログされるはず
+        TicketBuyResult buyResult = booth.buyTwoDayPassport(10000);
         Ticket twoDayPassport = buyResult.getTicket();
-        showTicketIfNeeds(twoDayPassport);
+        showTicketIfNeeds(twoDayPassport); // "two-day passport" とログされるはず
     }
 
-    private void showTicketIfNeeds(Ticket ticket)
-    {
-        // TODO ayamin 2DayのNightOnlyが紛れてしまいます。純粋なTwoDayPassportだけがヒットするようにしましょう by jflute (2025/07/02)
-        if (ticket.getTicketDays() == 2) { // チケットの日数が2日ならTwoDayパスポート
-            log("２日用パスポートだよ");
+    // uncomment when you implement this exercise
+    private void showTicketIfNeeds(Ticket ticket) {
+        if (ticket.getValidDays() == 2) { // write determination for two-day passport
+            log("それは2日パスポートだよ");
         } else {
-            log("２日用ではないよ"); // 1日パスポートなど
+            log("2日パスポートじゃないよ");
         }
     }
 
@@ -245,29 +238,39 @@ public class Step05ClassTest extends PlainTestCase {
      * (FourDayPassport (金額は22400) のチケットも買えるようにしましょう)
      */
     public void test_class_moreFix_wonder_four() {
+        // your confirmation code here
         TicketBooth booth = new TicketBooth();
-        int handedMoney = 50000;
+        int handedMoney = 25000;
         TicketBuyResult buyResult = booth.buyFourDayPassport(handedMoney);
-        Ticket fourDayPassport = buyResult.getTicket(); // 変数名を修正: FourDayPassport -> fourDayPassport
+        Ticket fourDayPassport = buyResult.getTicket();
         int change = buyResult.getChange();
-        log("購入したFourDayPassportの価格: " + fourDayPassport.getDisplayPrice());
-        log("お釣り: " + change);
-        log("有効日数: " + fourDayPassport.getTicketDays());
-        log("初期残り利用可能回数: " + fourDayPassport.getRemainingUseCount());
 
-        // 4回利用できることを確認
-        for (int i = 0; i < 4; i++) {
-            fourDayPassport.doInPark(false); // 昼間利用を想定
-            log((i + 1) + "回目入園後、残り利用可能回数: " + fourDayPassport.getRemainingUseCount());
-        }
+        log("--- FourDayPassport Purchase & Usage ---");
+        log("チケットの値段: " + fourDayPassport.getDisplayPrice()); // 22400
+        log("お釣り: " + change); // 25000 - 22400 = 2600
+        log("売り上げ: " + booth.getSalesProceeds()); // 22400
+        log("残りのチケット数: " + booth.getQuantity()); // 9
 
-        // 5回目利用を試みる (エラーになることを確認)
+        // 4回入園
+        log("残り入園可能日数：" + fourDayPassport.getValidDays() + ", EntryCount=" + fourDayPassport.getEntryCount());
+        fourDayPassport.doInPark();
+        log("入園数：" + fourDayPassport.getEntryCount());
+        fourDayPassport.doInPark();
+        log("入園数：" + fourDayPassport.getEntryCount());
+        fourDayPassport.doInPark();
+        log("入園数：" + fourDayPassport.getEntryCount());
+        fourDayPassport.doInPark();
+        log("入園数：" + fourDayPassport.getEntryCount());
+
+        // 5回目
         try {
-            fourDayPassport.doInPark(false);
-            fail("FourDayPassportは4回で使い切れるので、5回目の入園で例外が発生するはずです。");
+            fourDayPassport.doInPark();
+            fail("4日チケットなので入れません");
         } catch (IllegalStateException e) {
-            log("期待通り、5回目入園でエラー: " + e.getMessage());
+            log("4日チケットなので入れません " + e.getMessage());
         }
+        log("4日チケットなので入れません" + fourDayPassport.getEntryCount());
+
     }
 
     /**
@@ -276,65 +279,70 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder_night() {
         TicketBooth booth = new TicketBooth();
+        int handedMoney = 10000;
 
-        // TODO ayamin log()かSystem.out.println()か統一しましょう。log()を推奨しています。 by jflute (2025/07/02)
-        // log()は内部でロギングフレームワークを使っているので、ログを多様に扱うことができてログ要件に対して柔軟に対応できます。
-        System.out.println("--- NightOnly Two-Day Passport Test ---");
-        int nightOnlyMoney = 10000; // 7400円なのでお釣りが出る金額
-        TicketBuyResult nightOnlyResult = booth.buyNightOnlyTwoDayPassport(nightOnlyMoney);
-        Ticket nightOnlyPassport = nightOnlyResult.getTicket();
-        int change = nightOnlyResult.getChange();
+        log("--- 夜間 ---");
 
-        log("購入した夜間専用チケットの価格: " + nightOnlyPassport.getDisplayPrice()); // 7400
-        log("お釣り: " + change); // 10000 - 7400 = 2600
-        log("有効日数: " + nightOnlyPassport.getTicketDays()); // 2
-        log("初期残り利用可能回数: " + nightOnlyPassport.getRemainingUseCount()); // 2
-        log("夜間専用チケットか: " + nightOnlyPassport.isNightOnly()); // true
+        // 1. 夜間チケットを夜間に使用するテスト
+        ParkContext.setNight(true);
+        log("現在の時間: 夜間");
+        TicketBuyResult nightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+        Ticket nightTicket = nightBuyResult.getTicket();
+        int nightChange = nightBuyResult.getChange();
 
-        // 昼間に利用を試みる (エラーになることを確認)
-        System.out.println("\n--- 昼間の利用試行 ---");
+        log("夜間専用TwoDayPassportの価格: " + nightTicket.getDisplayPrice());
+        log("お釣り: " + nightChange);
+        log("夜間専用か: " + nightTicket.isNightOnly());
+        log("残りのチケット枚数: " + booth.getQuantity());
+
+        log("初期状態: 有効日数=" + nightTicket.getValidDays() + ", 入園回数=" + nightTicket.getEntryCount());
+
+        // 1回目入園 (夜間なので成功)
+        nightTicket.doInPark();
+        log("1回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+
+        // 2回目入園 (夜間なので成功)
+        nightTicket.doInPark();
+        log("2回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+
+        // 3回目入園 (有効回数超過なので失敗)
         try {
-            nightOnlyPassport.doInPark(false); // isNightTime = false (昼間)
-            fail("夜間専用チケットなので、昼間は利用できないはずです。");
+            nightTicket.doInPark();
+            fail("有効日数 (2日間) を超えて入園できるべきではありません");
         } catch (IllegalStateException e) {
-            log("期待通り、昼間の利用でエラー: " + e.getMessage()); // エラーメッセージが出力される
+            log("3回目の入園で期待される例外を捕捉しました (有効日数超過): " + e.getMessage());
         }
-        log("昼間利用試行後、残り利用可能回数: " + nightOnlyPassport.getRemainingUseCount()); // 2 (減っていない)
+        log("3回目の入園試行後: 入園回数=" + nightTicket.getEntryCount());
 
-        // 夜間に1回目利用
-        System.out.println("\n--- 夜間の1回目利用 ---");
-        nightOnlyPassport.doInPark(true); // isNightTime = true (夜間)
-        log("夜間1回目利用後、残り利用可能回数: " + nightOnlyPassport.getRemainingUseCount()); // 1
+        // 2. 夜間チケットを昼間に使用するテスト
+        ParkContext.setNight(false);
+        log("現在の時間: 昼間");
+        TicketBuyResult anotherNightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+        Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
 
-        // 夜間に2回目利用
-        System.out.println("\n--- 夜間の2回目利用 ---");
-        nightOnlyPassport.doInPark(true); // isNightTime = true (夜間)
-        log("夜間2回目利用後、残り利用可能回数: " + nightOnlyPassport.getRemainingUseCount()); // 0
-        log("2回利用後、isAlreadyIn(): " + nightOnlyPassport.isAlreadyIn()); // true
+        log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
+        log("夜間専用か: " + anotherNightTicket.isNightOnly());
 
-        // 3回目利用を試みる (エラーになることを確認)
-        System.out.println("\n--- 3回目利用試行 ---");
         try {
-            nightOnlyPassport.doInPark(true); // isNightTime = true (夜間)
-            fail("TwoDayチケットなので、3回目は利用できないはずです。");
+            anotherNightTicket.doInPark(); // 昼間なので例外が発生するはず
+            fail("夜間専用チケットなので使えません。");
         } catch (IllegalStateException e) {
-            log("期待通り、3回目利用でエラー: " + e.getMessage()); // エラーメッセージが出力される
+            log("夜間専用チケットなので使えません。: " + e.getMessage());
         }
-
-        log("\nテスト完了。ログを確認してください。");
+        log("入園回数=" + anotherNightTicket.getEntryCount());
     }
 
     /**
      * Refactor if you want to fix (e.g. is it well-balanced name of method and variable?). <br>
      * (その他、気になるところがあったらリファクタリングしてみましょう (例えば、バランスの良いメソッド名や変数名になっていますか？))
      */
+
+    //TODO jflute さん
+    //ここは解いていません。1on1時にご解説いただけますと幸いです
+
     public void test_class_moreFix_yourRefactoring() {
         // your confirmation code here
     }
-    // done jflute さん
-    // 自分のコードを見ても改善箇所が思い浮かびませんでした
-    // 何かするべきリファクタリングがありましたら、教えていただけますと幸いです
-    // TODO ayamin [へんじ]いったん、TicketBoothなどにtodoたくさん入れたので、そちらを直してもらえればと by jflute (2025/07/02)
 
     /**
      * Write intelligent comments on source code to the main code in buyticket package. <br>
@@ -343,6 +351,4 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_yourSuperComments() {
         // your confirmation code here
     }
-
-
 }

@@ -1,3 +1,5 @@
+//@author ayamin
+
 // TicketBuyResult.java
 package org.docksidestage.bizfw.basic.buyticket;
 
