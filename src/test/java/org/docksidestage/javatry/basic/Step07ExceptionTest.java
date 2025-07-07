@@ -161,6 +161,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             String sea = "mystic";
             String land = !!!sea.equals("mystic") ? null : "oneman";
             String piari = !!!sea.equals("mystic") ? "plaza" : null;
+            // TODO ayamin コードが中途半端になっています by jflute (2025/07/07)
             int sum = land.length() + piari.length();
 
             int landLength = land.length();
@@ -175,6 +176,7 @@ public class Step07ExceptionTest extends PlainTestCase {
     // ===================================================================================
     //                                                                   Checked Exception
     //                                                                   =================
+    // TODO ayamin これはやってない？ by jflute (2025/07/07)
     /**
      * Show canonical path of new java.io.File(".") by log(), and if I/O error, show message and stack-trace instead <br>
      * (new java.io.File(".") の canonical path を取得してログに表示、I/Oエラーの時はメッセージとスタックトレースを代わりに表示)
@@ -253,6 +255,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             //原因：SpecialScrewManufacturer クラスの makeSpecialScrew() メソッドの 29行目
             //「スペシャルネジ」を製造するにあたり、「可愛い顔」の仕様がサポートされていないため
             // _/_/_/_/_/_/_/_/_/_/
+            // TODO ayamin [質問] 原因ですが、「仕様がサポートされていない」ことが原因と断定できるものでしょうか？ by jflute (2025/07/07)
         }
     }
 
@@ -262,7 +265,10 @@ public class Step07ExceptionTest extends PlainTestCase {
      * できるだけ例外情報だけでその状況が理解できるように、Supercarのクラスたちの例外ハンドリングを改善しましょう。
      */
     public void test_exception_translation_improveChallenge() {
+        // TODO ayamin 実行しても、fail()の方に入ってしまっています。(もしかして動くように直してしまいましたか？) by jflute (2025/07/07)
+        // (例外ハンドリングを確認するエクササイズなので、元々の例外が発生する挙動はそのままでいて欲しいのですが)
         try {
+            // TODO jflute 1on1にて、例外ハンドリングの改善の実装について、説明をしてもらう予定 (2025/07/07)
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
         } catch (RuntimeException e) {
@@ -315,5 +321,10 @@ public class Step07ExceptionTest extends PlainTestCase {
         //Exceptionnの場合、プログラムで捕捉して回復したり、代替処理を提供したりすることが可能
         //Errorは起こった時点でプログラムが終了する
         // _/_/_/_/_/_/_/_/_/_/
+        // TODO ayamin [ふぉろー] Errorでも起こった時点でプログラムが終了するわけではないです。 by jflute (2025/07/07)
+        // Error も Throwable なので、Exception と同じように throw されます。
+        // そういう意味では、Error も「プログラムで捕捉して回復したり、代替処理を提供したりすることが可能」ではあります。
+        // ただ、発生原因の意味合い的に Error は補足して回復もできないし、代替処理を提供も基本はできない、くらいの状況というニュアンスです。
+        // TODO jflute 1on1にて追加フォロー予定 (2025/07/07)
     }
 }
