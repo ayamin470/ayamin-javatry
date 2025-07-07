@@ -14,6 +14,7 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// TODO ayamin [質問] コードたちの「たち」ってのは、変数やメソッドが複数で「変数やメソッドたち」みたいなニュアンスですかね？(^^ by jflute (2025/07/07)
 /**
  * 昼か夜かを制御するコードたち
  *
@@ -21,6 +22,12 @@ package org.docksidestage.bizfw.basic.buyticket;
  */
 public class ParkContext {
 
+    // TODO ayamin [質問] デフォルトを夜間にした理由はなんでしょうか？ by jflute (2025/07/07)
+    // test_class_moreFix_wonder_night() を見ると、実際明示的に setNight(true) してたので、
+    // あまりデフォルトが夜間であることに現状は意味があるように見えなかったので。
+    // とはいえ、本来は時間で決まるものなので、昼がデフォルトも変っちゃ変ですけど...
+    // 「デフォルトは夜間とする」と意図的なコメントまで書いてますから、どう考えてそうしたのかな？と思いまして。
+    //
     // テストのために時間帯を制御できるようにする (通常はシステム時刻から判断)
     private static boolean currentIsNight = true; // デフォルトは夜間とする
 

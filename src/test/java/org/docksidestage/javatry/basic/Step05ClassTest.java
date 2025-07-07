@@ -24,6 +24,8 @@ import org.docksidestage.bizfw.basic.buyticket.ParkContext;
 
 import org.docksidestage.unit.PlainTestCase;
 
+// TODO ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
+// (doneの付いてないtodoだらけになってきたのですが、どれが直したもので、どれがまだ未対応のものか判断が大変なのでm(_ _)m)
 /**
  * The test of class. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -113,6 +115,8 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_makeMethod_twoday() {
         // uncomment after making the method
+        // TODO ayamin 変数が使われてないので、unused の警告がIDE上で出ています by jflute (2025/07/07)
+        // (コメントアウトされた)元のコードで合わないところがあったら、合うように修正しちゃってください。
         TicketBooth booth = new TicketBooth();
         int money = 14000;
 //        int change = booth.buyTwoDayPassport(money);
@@ -133,6 +137,7 @@ public class Step05ClassTest extends PlainTestCase {
     //    チケット在庫を減らす
     //    売上金の更新
     //    どうやるか？カプセル化してメソッドを呼び出す
+    // TODO ayamin [ふぉろー] このように小さな業務のまとまりを言語化して思考するの大切です。とても上手ですね。 by jflute (2025/07/07)
     public void test_class_letsFix_refactor_recycle() {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
@@ -164,6 +169,10 @@ public class Step05ClassTest extends PlainTestCase {
     //TODO ayamin そもそもなぜTicketBuyResult.javaを作る必要があったのか？
     // Javaは、原則として一つの値しか直接返すことができない。そのままだとチケットとお釣りの両方を返せない
     // TicketBuyResultとして一つのクラスにお釣りとチケットを内包することで、クリアできる
+    // TODO ayamin [ふぉろー] いいですね、そういうところに視点を置くというのは。 by jflute (2025/07/07)
+    // TicketBuyResult は、物理の世界のチケットブースの、紙のチケットとお釣りを入れて戻す「青いトレー」みたいなイメージです。
+    // 将来、レシートも戻すとか戻す項目が増えたとき、TicketBuyResultがあれば戻り値は変更せずにResultに追加するだけで済みます。
+    // こういう風に、戻り値の「入れ物クラス」というのはよく使われます。
 
     public void test_class_moreFix_return_whole() {
         // uncomment after modifying the method
@@ -223,6 +232,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     // uncomment when you implement this exercise
     private void showTicketIfNeeds(Ticket ticket) {
+        // TODO ayamin NightOnlyは別なので、純粋に TwoDayPassport だけがヒットするようにしましょう by jflute (2025/07/07)
         if (ticket.getValidDays() == 2) { // write determination for two-day passport
             log("それは2日パスポートだよ");
         } else {
@@ -337,8 +347,10 @@ public class Step05ClassTest extends PlainTestCase {
      * (その他、気になるところがあったらリファクタリングしてみましょう (例えば、バランスの良いメソッド名や変数名になっていますか？))
      */
 
-    //TODO jflute さん
+    //done jflute さん
     //ここは解いていません。1on1時にご解説いただけますと幸いです
+    // TODO ayamin [へんじ] だいぶ全体的に綺麗にできています。気になるところはtodo入れていきますね。 by jflute (2025/07/07)
+    // このエクササイズは、コードを綺麗に整えることを意識させるために入れてあるという感じです。
 
     public void test_class_moreFix_yourRefactoring() {
         // your confirmation code here
