@@ -14,6 +14,7 @@
  * governing permissions and limitations under the License.
  */
 package org.docksidestage.bizfw.basic.buyticket;
+import java.time.LocalTime;
 
 /**
  * @author jflute
@@ -44,26 +45,44 @@ public class Ticket {
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
+//    public void doInPark() {
+//        // 有効な入園回数を超えているかチェック
+//        if (entryCount >= validDays) {
+//            // TODO done ayamin [いいね] 例外メッセージ、とってもわかりやすくていいですね。変数情報が入っててデバッグしやすいです by jflute (2025/07/07)
+//            // TODO done ayamin [読み物課題] 例外メッセージ、敬語で満足でもロスロスパターン by jflute (2025/07/07)
+//            // https://jflute.hatenadiary.jp/entry/20170804/explossloss
+//            // (ブログを読むのもjavatry。じっくり読んでくださいませ)
+//            throw new IllegalStateException("値段" + displayPrice + ", validDays=" + validDays + ", entryCount=" + entryCount);
+//        }
+//        // TODO done ayamin [いいね] すごい、ParkContextというシングルトンの概念で制御するようにしているの良いですね by jflute (2025/07/07)
+//        // TODO done ayamin 修行++: せっかくなので、単純なtrue/falseではなく、現在日時で夜かどうか？を判定するようにしてみてください by jflute (2025/07/07)
+//        // ParkContext を書きかえても良いですし、また別の実装にしても良いですし。
+//        // TODO jflute LocalTime.now(); で現在日時を取得できそうなことがわかったので、これで実装し直してみました by ayamin (2025/07/08)
+//
+//        if (nightOnly && ParkContext.isDay()) { // ParkContext を使用
+//            throw new IllegalStateException("夜ではないので使えません");
+//        }
+//        // 入園回数をインクリメント
+//        entryCount++;
+//    }
+
     public void doInPark() {
-        // 有効な入園回数を超えているかチェック
+        doInPark(LocalTime.now());
+    }
+
+    public void doInPark(LocalTime checkTime) {
+
         if (entryCount >= validDays) {
-            // TODO done ayamin [いいね] 例外メッセージ、とってもわかりやすくていいですね。変数情報が入っててデバッグしやすいです by jflute (2025/07/07)
-            // TODO done ayamin [読み物課題] 例外メッセージ、敬語で満足でもロスロスパターン by jflute (2025/07/07)
-            // https://jflute.hatenadiary.jp/entry/20170804/explossloss
-            // (ブログを読むのもjavatry。じっくり読んでくださいませ)
             throw new IllegalStateException("値段" + displayPrice + ", validDays=" + validDays + ", entryCount=" + entryCount);
         }
-        // TODO done ayamin [いいね] すごい、ParkContextというシングルトンの概念で制御するようにしているの良いですね by jflute (2025/07/07)
-        // TODO done ayamin 修行++: せっかくなので、単純なtrue/falseではなく、現在日時で夜かどうか？を判定するようにしてみてください by jflute (2025/07/07)
-        // ParkContext を書きかえても良いですし、また別の実装にしても良いですし。
-        // TODO jflute LocalTime.now(); で現在日時を取得できそうなことがわかったので、これで実装し直してみました by ayamin (2025/07/08)
 
-        if (nightOnly && ParkContext.isDay()) { // ParkContext を使用
-            throw new IllegalStateException("夜ではないので使えません");
+        if (nightOnly && ParkContext.isDay(checkTime)) {
+            throw new IllegalStateException("このチケットは夜間専用です。指定された時刻(" + checkTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ")は昼間のため使用できません。");
         }
-        // 入園回数をインクリメント
+
         entryCount++;
     }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

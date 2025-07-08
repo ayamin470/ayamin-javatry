@@ -20,9 +20,11 @@ import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
-import org.docksidestage.bizfw.basic.buyticket.ParkContext;
 
 import org.docksidestage.unit.PlainTestCase;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 // TODO done ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
 // (doneの付いてないtodoだらけになってきたのですが、どれが直したもので、どれがまだ未対応のものか判断が大変なのでm(_ _)m)
@@ -290,15 +292,76 @@ public class Step05ClassTest extends PlainTestCase {
      * Fix it to be able to buy night-only two-day passport (price is 7400), which can be used at only night. <br>
      * (NightOnlyTwoDayPassport (金額は7400) のチケットも買えるようにしましょう。夜しか使えないようにしましょう)
      */
+    // TODO jflute ParkContextの変更に伴い、元のテストコードをコメントアウトしました by ayamin (2025/07/08)
+
+//    public void test_class_moreFix_wonder_night() {
+//        TicketBooth booth = new TicketBooth();
+//        int handedMoney = 10000;
+//
+//        log("--- 夜間 ---");
+//
+//        // 夜間チケットを夜間に使用するテスト
+//        ParkContext.setNight(true);
+//        log("現在の時間: 夜間");
+//        TicketBuyResult nightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+//        Ticket nightTicket = nightBuyResult.getTicket();
+//        int nightChange = nightBuyResult.getChange();
+//
+//        log("夜間専用TwoDayPassportの価格: " + nightTicket.getDisplayPrice());
+//        log("お釣り: " + nightChange);
+//        log("夜間専用か: " + nightTicket.isNightOnly());
+//        log("残りのチケット枚数: " + booth.getQuantity());
+//
+//        log("初期状態: 有効日数=" + nightTicket.getValidDays() + ", 入園回数=" + nightTicket.getEntryCount());
+//
+//        // 1回目入園 (夜間なので成功)
+//        nightTicket.doInPark();
+//        log("1回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+//
+//        // 2回目入園 (夜間なので成功)
+//        nightTicket.doInPark();
+//        log("2回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+//
+//        // 3回目入園 (有効回数超過なので失敗)
+//        try {
+//            nightTicket.doInPark();
+//            fail("有効日数を超えています");
+//        } catch (IllegalStateException e) {
+//            log("有効に数を超えています " + e.getMessage());
+//        }
+//        log("3回目の入園試行後: 入園回数=" + nightTicket.getEntryCount());
+//
+//        // 2. 夜間チケットを昼間に使用するテスト
+//        ParkContext.setNight(false);
+//        log("現在の時間: 昼間");
+//        TicketBuyResult anotherNightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+//        Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
+//
+//        log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
+//        log("夜間専用か: " + anotherNightTicket.isNightOnly());
+//
+//        try {
+//            anotherNightTicket.doInPark(); // 昼間なので例外が発生するはず
+//            fail("夜間専用チケットなので使えません。");
+//        } catch (IllegalStateException e) {
+//            log("夜間専用チケットなので使えません。: " + e.getMessage());
+//        }
+//        log("入園回数=" + anotherNightTicket.getEntryCount());
+//    }
+
     public void test_class_moreFix_wonder_night() {
         TicketBooth booth = new TicketBooth();
         int handedMoney = 10000;
 
-        log("--- 夜間 ---");
+        // --- シミュレーション時刻の定義 ---
+        LocalTime nightTime = LocalTime.of(19, 0, 0); // 夜間としてテストする時刻 (午後7時)
+        LocalTime dayTime = LocalTime.of(10, 0, 0);  // 昼間としてテストする時刻 (午前10時)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        // 夜間チケットを夜間に使用するテスト
-        ParkContext.setNight(true);
-        log("現在の時間: 夜間");
+        // --- 夜間チケットを「夜間」としてシミュレートし使用するテスト ---
+        log("--- 夜間チケットをシミュレートされた夜間に使用するテスト ---");
+        log("シミュレート時刻: " + nightTime.format(formatter) + " (夜間)");
+
         TicketBuyResult nightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
         Ticket nightTicket = nightBuyResult.getTicket();
         int nightChange = nightBuyResult.getChange();
@@ -307,42 +370,54 @@ public class Step05ClassTest extends PlainTestCase {
         log("お釣り: " + nightChange);
         log("夜間専用か: " + nightTicket.isNightOnly());
         log("残りのチケット枚数: " + booth.getQuantity());
-
         log("初期状態: 有効日数=" + nightTicket.getValidDays() + ", 入園回数=" + nightTicket.getEntryCount());
 
-        // 1回目入園 (夜間なので成功)
-        nightTicket.doInPark();
-        log("1回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+        // 1回目入園 (夜間)
+        log("1回目の入園試行 (シミュレート時刻: " + nightTime.format(formatter) + ")");
+        nightTicket.doInPark(nightTime); // ★ ここでシミュレート時刻を渡す ★
+        log("1回目の入園後 (シミュレート夜間): 入園回数=" + nightTicket.getEntryCount());
 
-        // 2回目入園 (夜間なので成功)
-        nightTicket.doInPark();
-        log("2回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+        // 2回目入園　(夜間)
+        log("2回目の入園試行 (シミュレート時刻: " + nightTime.format(formatter) + ")");
+        nightTicket.doInPark(nightTime); // ★ ここでシミュレート時刻を渡す ★
+        log("2回目の入園後 (シミュレート夜間): 入園回数=" + nightTicket.getEntryCount());
 
-        // 3回目入園 (有効回数超過なので失敗)
+        // 3回目入園 (有効回数超過)
+        log("3回目の入園試行 (シミュレート時刻: " + nightTime.format(formatter) + ", 有効回数超過)");
         try {
-            nightTicket.doInPark();
-            fail("有効日数を超えています");
+            nightTicket.doInPark(nightTime); // ★ ここでシミュレート時刻を渡す ★
+            fail("有効日数を超えているのに例外が発生しませんでした。");
         } catch (IllegalStateException e) {
-            log("有効に数を超えています " + e.getMessage());
+            log("有効日数を超えています: " + e.getMessage());
+
+            assertTrue(e.getMessage().contains("validDays=" + nightTicket.getValidDays()));
         }
         log("3回目の入園試行後: 入園回数=" + nightTicket.getEntryCount());
 
-        // 2. 夜間チケットを昼間に使用するテスト
-        ParkContext.setNight(false);
-        log("現在の時間: 昼間");
+        // --- 夜間チケットを「昼間」としてシミュレートし使用するテスト ---
+        log("--- 夜間チケットをシミュレートされた昼間に使用するテスト ---");
+        log("シミュレート時刻: " + dayTime.format(formatter) + " (昼間)");
+
+        // 別の夜間チケットを購入
         TicketBuyResult anotherNightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
         Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
 
         log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
         log("夜間専用か: " + anotherNightTicket.isNightOnly());
 
+        // 夜間チケットを昼間に使用する
+        log("入園試行 (シミュレート時刻: " + dayTime.format(formatter) + ")");
         try {
-            anotherNightTicket.doInPark(); // 昼間なので例外が発生するはず
-            fail("夜間専用チケットなので使えません。");
+            anotherNightTicket.doInPark(dayTime); // ★ ここでシミュレート時刻を渡す ★
+            fail("夜間専用チケットなのに昼間に使えました");
         } catch (IllegalStateException e) {
-            log("夜間専用チケットなので使えません。: " + e.getMessage());
+            log("夜間専用チケットなので使えません): " + e.getMessage());
+
+            assertTrue(e.getMessage().contains("夜間専用"));
+            assertTrue(e.getMessage().contains(dayTime.format(formatter))); // 時刻も含まれているか
         }
         log("入園回数=" + anotherNightTicket.getEntryCount());
+
     }
 
     /**

@@ -13,6 +13,7 @@
  * governing permissions and limitations under the License.
  */
 package org.docksidestage.bizfw.basic.buyticket;
+import java.time.LocalTime;
 
 // TODO done ayamin [質問] コードたちの「たち」ってのは、変数やメソッドが複数で「変数やメソッドたち」みたいなニュアンスですかね？(^^ by jflute (2025/07/07)
 // TODO jflute [へんじ]　by ayamin (2025/07/08)
@@ -44,15 +45,31 @@ package org.docksidestage.bizfw.basic.buyticket;
 //    }
 //}
 
-    public class ParkContext {
-        public static boolean isNight() {
-                    return currentIsNight;
-                }
-                public static boolean isDay() {
-                    return !currentIsNight;
-                }
-                public static void setNight(boolean isNight) {
-                    currentIsNight = isNight;
-                }
+// TODO jflute [へんじ] by ayamin (2025/07/08)
+//  「現在日時で夜かどうか？を判定」するようにコードを変更しました
+public class ParkContext {
+
+    private ParkContext() {
+
     }
+
+    public static boolean isNight() {
+        return isNight(LocalTime.now());
+    }
+
+    public static boolean isNight(LocalTime checkTime) {
+        LocalTime dayStartTime = LocalTime.of(6, 0, 0);
+        LocalTime nightStartTime = LocalTime.of(18, 0, 0);
+        return checkTime.isBefore(dayStartTime) || checkTime.isAfter(nightStartTime);
+    }
+
+    public static boolean isDay() {
+        return isDay(LocalTime.now());
+    }
+
+    public static boolean isDay(LocalTime checkTime) {
+        return !isNight(checkTime);
+    }
+}
+
 

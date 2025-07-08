@@ -53,21 +53,17 @@ public class TicketBooth {
     // * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
     // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
     // */
-    // TODO ayamin javadoc, @returnが抜けています。 by jflute (2025/07/07)
-    // TODO ayamin javadoc, one dayだけにjavadocがあるのはバランス悪いので、publicのbuyにはjavadocを入れましょう by jflute (2025/07/07)
-    /**
-     * Buy one-day passport, method for park guest.
-     * @param handedMoney The money (amount) handed over from park guest. (NotNull, NotMinus)
-     * @throws TicketSoldOutException When ticket in booth is sold out.
-     * @throws TicketShortMoneyException When the specified money is short for purchase.
-     */
+    // TODO done ayamin javadoc, @returnが抜けています。 by jflute (2025/07/07)
+    // TODO done ayamin javadoc, one dayだけにjavadocがあるのはバランス悪いので、publicのbuyにはjavadocを入れましょう by jflute (2025/07/07)
+    // TODO  jflute なくてもいいかなと判断した(他のコードにはそもそもjavadocを入れてないため統一性がない)ので、消しました by ayamin (2025/07/08)
+
     // TODO done ayamin javadoc直下、通常空行は空けないので削除でお願いします by jflute (2025/07/07)
     public Ticket buyOneDayPassport(Integer handedMoney) {
         doBuyPassport(handedMoney, ONE_DAY_PRICE);
         return new Ticket(ONE_DAY_PRICE, 1, false);
     }
 
-    // TODO ayamin [質問] これは...空行をどう空けたら、見やすいのか？を実験してますかね？(^^ by jflute (2025/07/07)
+    // TODO done ayamin [質問] これは...空行をどう空けたら、見やすいのか？を実験してますかね？(^^ by jflute (2025/07/07)
     // 慣れてくるとこの程度であれば、TwoDayスタイルで書いちゃいますが、FourDayがバランス良いのかなとは思いました。
 
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
