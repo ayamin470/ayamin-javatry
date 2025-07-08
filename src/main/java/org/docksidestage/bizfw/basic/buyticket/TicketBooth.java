@@ -61,8 +61,7 @@ public class TicketBooth {
      * @throws TicketSoldOutException When ticket in booth is sold out.
      * @throws TicketShortMoneyException When the specified money is short for purchase.
      */
-    // TODO ayamin javadoc直下、通常空行は空けないので削除でお願いします by jflute (2025/07/07)
-
+    // TODO done ayamin javadoc直下、通常空行は空けないので削除でお願いします by jflute (2025/07/07)
     public Ticket buyOneDayPassport(Integer handedMoney) {
         doBuyPassport(handedMoney, ONE_DAY_PRICE);
         return new Ticket(ONE_DAY_PRICE, 1, false);
@@ -70,10 +69,13 @@ public class TicketBooth {
 
     // TODO ayamin [質問] これは...空行をどう空けたら、見やすいのか？を実験してますかね？(^^ by jflute (2025/07/07)
     // 慣れてくるとこの程度であれば、TwoDayスタイルで書いちゃいますが、FourDayがバランス良いのかなとは思いました。
+
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
         doBuyPassport(handedMoney, TWO_DAY_PRICE);
+
         Ticket ticket = new Ticket(TWO_DAY_PRICE, 2, false);
         int change = handedMoney - TWO_DAY_PRICE;
+
         return new TicketBuyResult(ticket, change);
     }
 
@@ -91,7 +93,6 @@ public class TicketBooth {
         doBuyPassport(handedMoney, NIGHT_ONLY_TWO_DAY_PRICE);
 
         Ticket ticket = new Ticket(NIGHT_ONLY_TWO_DAY_PRICE, 2, true); // ★ nightOnly を true に設定
-
         int change = handedMoney - NIGHT_ONLY_TWO_DAY_PRICE;
 
         return new TicketBuyResult(ticket, change);

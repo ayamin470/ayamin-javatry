@@ -172,7 +172,7 @@ public class Step04MethodTest extends PlainTestCase {
     {
         return text.replace("C", "B");
     }
-    // TODO ayamin 第二引数の引数名、わかりやすくていいですね！意味のある引数名素晴らしい by jflute (2025/07/02)
+    // TODO done ayamin 第二引数の引数名、わかりやすくていいですね！意味のある引数名素晴らしい by jflute (2025/07/02)
     private String quote(String text, String quoteChar) {
         return quoteChar + text + quoteChar;
     }
@@ -183,11 +183,12 @@ public class Step04MethodTest extends PlainTestCase {
         log(textToLog);
     }
     /**
-     *privateとpublicの違い：クラスの中からアクセスできるかできないかの違い
+     *privateとpublicの違い：クラスの外からアクセスできるかできないかの違い
      *privateのあとに書くStringやbooleanやvoidは何を返すかを示す
      * */
-    // TODO ayamin たぶん書き間違いだと思うのですが、「クラスの中から」じゃなくて「クラスの外から」ですかね by jflute (2025/07/02)
+    // TODO done ayamin たぶん書き間違いだと思うのですが、「クラスの中から」じゃなくて「クラスの外から」ですかね by jflute (2025/07/02)
     // クラスの中からは、privateだろうがpublicだろうがどちらでもアクセスできるので...
     // クラスの外からアクセスできるかどうか？なら、privateならダメ、publicならOKということになります。
+
 
 }

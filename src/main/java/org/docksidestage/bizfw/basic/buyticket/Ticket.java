@@ -24,7 +24,7 @@ public class Ticket {
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    // TODO ayamin [いいね] インスタンス変数の定義順序、Contructorの引数や設定と合っててとても綺麗で直感的で良いです！ by jflute (2025/07/07)
+    // TODO done ayamin [いいね] インスタンス変数の定義順序、Contructorの引数や設定と合っててとても綺麗で直感的で良いです！ by jflute (2025/07/07)
     private final int displayPrice; // written on ticket, park guest can watch this
     private final int validDays;
     private final boolean nightOnly;// チケットが有効な日数 (例: 1日パスポートなら1, 2日パスポートなら2)
@@ -39,8 +39,7 @@ public class Ticket {
         this.validDays = validDays;
         this.nightOnly = nightOnly;
         this.entryCount = 0; // 初期入園回数は0
-        // TODO ayamin ここの空行は不要だと思うので削除しましょう by jflute (2025/07/07)
-
+        // TODO done ayamin ここの空行は不要だと思うので削除しましょう by jflute (2025/07/07)
     }
     // ===================================================================================
     //                                                                             In Park
@@ -48,15 +47,17 @@ public class Ticket {
     public void doInPark() {
         // 有効な入園回数を超えているかチェック
         if (entryCount >= validDays) {
-            // TODO ayamin [いいね] 例外メッセージ、とってもわかりやすくていいですね。変数情報が入っててデバッグしやすいです by jflute (2025/07/07)
-            // TODO ayamin [読み物課題] 例外メッセージ、敬語で満足でもロスロスパターン by jflute (2025/07/07)
+            // TODO done ayamin [いいね] 例外メッセージ、とってもわかりやすくていいですね。変数情報が入っててデバッグしやすいです by jflute (2025/07/07)
+            // TODO done ayamin [読み物課題] 例外メッセージ、敬語で満足でもロスロスパターン by jflute (2025/07/07)
             // https://jflute.hatenadiary.jp/entry/20170804/explossloss
             // (ブログを読むのもjavatry。じっくり読んでくださいませ)
             throw new IllegalStateException("値段" + displayPrice + ", validDays=" + validDays + ", entryCount=" + entryCount);
         }
-        // TODO ayamin [いいね] すごい、ParkContextというシングルトンの概念で制御するようにしているの良いですね by jflute (2025/07/07)
-        // TODO ayamin 修行++: せっかくなので、単純なtrue/falseではなく、現在日時で夜かどうか？を判定するようにしてみてください by jflute (2025/07/07)
+        // TODO done ayamin [いいね] すごい、ParkContextというシングルトンの概念で制御するようにしているの良いですね by jflute (2025/07/07)
+        // TODO done ayamin 修行++: せっかくなので、単純なtrue/falseではなく、現在日時で夜かどうか？を判定するようにしてみてください by jflute (2025/07/07)
         // ParkContext を書きかえても良いですし、また別の実装にしても良いですし。
+        // TODO jflute LocalTime.now(); で現在日時を取得できそうなことがわかったので、これで実装し直してみました by ayamin (2025/07/08)
+
         if (nightOnly && ParkContext.isDay()) { // ParkContext を使用
             throw new IllegalStateException("夜ではないので使えません");
         }
@@ -69,7 +70,6 @@ public class Ticket {
     public int getDisplayPrice() {
         return displayPrice;
     }
-
     public boolean isAlreadyIn() {
         return entryCount > 0;
     }

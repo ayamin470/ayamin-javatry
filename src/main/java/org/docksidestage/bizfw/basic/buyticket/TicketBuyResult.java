@@ -1,16 +1,18 @@
-//@author ayamin
+/**
+ * @author ayamin
+ */
 
 // TicketBuyResult.java
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO ayamin authorが YourName のままです by jflute (2025/07/02)
+// TODO done ayamin authorが YourName のままです by jflute (2025/07/02)
 /**
  * Represents the result of a ticket purchase, containing the purchased ticket and any change.
  * @author ayamin (you can use your own name here)
  */
 public class TicketBuyResult {
 
-    // TODO ayamin [いいね] Immutableになれるクラスなので、final付けるのgoodです by jflute (2025/07/02)
+    // TODO done ayamin [いいね] Immutableになれるクラスなので、final付けるのgoodです by jflute (2025/07/02)
     private final Ticket ticket;
     private final int change;
 

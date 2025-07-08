@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO ayamin javadocのauthorお願いしますー by jflute (2025/07/02)
+// TODO done ayamin javadocのauthorお願いしますー by jflute (2025/07/02)
 /**
  * The test of if-for. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -186,7 +186,8 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_making() {
         List<String> stageList = prepareStageList();
         List<String> aContainedList = new ArrayList<>();
-        // TODO ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
+        // TODO done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
+        // 確認しました！by ayamin (2025/07/08)
         for (String stage : stageList) {
             if (stage.contains("a"))
             {
@@ -206,6 +207,8 @@ public class Step02IfForTest extends PlainTestCase {
      * Change foreach statement to List's forEach() (keep result after fix) <br>
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
+
+    //TODO ayamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
     public void test_iffor_refactor_foreach_to_forEach()
     {
         List<String> stageList = prepareStageList();
@@ -223,8 +226,10 @@ public class Step02IfForTest extends PlainTestCase {
     }
     public void test_original_forEach()
     {
-        // TODO ayamin [いいね] おおぉ、すごい頑張りましたね！mutableな配列で回避するとは by jflute (2025/07/02)
-        // TODO ayamin 修行++: もう少し悩んでもらうために...breakFlag[]なくても同じ挙動実現できるはずです by jflute (2025/07/02)
+        // TODO done ayamin [いいね] おおぉ、すごい頑張りましたね！mutableな配列で回避するとは by jflute (2025/07/02)
+        // TODO done ayamin 修行++: もう少し悩んでもらうために...breakFlag[]なくても同じ挙動実現できるはずです by jflute (2025/07/02)
+        // // TODO jflute [test_original2_forEach] として、breakFlag[]なしで挙動を再現しました by ayamin (2025/07/08)
+
         List<String> stageList = prepareStageList();
         final String[] resultSea = new String[1];
         final boolean[] breakFlag = new boolean[1];
@@ -237,6 +242,7 @@ public class Step02IfForTest extends PlainTestCase {
                 return;
             }
             resultSea[0] = stage;
+
             if (stage.contains("ga")) {
                 breakFlag[0] = true;
             }
@@ -245,6 +251,34 @@ public class Step02IfForTest extends PlainTestCase {
         String sea = resultSea[0];
         log(sea);
     }
+    // TODO auamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
+    //  breakFlag を使わずに、Stream API の reduce を用いて同じ結果を得る
+
+    public void test_original2_forEach() {
+        List<String> stageList = prepareStageList();
+
+        String sea = stageList.stream()
+
+                .filter(stage -> !stage.startsWith("br"))
+
+                .reduce((lastValidStage, currentStage) -> {
+
+                    if (lastValidStage.contains("ga")) {
+                        return lastValidStage;
+                    }
+
+                    if (currentStage.contains("ga")) {
+                        return currentStage;
+                    }
+
+                    return currentStage;
+                })
+                // ストリームが空の場合やreduceで結果が得られない場合にnullを返す
+                .orElse(null);
+
+        log(sea); // "hangar" が出力されるはず
+    }
+
 
     public void test_original_forEach2()
     {
@@ -255,7 +289,7 @@ public class Step02IfForTest extends PlainTestCase {
      * ラムダ式のルール上、外側のローカル変数を直接変更できないため
      * 配列の中身は上記の制約を受けないのでこのように書く
      */
-    // TODO ayamin [いいね] コードの意図をコメントで表現されてる読み手はとても助かりますね！ by jflute (2025/07/02)
+    // TODO done ayamin [いいね] コードの意図をコメントで表現されてる読み手はとても助かりますね！ by jflute (2025/07/02)
 
     /**
      * Make your original exercise as question style about if-for statement. <br>
@@ -270,9 +304,9 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_yourExercise()
     {
         List<String> stageList = prepareStageList();
-        // TODO ayamin "a" Contained じゃなくて "o" Contained ですかね、ここでは by jflute (2025/07/02)
+        // TODO done ayamin "a" Contained じゃなくて "o" Contained ですかね、ここでは by jflute (2025/07/02)
         List<String> oContainedList = new ArrayList<>();
-        // TODO ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
+        // TODO done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
         for (String stage : stageList) {
             if (stage.contains("o"))
             {

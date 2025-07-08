@@ -24,8 +24,9 @@ import org.docksidestage.bizfw.basic.buyticket.ParkContext;
 
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
+// TODO done ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
 // (doneの付いてないtodoだらけになってきたのですが、どれが直したもので、どれがまだ未対応のものか判断が大変なのでm(_ _)m)
+// TODO jflute すみません！Step05まではすべてdoneしました。課題を進めることばかりに目が眩んでしまいました by ayamin (2025/07/08)
 /**
  * The test of class. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -115,13 +116,14 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_makeMethod_twoday() {
         // uncomment after making the method
-        // TODO ayamin 変数が使われてないので、unused の警告がIDE上で出ています by jflute (2025/07/07)
+        // TODO done ayamin 変数が使われてないので、unused の警告がIDE上で出ています by jflute (2025/07/07)
         // (コメントアウトされた)元のコードで合わないところがあったら、合うように修正しちゃってください。
+
         TicketBooth booth = new TicketBooth();
         int money = 14000;
-//        int change = booth.buyTwoDayPassport(money);
-//        Integer sea = booth.getSalesProceeds() + change;
-//        log(sea); // should be same as money
+        int change = booth.buyTwoDayPassport(money).getChange();
+        Integer sea = booth.getSalesProceeds() + change;
+        log(sea); // should be same as money
 
         // and show two-day passport quantity here
     }
@@ -137,7 +139,7 @@ public class Step05ClassTest extends PlainTestCase {
     //    チケット在庫を減らす
     //    売上金の更新
     //    どうやるか？カプセル化してメソッドを呼び出す
-    // TODO ayamin [ふぉろー] このように小さな業務のまとまりを言語化して思考するの大切です。とても上手ですね。 by jflute (2025/07/07)
+    // TODO done ayamin [ふぉろー] このように小さな業務のまとまりを言語化して思考するの大切です。とても上手ですね。 by jflute (2025/07/07)
     public void test_class_letsFix_refactor_recycle() {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
@@ -169,7 +171,7 @@ public class Step05ClassTest extends PlainTestCase {
     //TODO ayamin そもそもなぜTicketBuyResult.javaを作る必要があったのか？
     // Javaは、原則として一つの値しか直接返すことができない。そのままだとチケットとお釣りの両方を返せない
     // TicketBuyResultとして一つのクラスにお釣りとチケットを内包することで、クリアできる
-    // TODO ayamin [ふぉろー] いいですね、そういうところに視点を置くというのは。 by jflute (2025/07/07)
+    // TODO done ayamin [ふぉろー] いいですね、そういうところに視点を置くというのは。 by jflute (2025/07/07)
     // TicketBuyResult は、物理の世界のチケットブースの、紙のチケットとお釣りを入れて戻す「青いトレー」みたいなイメージです。
     // 将来、レシートも戻すとか戻す項目が増えたとき、TicketBuyResultがあれば戻り値は変更せずにResultに追加するだけで済みます。
     // こういう風に、戻り値の「入れ物クラス」というのはよく使われます。
@@ -233,6 +235,7 @@ public class Step05ClassTest extends PlainTestCase {
     // uncomment when you implement this exercise
     private void showTicketIfNeeds(Ticket ticket) {
         // TODO ayamin NightOnlyは別なので、純粋に TwoDayPassport だけがヒットするようにしましょう by jflute (2025/07/07)
+        // TODO jflute よくわからなかったので、1on1で一緒に確認させていただきたいです！ by ayamin (2025/07/08)
         if (ticket.getValidDays() == 2) { // write determination for two-day passport
             log("それは2日パスポートだよ");
         } else {
@@ -293,7 +296,7 @@ public class Step05ClassTest extends PlainTestCase {
 
         log("--- 夜間 ---");
 
-        // 1. 夜間チケットを夜間に使用するテスト
+        // 夜間チケットを夜間に使用するテスト
         ParkContext.setNight(true);
         log("現在の時間: 夜間");
         TicketBuyResult nightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
@@ -318,9 +321,9 @@ public class Step05ClassTest extends PlainTestCase {
         // 3回目入園 (有効回数超過なので失敗)
         try {
             nightTicket.doInPark();
-            fail("有効日数 (2日間) を超えて入園できるべきではありません");
+            fail("有効日数を超えています");
         } catch (IllegalStateException e) {
-            log("3回目の入園で期待される例外を捕捉しました (有効日数超過): " + e.getMessage());
+            log("有効に数を超えています " + e.getMessage());
         }
         log("3回目の入園試行後: 入園回数=" + nightTicket.getEntryCount());
 
@@ -349,8 +352,9 @@ public class Step05ClassTest extends PlainTestCase {
 
     //done jflute さん
     //ここは解いていません。1on1時にご解説いただけますと幸いです
-    // TODO ayamin [へんじ] だいぶ全体的に綺麗にできています。気になるところはtodo入れていきますね。 by jflute (2025/07/07)
+    // TODO done ayamin [へんじ] だいぶ全体的に綺麗にできています。気になるところはtodo入れていきますね。 by jflute (2025/07/07)
     // このエクササイズは、コードを綺麗に整えることを意識させるために入れてあるという感じです。
+
 
     public void test_class_moreFix_yourRefactoring() {
         // your confirmation code here

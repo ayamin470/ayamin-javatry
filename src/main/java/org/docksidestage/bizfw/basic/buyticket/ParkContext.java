@@ -14,32 +14,45 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO ayamin [質問] コードたちの「たち」ってのは、変数やメソッドが複数で「変数やメソッドたち」みたいなニュアンスですかね？(^^ by jflute (2025/07/07)
+// TODO done ayamin [質問] コードたちの「たち」ってのは、変数やメソッドが複数で「変数やメソッドたち」みたいなニュアンスですかね？(^^ by jflute (2025/07/07)
+// TODO jflute [へんじ]　by ayamin (2025/07/08)
+// 「たち」はいらないというか、誤解を招きかねないですね。気をつけます。私的には、「コード」はたとえ一文でも「コード」であるという認識をしていて、コードが何行にも渡っているから「たち」を無意識につけてしまいました
 /**
  * 昼か夜かを制御するコードたち
- *
  * @author ayamin
  */
-public class ParkContext {
+//public class ParkContext {
+//
+//    // TODO done ayamin [質問] デフォルトを夜間にした理由はなんでしょうか？ by jflute (2025/07/07)
+//    // test_class_moreFix_wonder_night() を見ると、実際明示的に setNight(true) してたので、
+//    // あまりデフォルトが夜間であることに現状は意味があるように見えなかったので。
+//    // とはいえ、本来は時間で決まるものなので、昼がデフォルトも変っちゃ変ですけど...
+//    // 「デフォルトは夜間とする」と意図的なコメントまで書いてますから、どう考えてそうしたのかな？と思いまして。
+//    // TODO jflute [へんじ] by ayamin (2025/07/08)
+//    // たしかに、 ParkContext.setNight(true);を書くなら、ここでわざわざtrueにする必要はないですね
+//    // おそらく手グセで書いてしまったと思います
+//
+//    private static boolean currentIsNight = true; // デフォルトは夜間とする
+//    public static boolean isNight() {
+//        return currentIsNight;
+//    }
+//    public static boolean isDay() {
+//        return !currentIsNight;
+//    }
+//    public static void setNight(boolean isNight) {
+//        currentIsNight = isNight;
+//    }
+//}
 
-    // TODO ayamin [質問] デフォルトを夜間にした理由はなんでしょうか？ by jflute (2025/07/07)
-    // test_class_moreFix_wonder_night() を見ると、実際明示的に setNight(true) してたので、
-    // あまりデフォルトが夜間であることに現状は意味があるように見えなかったので。
-    // とはいえ、本来は時間で決まるものなので、昼がデフォルトも変っちゃ変ですけど...
-    // 「デフォルトは夜間とする」と意図的なコメントまで書いてますから、どう考えてそうしたのかな？と思いまして。
-    //
-    // テストのために時間帯を制御できるようにする (通常はシステム時刻から判断)
-    private static boolean currentIsNight = true; // デフォルトは夜間とする
-
-    public static boolean isNight() {
-        return currentIsNight;
+    public class ParkContext {
+        public static boolean isNight() {
+                    return currentIsNight;
+                }
+                public static boolean isDay() {
+                    return !currentIsNight;
+                }
+                public static void setNight(boolean isNight) {
+                    currentIsNight = isNight;
+                }
     }
-
-    public static boolean isDay() {
-        return !currentIsNight;
-    }
-    public static void setNight(boolean isNight) {
-        currentIsNight = isNight;
-    }
-}
 
