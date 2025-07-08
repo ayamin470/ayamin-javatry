@@ -54,6 +54,9 @@ public class Zombie extends Animal {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
+    // TODO ayamin 単純に消すだけだと、Zombieの息を吸うごとに日記を付けるという挙動がなくなってしまいます by jflute (2025/07/08)
+    // BarkingProcessに切り出したことで、Zombieの機能にデグレが発生してしまうのは良くないです。
+    // (リファクタリングは、既存の挙動を変えずにコードの形を変えるというもの)
 //    @Override
 //    protected void breatheIn() {
 //        super.breatheIn();

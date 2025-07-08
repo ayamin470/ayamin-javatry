@@ -35,7 +35,7 @@ import org.docksidestage.javatry.basic.st6.os.OldWindows;
 import org.docksidestage.javatry.basic.st6.os.OperationSystem;
 
 
-// TODO done ayamin 全体的に空行が、チグハグなところが見受けられますので、気をつけてみてください。 by jflute (2025/07/07)
+// done ayamin 全体的に空行が、チグハグなところが見受けられますので、気をつけてみてください。 by jflute (2025/07/07)
 // ↓ぜひこちらを改めて読んでもらえればと:
 // ハンズオンのコーディングポリシー - 4. 空行マネジメント
 // https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#emptyline
@@ -60,7 +60,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
     public void test_objectOriented_aboutObject_againstObject() {
         //TODO done ayamin チケットを購入し、入園するまでを書く
-        // TODO done ayamin [ふぉろー] すごい、書き換えてるのびっくりしました(^^ by jflute (2025/07/07)
+        // done ayamin [ふぉろー] すごい、書き換えてるのびっくりしました(^^ by jflute (2025/07/07)
         // 書き直すことで、ベタ書きの状態とオブジェクトを使った状態までの変化がわかりやすくなるので良いと思います。
         // ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
 
@@ -71,8 +71,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     }
 
-    // TODO done ayamin [質問] ちょっとだけ元のコードが残ってるので、↓に間違いがまだ残ってますね。どこが間違ってるでしょうか？ by jflute (2025/07/07)
+    // done ayamin [質問] ちょっとだけ元のコードが残ってるので、↓に間違いがまだ残ってますね。どこが間違ってるでしょうか？ by jflute (2025/07/07)
     // alreadyInはもう使っていないので、間違い。チケットを複数日数使用できるように変更した時に、isAlreadyInという変数に置き換えた上で、1回でも入場したらisAlreadyInがtrueを返すように変更した
+    // TODO jflute 1on1にてフォロー予定 (2025/07/08)
 //    private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
 //        if (alreadyIn) {
 //            // simulation: only logging here (normally e.g. DB insert)
@@ -103,11 +104,12 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     //    そもそも、オブジェクト指向とは、手続型で順番通りにコードを書き連ねるのではなく、
     //    現実にある物体をイメージしながら、オブジェクト同士が何をやりとりするのか？
     //    を考えるのがオブジェクト指向だと考えるからです
-    // TODO ayamin [ふぉろー] ありがとうございます。ただ、"現実" というのがちょっと曖昧な表現で難しいところですね by jflute (2025/07/07)
-    // TODO done ayamin [質問] もう少し踏み込んで..."現実にある物体" と言っていますが、TicketBuyResultとかは現実の物体でしょうか？ by jflute (2025/07/07)
+    // done ayamin [ふぉろー] ありがとうございます。ただ、"現実" というのがちょっと曖昧な表現で難しいところですね by jflute (2025/07/07)
+    // done ayamin [質問] もう少し踏み込んで..."現実にある物体" と言っていますが、TicketBuyResultとかは現実の物体でしょうか？ by jflute (2025/07/07)
     // 確かに...現実の物体ではないと思います。ということは、現実に存在して目に見える物体をオブジェクトとして考えているわけではない
     // であれば、役割や責任をまず考え、その役割や責任をオブジェクトとして持たせる、という考えに行きつきました
     // 例えば、「TicketBoothはお金を受け取り、チケットとお金を返し、チケットの枚数を管理する責任」、TicketBuyResultは「チケットの購入履歴を一時的に保管しておく責任」といった感じ
+    // TODO jflute 1on1にてふぉろー予定 (2025/07/08)
 
     public void test_objectOriented_aboutObject_usingObject() {
         //
@@ -271,7 +273,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // animalという大元のクラスがあることで、コードを書くのが楽になる
         // 動物の種類ごとに異なるメソッドを呼び出す必要がなくなるから、他に動物が増えた時でも楽！
         // _/_/_/_/_/_/_/_/_/_/
-        // TODO done ayamin [いいね] それっぽく扱う、というのがなかなかおもしろい表現です^^ by jflute (2025/07/07)
+        // done ayamin [いいね] それっぽく扱う、というのがなかなかおもしろい表現です^^ by jflute (2025/07/07)
         // でも、的を得てはいると思います。「動物」って概念で (扱えるものは) 扱う、って感覚でしょうか。
         // TODO jflute 1on1にて、少し補足する予定 (2025/07/07)
     }

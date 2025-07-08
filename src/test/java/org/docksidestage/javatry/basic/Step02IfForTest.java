@@ -186,7 +186,7 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_making() {
         List<String> stageList = prepareStageList();
         List<String> aContainedList = new ArrayList<>();
-        // TODO done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
+        // done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
         // 確認しました！by ayamin (2025/07/08)
         for (String stage : stageList) {
             if (stage.contains("a"))
