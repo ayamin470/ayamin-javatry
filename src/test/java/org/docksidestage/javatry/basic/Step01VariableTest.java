@@ -80,21 +80,23 @@ public class Step01VariableTest extends PlainTestCase
         log(sea); // your answer? => 416
     }
     /* sea.add(new BigDecimal(1));された結果は、どこにも参照されない */
-    // TODO done ayamin そのとおりです。BigDecimal の add() は自分自身を変えるわけではなく... by jflute (2025/07/01)
+    // done ayamin そのとおりです。BigDecimal の add() は自分自身を変えるわけではなく... by jflute (2025/07/01)
     // 変えたもの (足したもの) を新しく生み出して戻り値として戻します。
     // そういったクラス(オブジェクト)のことを、なんて呼ぶかご存知でしょうか？
 
-    // TODO jflute by ayamin (2025/07/08)
+    // done jflute by ayamin (2025/07/08)
     // イミュータブル (Immutable) オブジェクトだと思います
     // 今回はBigDecimalですが、ほかにもBigIntegerや、String クラス: concat(), substring(), replace() など、Stringイミュータブルです メソッドも
     // これらは一度作られた後は変更できないので、元のオブジェクトを変更するのではなく、新しいオブジェクトを生成してその結果を返します
     
-    // TODO done ayamin [へんじ] Goodです。ありがとうございます！1on1のときに少しだけ補足する予定です。 by jflute (2025/07/02)
+    // done ayamin [へんじ] Goodです。ありがとうございます！1on1のときに少しだけ補足する予定です。 by jflute (2025/07/02)
     // ちなみに、todoに対するdoneですが、
     // ↓の「レビューのやり取り」の欄を参考にお願いします。
     // https://dbflute.seasar.org/ja/tutorial/handson/review/jflutereview.html#review
     // TODOにはこのように返事をすると言うこと。理解しました。次回から修正いたします
-    // TODO done ayamin 改めて、Slackでtodoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
+    // done ayamin 改めて、Slackでtodoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
+    
+    // TODO jflute 1on1にて、immutableの補足をする (2025/07/08)
 
     // ===================================================================================
     //                                                                   Instance Variable
@@ -210,13 +212,13 @@ public class Step01VariableTest extends PlainTestCase
      * o すべての変数をlog()でカンマ区切りの文字列で表示
      * </pre>
      */
-    // TODO done ayamin 中括弧が左に下がっているのは、これは意図してやっていますか？ by jflute (2025/07/01)
+    // done ayamin 中括弧が左に下がっているのは、これは意図してやっていますか？ by jflute (2025/07/01)
     // フォーマットの一つのやり方なんですけど、あまりJavaだと中括弧が左に下げる方式は見ないので。
 
     //    DONE dbfluteさん
     //    意図してやっています
     //    何が入れ子構造になっているのかよく混乱してしまうため。レビューしにくくなってしまうようであれば、左下げをしないよう気をつけます。
-    // TODO done ayamin [へんじ] おっ、なるほど。見やすくするために工夫しようとしていること自体はとても素晴らしいです by jflute (2025/07/02)
+    // done ayamin [へんじ] おっ、なるほど。見やすくするために工夫しようとしていること自体はとても素晴らしいです by jflute (2025/07/02)
     // 大昔から、(些細なことですけど) どっちスタイル？っていうのがありまして...
     //
     // Wikipediaの「字下げスタイル」を見ると...このページ初めてみたのですが、こんなにたくさん種類があるとは!?
@@ -230,6 +232,7 @@ public class Step01VariableTest extends PlainTestCase
     // ここって現場に寄りますので、一番はこれから触るであろう現場のコードがどっちになってるか？
     // それにjavatryのうちから合わせた方が良いかもというのはありますので、
     // ぜひ現場の先輩に聞いてみてください(^^。
+    // TODO jflute 1on1にて、字下げだけじゃなくフォーマット全体の話をする (2025/07/08)
 
     public class original extends PlainTestCase
     {
