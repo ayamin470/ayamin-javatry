@@ -79,6 +79,11 @@ public class Step01VariableTest extends PlainTestCase
         sea.add(new BigDecimal(1));
         log(sea); // your answer? => 416
     }
+
+    // TODO ayamin cの用法に注意！
+    //  BigDecimalは新しいインスタンスを作るために、元の変数は置き換わらない
+    //  sea.add(new BigDecimal(1));しても、seaの中身は+１されていない。sea(2)が作られて、それが+1されているイメージ
+
     /* sea.add(new BigDecimal(1));された結果は、どこにも参照されない */
     // TODO done ayamin そのとおりです。BigDecimal の add() は自分自身を変えるわけではなく... by jflute (2025/07/01)
     // 変えたもの (足したもの) を新しく生み出して戻り値として戻します。
