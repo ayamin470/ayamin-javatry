@@ -109,8 +109,10 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // your answer? => 10
     }
-    // TODO jflute 1on1にて、ソースコードリーディングの話の補足をする予定 (2025/07/02)
+    // done jflute 1on1にて、ソースコードリーディングの話の補足をする予定 (2025/07/02)
     // (これはぼくのtodoになるので、そのまま残しておいてください)
+    // #1on1 漠然読み: コード構造だけ見て、フォーカスを当てられるところを見つけたら...
+    // そのフォーカスしたものだけを追っていく。(逆読みする場合は)
 
     // ===================================================================================
     //                                                                       for Statement
@@ -229,7 +231,14 @@ public class Step02IfForTest extends PlainTestCase {
         // done ayamin [いいね] おおぉ、すごい頑張りましたね！mutableな配列で回避するとは by jflute (2025/07/02)
         // done ayamin 修行++: もう少し悩んでもらうために...breakFlag[]なくても同じ挙動実現できるはずです by jflute (2025/07/02)
         // // done jflute [test_original2_forEach] として、breakFlag[]なしで挙動を再現しました by ayamin (2025/07/08)
-        // TODO jflute 1on1にてふぉろー予定 (Stream APIの実装はそれはそれでGoodです、素晴らしい) (2025/07/08)
+        // done jflute 1on1にてふぉろー予定 (Stream APIの実装はそれはそれでGoodです、素晴らしい) (2025/07/08)
+        // #1on1: breakFlag使わなくても良い方法のお話をさせて頂きました (2025/07/09)
+        // #1on1: breakFlagって名前じゃなくて、どんな状態なのか？(e.g. gaComming)って名前を付けていたら...
+        // trueのときにやる処理の名前を付けるんじゃなくて、状態の方を示す名前を付けていたら気付いていたかも。
+        // #1on1: booleanの変数名の付け方、個人的には極力、その先の処理よりも、その状態を純粋に示す方がわかりやすいかな
+        // ちょっと今回の話と少し違いものですが、booleanの変数名にまつわるブログ:
+        // TODO ayamin [読み物課題] なんとかフラグというboolean変数名 by jflute (2025/07/09)
+        // https://jflute.hatenadiary.jp/entry/20181013/flgornuance
 
         List<String> stageList = prepareStageList();
         final String[] resultSea = new String[1];

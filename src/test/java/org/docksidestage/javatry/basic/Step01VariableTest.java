@@ -96,7 +96,13 @@ public class Step01VariableTest extends PlainTestCase
     // TODOにはこのように返事をすると言うこと。理解しました。次回から修正いたします
     // done ayamin 改めて、Slackでtodoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
     
-    // TODO jflute 1on1にて、immutableの補足をする (2025/07/08)
+    // done jflute 1on1にて、immutableの補足をする (2025/07/08)
+    // #1on1: 質問、BigDecimalだったら何でもできるから、最初からそうしてた方が汎用性が高いか？
+    // 回答: 論理的にはその通りですが、BigDecimalはちょっと扱いづらいクラスなので、
+    // かつ、めったに小数点が追加されることってないので、まあ現実はInteger/Long使っちゃいます。
+    // #1on1: IntelliJでメソッド補完時にcontrol+Jでjavadoc表示
+    // #1on1: javadocでimmutableと書いてあったり、add()のソースコードを読んでimmutableであることを知る
+    // #1on1: immutableのバランス話
 
     // ===================================================================================
     //                                                                   Instance Variable
@@ -192,6 +198,8 @@ public class Step01VariableTest extends PlainTestCase
         String seaStr = sea.toString(); // is "harbor"
         sea = new StringBuilder(seaStr).append(land);
     }
+    
+    // #1on1: インスタンスとは？のお話
 
     // ===================================================================================
     //                                                                           Challenge
@@ -232,7 +240,8 @@ public class Step01VariableTest extends PlainTestCase
     // ここって現場に寄りますので、一番はこれから触るであろう現場のコードがどっちになってるか？
     // それにjavatryのうちから合わせた方が良いかもというのはありますので、
     // ぜひ現場の先輩に聞いてみてください(^^。
-    // TODO jflute 1on1にて、字下げだけじゃなくフォーマット全体の話をする (2025/07/08)
+    // done jflute 1on1にて、字下げだけじゃなくフォーマット全体の話をする (2025/07/08)
+    // #1on1 フォーマッターのお話。javaのデフォルトのフォーマットのお話。
 
     public class original extends PlainTestCase
     {

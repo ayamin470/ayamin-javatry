@@ -75,6 +75,7 @@ public class Ticket {
     // 業務のコードでも、現在日時限定の場合は、外から日時を指定できないように作りました。
     // (検索とかだと、呼び出し側に自由に日時を渡せるようにするとかはありますが、今回は業務の振る舞いないので)
     // (でも、テストの都合上、時間を指定して動作確認したいってのはありますよね...さあそこが課題です)
+    // (このtodoは最後でもOKです)
     public void doInPark(LocalTime checkTime) {
 
         if (entryCount >= validDays) {
