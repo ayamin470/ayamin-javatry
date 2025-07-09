@@ -16,9 +16,9 @@
 package org.docksidestage.bizfw.basic.objanimal;
 
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.bizfw.basic.objanimal.special.Nocturnal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.docksidestage.bizfw.basic.objanimal.special.Nocturnal;
 
 /**
  * The object for cat(猫).

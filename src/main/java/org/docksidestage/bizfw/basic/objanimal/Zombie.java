@@ -37,6 +37,35 @@ public class Zombie extends Animal {
     protected int getInitialHitPoint() {
         return -1; // magic number for infinity hit point
     }
+    @Override
+    protected String getBarkWord() {
+        return "uooo"; // what in English?
+    }
+
+    // ===================================================================================
+    //                                                                               Bark
+    //                                                                              ======
+    // TODO ayamin 単純に消すだけだと、Zombieの息を吸うごとに日記を付けるという挙動がなくなってしまいます by jflute (2025/07/08)
+    // BarkingProcessに切り出したことで、Zombieの機能にデグレが発生してしまうのは良くないです。
+    // (リファクタリングは、既存の挙動を変えずにコードの形を変えるというもの)
+    //    @Override
+    //    protected void breatheIn() {
+    //        super.breatheIn();
+    //        zombieDiary.countBreatheIn();
+    //    }
+    // ===================================================================================
+    //                                                                           Hit Point
+    //                                                                           =========
+    @Override
+    protected void downHitPoint() {
+        // do nothing, infinity hit point
+    }
+    // ===================================================================================
+    //                                                                            Accessor
+    //                                                                            ========
+    public ZombieDiary getZombieDiary() {
+        return zombieDiary;
+    }
 
     public static class ZombieDiary {
 
@@ -49,34 +78,5 @@ public class Zombie extends Animal {
         public int getBreatheInCount() {
             return breatheInCount;
         }
-    }
-
-    // ===================================================================================
-    //                                                                               Bark
-    //                                                                              ======
-//    @Override
-//    protected void breatheIn() {
-//        super.breatheIn();
-//        zombieDiary.countBreatheIn();
-//    }
-
-    @Override
-    protected String getBarkWord() {
-        return "uooo"; // what in English?
-    }
-
-    // ===================================================================================
-    //                                                                           Hit Point
-    //                                                                           =========
-    @Override
-    protected void downHitPoint() {
-        // do nothing, infinity hit point
-    }
-
-    // ===================================================================================
-    //                                                                            Accessor
-    //                                                                            ========
-    public ZombieDiary getZombieDiary() {
-        return zombieDiary;
     }
 }

@@ -80,26 +80,34 @@ public class Step01VariableTest extends PlainTestCase
         log(sea); // your answer? => 416
     }
 
-    // TODO ayamin cの用法に注意！
+    // TODO ayamin BigDecimalの用法に注意！
     //  BigDecimalは新しいインスタンスを作るために、元の変数は置き換わらない
     //  sea.add(new BigDecimal(1));しても、seaの中身は+１されていない。sea(2)が作られて、それが+1されているイメージ
 
     /* sea.add(new BigDecimal(1));された結果は、どこにも参照されない */
-    // TODO done ayamin そのとおりです。BigDecimal の add() は自分自身を変えるわけではなく... by jflute (2025/07/01)
+    // done ayamin そのとおりです。BigDecimal の add() は自分自身を変えるわけではなく... by jflute (2025/07/01)
     // 変えたもの (足したもの) を新しく生み出して戻り値として戻します。
     // そういったクラス(オブジェクト)のことを、なんて呼ぶかご存知でしょうか？
 
-    // TODO jflute by ayamin (2025/07/08)
+    // done jflute by ayamin (2025/07/08)
     // イミュータブル (Immutable) オブジェクトだと思います
     // 今回はBigDecimalですが、ほかにもBigIntegerや、String クラス: concat(), substring(), replace() など、Stringイミュータブルです メソッドも
     // これらは一度作られた後は変更できないので、元のオブジェクトを変更するのではなく、新しいオブジェクトを生成してその結果を返します
     
-    // TODO done ayamin [へんじ] Goodです。ありがとうございます！1on1のときに少しだけ補足する予定です。 by jflute (2025/07/02)
+    // done ayamin [へんじ] Goodです。ありがとうございます！1on1のときに少しだけ補足する予定です。 by jflute (2025/07/02)
     // ちなみに、todoに対するdoneですが、
     // ↓の「レビューのやり取り」の欄を参考にお願いします。
     // https://dbflute.seasar.org/ja/tutorial/handson/review/jflutereview.html#review
     // TODOにはこのように返事をすると言うこと。理解しました。次回から修正いたします
-    // TODO done ayamin 改めて、Slackでtodoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
+    // done ayamin 改めて、Slackでtodoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
+    
+    // done jflute 1on1にて、immutableの補足をする (2025/07/08)
+    // #1on1: 質問、BigDecimalだったら何でもできるから、最初からそうしてた方が汎用性が高いか？
+    // 回答: 論理的にはその通りですが、BigDecimalはちょっと扱いづらいクラスなので、
+    // かつ、めったに小数点が追加されることってないので、まあ現実はInteger/Long使っちゃいます。
+    // #1on1: IntelliJでメソッド補完時にcontrol+Jでjavadoc表示
+    // #1on1: javadocでimmutableと書いてあったり、add()のソースコードを読んでimmutableであることを知る
+    // #1on1: immutableのバランス話
 
     // ===================================================================================
     //                                                                   Instance Variable
@@ -195,6 +203,8 @@ public class Step01VariableTest extends PlainTestCase
         String seaStr = sea.toString(); // is "harbor"
         sea = new StringBuilder(seaStr).append(land);
     }
+    
+    // #1on1: インスタンスとは？のお話
 
     // ===================================================================================
     //                                                                           Challenge
@@ -215,13 +225,13 @@ public class Step01VariableTest extends PlainTestCase
      * o すべての変数をlog()でカンマ区切りの文字列で表示
      * </pre>
      */
-    // TODO done ayamin 中括弧が左に下がっているのは、これは意図してやっていますか？ by jflute (2025/07/01)
+    // done ayamin 中括弧が左に下がっているのは、これは意図してやっていますか？ by jflute (2025/07/01)
     // フォーマットの一つのやり方なんですけど、あまりJavaだと中括弧が左に下げる方式は見ないので。
 
     //    DONE dbfluteさん
     //    意図してやっています
     //    何が入れ子構造になっているのかよく混乱してしまうため。レビューしにくくなってしまうようであれば、左下げをしないよう気をつけます。
-    // TODO done ayamin [へんじ] おっ、なるほど。見やすくするために工夫しようとしていること自体はとても素晴らしいです by jflute (2025/07/02)
+    // done ayamin [へんじ] おっ、なるほど。見やすくするために工夫しようとしていること自体はとても素晴らしいです by jflute (2025/07/02)
     // 大昔から、(些細なことですけど) どっちスタイル？っていうのがありまして...
     //
     // Wikipediaの「字下げスタイル」を見ると...このページ初めてみたのですが、こんなにたくさん種類があるとは!?
@@ -235,6 +245,8 @@ public class Step01VariableTest extends PlainTestCase
     // ここって現場に寄りますので、一番はこれから触るであろう現場のコードがどっちになってるか？
     // それにjavatryのうちから合わせた方が良いかもというのはありますので、
     // ぜひ現場の先輩に聞いてみてください(^^。
+    // done jflute 1on1にて、字下げだけじゃなくフォーマット全体の話をする (2025/07/08)
+    // #1on1 フォーマッターのお話。javaのデフォルトのフォーマットのお話。
 
     public class original extends PlainTestCase
     {

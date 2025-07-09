@@ -16,19 +16,23 @@
  */
 package org.docksidestage.javatry.basic;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
-
 import org.docksidestage.unit.PlainTestCase;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
-// TODO done ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
+// done ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
 // (doneの付いてないtodoだらけになってきたのですが、どれが直したもので、どれがまだ未対応のものか判断が大変なのでm(_ _)m)
-// TODO jflute すみません！Step05まではすべてdoneしました。課題を進めることばかりに目が眩んでしまいました by ayamin (2025/07/08)
+// done jflute すみません！Step05まではすべてdoneしました。課題を進めることばかりに目が眩んでしまいました by ayamin (2025/07/08)
+// TODO ayamin [へんじ] 頑張ってるの素晴らしいことですー（＾＾。 by jflute (2025/07/08)
+// ただ、早く進めることが目的ではないので、仕事のトレーニングとしては「ちゃんとしたものに仕上げて提出する」ってのもありますので、
+// 「通り過ぎたものも綺麗に整えてから置いておく」ってのをぜひ意識してもらえればと思います。
+// (プログラマーにはそれが大事だと思っているので)
+
 /**
  * The test of class. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -118,7 +122,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_makeMethod_twoday() {
         // uncomment after making the method
-        // TODO done ayamin 変数が使われてないので、unused の警告がIDE上で出ています by jflute (2025/07/07)
+        // done ayamin 変数が使われてないので、unused の警告がIDE上で出ています by jflute (2025/07/07)
         // (コメントアウトされた)元のコードで合わないところがあったら、合うように修正しちゃってください。
 
         TicketBooth booth = new TicketBooth();
@@ -141,7 +145,7 @@ public class Step05ClassTest extends PlainTestCase {
     //    チケット在庫を減らす
     //    売上金の更新
     //    どうやるか？カプセル化してメソッドを呼び出す
-    // TODO done ayamin [ふぉろー] このように小さな業務のまとまりを言語化して思考するの大切です。とても上手ですね。 by jflute (2025/07/07)
+    // done ayamin [ふぉろー] このように小さな業務のまとまりを言語化して思考するの大切です。とても上手ですね。 by jflute (2025/07/07)
     public void test_class_letsFix_refactor_recycle() {
         TicketBooth booth = new TicketBooth();
         booth.buyOneDayPassport(10000);
@@ -173,11 +177,10 @@ public class Step05ClassTest extends PlainTestCase {
     //TODO ayamin そもそもなぜTicketBuyResult.javaを作る必要があったのか？
     // Javaは、原則として一つの値しか直接返すことができない。そのままだとチケットとお釣りの両方を返せない
     // TicketBuyResultとして一つのクラスにお釣りとチケットを内包することで、クリアできる
-    // TODO done ayamin [ふぉろー] いいですね、そういうところに視点を置くというのは。 by jflute (2025/07/07)
+    // done ayamin [ふぉろー] いいですね、そういうところに視点を置くというのは。 by jflute (2025/07/07)
     // TicketBuyResult は、物理の世界のチケットブースの、紙のチケットとお釣りを入れて戻す「青いトレー」みたいなイメージです。
     // 将来、レシートも戻すとか戻す項目が増えたとき、TicketBuyResultがあれば戻り値は変更せずにResultに追加するだけで済みます。
     // こういう風に、戻り値の「入れ物クラス」というのはよく使われます。
-
     public void test_class_moreFix_return_whole() {
         // uncomment after modifying the method
         TicketBooth booth = new TicketBooth();
@@ -201,15 +204,18 @@ public class Step05ClassTest extends PlainTestCase {
         Ticket twoDayPassport = buyResult.getTicket();
 
         log("--- TwoDayPassport Usage ---");
-        log("定価：" + twoDayPassport.getDisplayPrice() + ",残り日数：" + twoDayPassport.getValidDays() + ",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？：" + twoDayPassport.isAlreadyIn());
+        log("定価：" + twoDayPassport.getDisplayPrice() + ",残り日数：" + twoDayPassport.getValidDays() + ",入園カウント："
+                + twoDayPassport.getEntryCount() + ",入園したか？：" + twoDayPassport.isAlreadyIn());
 
         // 1回目入園
         twoDayPassport.doInPark();
-        log(",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？：" + twoDayPassport.isAlreadyIn()); // EntryCount=1, AlreadyIn=true
+        log(",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？："
+                + twoDayPassport.isAlreadyIn()); // EntryCount=1, AlreadyIn=true
 
         // 2回目入園
         twoDayPassport.doInPark();
-        log(",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？：" + twoDayPassport.isAlreadyIn()); // EntryCount=2, AlreadyIn=true
+        log(",入園カウント：" + twoDayPassport.getEntryCount() + ",入園したか？："
+                + twoDayPassport.isAlreadyIn()); // EntryCount=2, AlreadyIn=true
 
         // 3回目入園 (例外が発生するはず)
         try {
@@ -236,8 +242,16 @@ public class Step05ClassTest extends PlainTestCase {
 
     // uncomment when you implement this exercise
     private void showTicketIfNeeds(Ticket ticket) {
-        // TODO ayamin NightOnlyは別なので、純粋に TwoDayPassport だけがヒットするようにしましょう by jflute (2025/07/07)
-        // TODO jflute よくわからなかったので、1on1で一緒に確認させていただきたいです！ by ayamin (2025/07/08)
+        // done ayamin NightOnlyは別なので、純粋に TwoDayPassport だけがヒットするようにしましょう by jflute (2025/07/07)
+        // done jflute よくわからなかったので、1on1で一緒に確認させていただきたいです！ by ayamin (2025/07/08)
+        // TODO ayamin りょうかいですー。説明の準備だけしておきます by jflute (2025/07/08)
+        // チケットの種別は4種類。
+        //  o OneDayPassport
+        //  o TwoDayPassport
+        //  o FourDayPassport
+        //  o NightOnlyTwoDayPassport
+        // TwoDayPassport と NightOnlyTwoDayPassport は日数が似てるけど、チケットとして別物。
+        // なので、TwoDayPassport を判定するというときに、NightOnlyTwoDayPassport はヒットしてはいけない。
         if (ticket.getValidDays() == 2) { // write determination for two-day passport
             log("それは2日パスポートだよ");
         } else {
@@ -292,63 +306,73 @@ public class Step05ClassTest extends PlainTestCase {
      * Fix it to be able to buy night-only two-day passport (price is 7400), which can be used at only night. <br>
      * (NightOnlyTwoDayPassport (金額は7400) のチケットも買えるようにしましょう。夜しか使えないようにしましょう)
      */
-    // TODO jflute ParkContextの変更に伴い、元のテストコードをコメントアウトしました by ayamin (2025/07/08)
+    // done jflute ParkContextの変更に伴い、元のテストコードをコメントアウトしました by ayamin (2025/07/08)
+    // TODO ayamin ありがとうございます！思考努力の結晶なので、コメントアウトで残すのGoodです。 by jflute (2025/07/08)
+    // 業務だと消すでしょうけど、javatryではこういうのぜひコード上で残していきたいです。
+    // ただ、やりかけなのか？みたいなのが読み手に判断がつかないと迷うので...
+    // 「おもいでコメントアウト」お願いします(^^。「おもいで」って一言添えるだけ。
+    // e.g.
+    //  // おもいで
+    //  //public void test_class_moreFix_wonder_night() {
+    //  // ...
+    //
+    // こちらコンセプトです。「おもいで」の一言も十分読み手に情報を与えます(^^。
+    // https://x.com/jflute/status/1322832458543325184
 
-//    public void test_class_moreFix_wonder_night() {
-//        TicketBooth booth = new TicketBooth();
-//        int handedMoney = 10000;
-//
-//        log("--- 夜間 ---");
-//
-//        // 夜間チケットを夜間に使用するテスト
-//        ParkContext.setNight(true);
-//        log("現在の時間: 夜間");
-//        TicketBuyResult nightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
-//        Ticket nightTicket = nightBuyResult.getTicket();
-//        int nightChange = nightBuyResult.getChange();
-//
-//        log("夜間専用TwoDayPassportの価格: " + nightTicket.getDisplayPrice());
-//        log("お釣り: " + nightChange);
-//        log("夜間専用か: " + nightTicket.isNightOnly());
-//        log("残りのチケット枚数: " + booth.getQuantity());
-//
-//        log("初期状態: 有効日数=" + nightTicket.getValidDays() + ", 入園回数=" + nightTicket.getEntryCount());
-//
-//        // 1回目入園 (夜間なので成功)
-//        nightTicket.doInPark();
-//        log("1回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
-//
-//        // 2回目入園 (夜間なので成功)
-//        nightTicket.doInPark();
-//        log("2回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
-//
-//        // 3回目入園 (有効回数超過なので失敗)
-//        try {
-//            nightTicket.doInPark();
-//            fail("有効日数を超えています");
-//        } catch (IllegalStateException e) {
-//            log("有効に数を超えています " + e.getMessage());
-//        }
-//        log("3回目の入園試行後: 入園回数=" + nightTicket.getEntryCount());
-//
-//        // 2. 夜間チケットを昼間に使用するテスト
-//        ParkContext.setNight(false);
-//        log("現在の時間: 昼間");
-//        TicketBuyResult anotherNightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
-//        Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
-//
-//        log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
-//        log("夜間専用か: " + anotherNightTicket.isNightOnly());
-//
-//        try {
-//            anotherNightTicket.doInPark(); // 昼間なので例外が発生するはず
-//            fail("夜間専用チケットなので使えません。");
-//        } catch (IllegalStateException e) {
-//            log("夜間専用チケットなので使えません。: " + e.getMessage());
-//        }
-//        log("入園回数=" + anotherNightTicket.getEntryCount());
-//    }
-
+    //    public void test_class_moreFix_wonder_night() {
+    //        TicketBooth booth = new TicketBooth();
+    //        int handedMoney = 10000;
+    //
+    //        log("--- 夜間 ---");
+    //
+    //        // 夜間チケットを夜間に使用するテスト
+    //        ParkContext.setNight(true);
+    //        log("現在の時間: 夜間");
+    //        TicketBuyResult nightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+    //        Ticket nightTicket = nightBuyResult.getTicket();
+    //        int nightChange = nightBuyResult.getChange();
+    //
+    //        log("夜間専用TwoDayPassportの価格: " + nightTicket.getDisplayPrice());
+    //        log("お釣り: " + nightChange);
+    //        log("夜間専用か: " + nightTicket.isNightOnly());
+    //        log("残りのチケット枚数: " + booth.getQuantity());
+    //
+    //        log("初期状態: 有効日数=" + nightTicket.getValidDays() + ", 入園回数=" + nightTicket.getEntryCount());
+    //
+    //        // 1回目入園 (夜間なので成功)
+    //        nightTicket.doInPark();
+    //        log("1回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+    //
+    //        // 2回目入園 (夜間なので成功)
+    //        nightTicket.doInPark();
+    //        log("2回目の入園後 (夜間): 入園回数=" + nightTicket.getEntryCount());
+    //
+    //        // 3回目入園 (有効回数超過なので失敗)
+    //        try {
+    //            nightTicket.doInPark();
+    //            fail("有効日数を超えています");
+    //        } catch (IllegalStateException e) {
+    //            log("有効に数を超えています " + e.getMessage());
+    //        }
+    //        log("3回目の入園試行後: 入園回数=" + nightTicket.getEntryCount());
+    //
+    //        // 2. 夜間チケットを昼間に使用するテスト
+    //        ParkContext.setNight(false);
+    //        log("現在の時間: 昼間");
+    //        TicketBuyResult anotherNightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+    //        Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
+    //
+    //        log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
+    //        log("夜間専用か: " + anotherNightTicket.isNightOnly());
+    //
+    //        try {
+    //            anotherNightTicket.doInPark(); // 昼間なので例外が発生するはず
+    //            fail("夜間専用チケットなので使えません。");
+    //        } catch (IllegalStateException e) {
+    //            log("夜間専用チケットなので使えません。: " + e.getMessage());
+    //        }
+    //        log("入園回数=" + anotherNightTicket.getEntryCount());
+    //    }
     public void test_class_moreFix_wonder_night() {
         TicketBooth booth = new TicketBooth();
         int handedMoney = 10000;
@@ -427,10 +451,8 @@ public class Step05ClassTest extends PlainTestCase {
 
     //done jflute さん
     //ここは解いていません。1on1時にご解説いただけますと幸いです
-    // TODO done ayamin [へんじ] だいぶ全体的に綺麗にできています。気になるところはtodo入れていきますね。 by jflute (2025/07/07)
+    // done ayamin [へんじ] だいぶ全体的に綺麗にできています。気になるところはtodo入れていきますね。 by jflute (2025/07/07)
     // このエクササイズは、コードを綺麗に整えることを意識させるために入れてあるという感じです。
-
-
     public void test_class_moreFix_yourRefactoring() {
         // your confirmation code here
     }

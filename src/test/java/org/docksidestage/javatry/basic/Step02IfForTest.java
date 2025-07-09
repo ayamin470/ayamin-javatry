@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.docksidestage.unit.PlainTestCase;
 
-// TODO done ayamin javadocのauthorお願いしますー by jflute (2025/07/02)
+// done ayamin javadocのauthorお願いしますー by jflute (2025/07/02)
 /**
  * The test of if-for. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -77,6 +77,9 @@ public class Step02IfForTest extends PlainTestCase {
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
+    // TODO ayamin 長くて複雑なコードを読む時は、目的を持って、下から、拾い読み！
+    //  log(sea);の最終結果を知りたいな、一番下のlog(sea);には10が代入されてるな、じゃぁこの10の前はなんだったっけ？falseは見なくていいな、、と言う感じ
+
     public void test_if_elseif_nested() {
         boolean land = false;
         int sea = 904;
@@ -109,8 +112,10 @@ public class Step02IfForTest extends PlainTestCase {
         }
         log(sea); // your answer? => 10
     }
-    // TODO jflute 1on1にて、ソースコードリーディングの話の補足をする予定 (2025/07/02)
+    // done jflute 1on1にて、ソースコードリーディングの話の補足をする予定 (2025/07/02)
     // (これはぼくのtodoになるので、そのまま残しておいてください)
+    // #1on1 漠然読み: コード構造だけ見て、フォーカスを当てられるところを見つけたら...
+    // そのフォーカスしたものだけを追っていく。(逆読みする場合は)
 
     // ===================================================================================
     //                                                                       for Statement
@@ -186,7 +191,7 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_making() {
         List<String> stageList = prepareStageList();
         List<String> aContainedList = new ArrayList<>();
-        // TODO done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
+        // done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
         // 確認しました！by ayamin (2025/07/08)
         for (String stage : stageList) {
             if (stage.contains("a"))
@@ -226,9 +231,17 @@ public class Step02IfForTest extends PlainTestCase {
     }
     public void test_original_forEach()
     {
-        // TODO done ayamin [いいね] おおぉ、すごい頑張りましたね！mutableな配列で回避するとは by jflute (2025/07/02)
-        // TODO done ayamin 修行++: もう少し悩んでもらうために...breakFlag[]なくても同じ挙動実現できるはずです by jflute (2025/07/02)
-        // // TODO jflute [test_original2_forEach] として、breakFlag[]なしで挙動を再現しました by ayamin (2025/07/08)
+        // done ayamin [いいね] おおぉ、すごい頑張りましたね！mutableな配列で回避するとは by jflute (2025/07/02)
+        // done ayamin 修行++: もう少し悩んでもらうために...breakFlag[]なくても同じ挙動実現できるはずです by jflute (2025/07/02)
+        // // done jflute [test_original2_forEach] として、breakFlag[]なしで挙動を再現しました by ayamin (2025/07/08)
+        // done jflute 1on1にてふぉろー予定 (Stream APIの実装はそれはそれでGoodです、素晴らしい) (2025/07/08)
+        // #1on1: breakFlag使わなくても良い方法のお話をさせて頂きました (2025/07/09)
+        // #1on1: breakFlagって名前じゃなくて、どんな状態なのか？(e.g. gaComming)って名前を付けていたら...
+        // trueのときにやる処理の名前を付けるんじゃなくて、状態の方を示す名前を付けていたら気付いていたかも。
+        // #1on1: booleanの変数名の付け方、個人的には極力、その先の処理よりも、その状態を純粋に示す方がわかりやすいかな
+        // ちょっと今回の話と少し違いものですが、booleanの変数名にまつわるブログ:
+        // TODO ayamin [読み物課題] なんとかフラグというboolean変数名 by jflute (2025/07/09)
+        // https://jflute.hatenadiary.jp/entry/20181013/flgornuance
 
         List<String> stageList = prepareStageList();
         final String[] resultSea = new String[1];
@@ -289,7 +302,7 @@ public class Step02IfForTest extends PlainTestCase {
      * ラムダ式のルール上、外側のローカル変数を直接変更できないため
      * 配列の中身は上記の制約を受けないのでこのように書く
      */
-    // TODO done ayamin [いいね] コードの意図をコメントで表現されてる読み手はとても助かりますね！ by jflute (2025/07/02)
+    // done ayamin [いいね] コードの意図をコメントで表現されてる読み手はとても助かりますね！ by jflute (2025/07/02)
 
     /**
      * Make your original exercise as question style about if-for statement. <br>
@@ -304,9 +317,9 @@ public class Step02IfForTest extends PlainTestCase {
     public void test_iffor_yourExercise()
     {
         List<String> stageList = prepareStageList();
-        // TODO done ayamin "a" Contained じゃなくて "o" Contained ですかね、ここでは by jflute (2025/07/02)
+        // done ayamin "a" Contained じゃなくて "o" Contained ですかね、ここでは by jflute (2025/07/02)
         List<String> oContainedList = new ArrayList<>();
-        // TODO done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
+        // done ayamin sea変数はすでに使われてないので、IDE上でunusedの警告が出ているので削除でお願いします by jflute (2025/07/02)
         for (String stage : stageList) {
             if (stage.contains("o"))
             {

@@ -13,14 +13,11 @@ import org.slf4j.LoggerFactory;
 public abstract class Animal implements Loudable {
 
     private static final Logger logger = LoggerFactory.getLogger(Animal.class);
-
+    protected final BarkedSound.BarkingProcess barkingProcess = new BarkedSound.BarkingProcess(); // <-- これを追加
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     protected int hitPoint; // HP
-
-
-    protected final BarkedSound.BarkingProcess barkingProcess = new BarkedSound.BarkingProcess(); // <-- これを追加
 
     // ===================================================================================
     //                                                                         Constructor
@@ -41,8 +38,6 @@ public abstract class Animal implements Loudable {
 
         return barkingProcess.bark(getBarkWord(), this::downHitPoint);
     }
-
-
 
     protected abstract String getBarkWord(); // このメソッドはAnimalに残る (各動物固有の鳴き声のため)
 

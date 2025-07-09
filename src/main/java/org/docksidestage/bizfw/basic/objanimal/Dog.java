@@ -15,9 +15,9 @@
  */
 package org.docksidestage.bizfw.basic.objanimal;
 
-import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner; // FastRunnerインターフェースをインポート
-import org.slf4j.Logger; // Loggerクラスをインポート
-import org.slf4j.LoggerFactory; // LoggerFactoryクラスをインポート
+import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The object for dog(犬).
