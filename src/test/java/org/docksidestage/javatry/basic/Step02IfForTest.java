@@ -240,8 +240,12 @@ public class Step02IfForTest extends PlainTestCase {
         // trueのときにやる処理の名前を付けるんじゃなくて、状態の方を示す名前を付けていたら気付いていたかも。
         // #1on1: booleanの変数名の付け方、個人的には極力、その先の処理よりも、その状態を純粋に示す方がわかりやすいかな
         // ちょっと今回の話と少し違いものですが、booleanの変数名にまつわるブログ:
-        // TODO ayamin [読み物課題] なんとかフラグというboolean変数名 by jflute (2025/07/09)
+        // TODO done ayamin [読み物課題] なんとかフラグというboolean変数名 by jflute (2025/07/09)
         // https://jflute.hatenadiary.jp/entry/20181013/flgornuance
+        // TODO ayamin flagを使うときは、そのflagがいつtrueになるのか？ニュアンスを伝えるといい
+        //  三単現の動詞 (e.g. has, exists, needs) を使えば、"ニュアンス" と "判定" であることを示しやすい
+        //  今回だったら"gagoming"とかにするべきだったかも
+
 
         List<String> stageList = prepareStageList();
         final String[] resultSea = new String[1];

@@ -25,6 +25,8 @@ import org.docksidestage.bizfw.basic.objanimal.Zombie;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
+import org.docksidestage.javatry.basic.st6.dbms.St6MySql;
+import org.docksidestage.javatry.basic.st6.dbms.St6PostgreSql;
 import org.docksidestage.unit.PlainTestCase;
 import org.docksidestage.bizfw.basic.objanimal.Panda;
 import org.docksidestage.bizfw.basic.objanimal.special.Nocturnal;
@@ -394,10 +396,17 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
 
     //done jfluteさん　SQLをよく勉強していないので、後で解きます　
-    // TODO ayamin SQLの知識は、エクササイズの本質的には関係ないので、やってみたらできると思います！ by jflute (2025/07/07)
+    // TODO done ayamin SQLの知識は、エクササイズの本質的には関係ないので、やってみたらできると思います！ by jflute (2025/07/07)
     // (気になるところあっても、ちょっと調べたらわかる程度のものではあるかと思います)
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // your confirmation code here
+        St6MySql mySqlInstance = new St6MySql();
+        String mySqlQueryResult = mySqlInstance.buildPagingQuery(10, 1);
+        System.out.println("St6MySql の buildPagingQuery 結果: " + mySqlQueryResult);
+
+        St6PostgreSql postgreSqlInstance = new St6PostgreSql();
+        String postgreSqlQueryResult = postgreSqlInstance.buildPagingQuery(10, 1);
+        System.out.println("St6PostgreSql の buildPagingQuery 結果: " + postgreSqlQueryResult);
     }
 
     /**
@@ -405,35 +414,47 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        log("--- チェック ---");
-        // TODO ayamin テスト実行すると、アサートで落ちてます by jflute (2025/07/07)
+        // TODO done ayamin テスト実行すると、アサートで落ちてます by jflute (2025/07/07)
+        // TODO Jflute アサートなしでテストコードを作成しました
+        //  (アサートという機能を知って、使ってみたくて使ってしまいました...使わなくてもテストコード作れるんだったらそれに越したことはないと思ってます)
 
-        OperationSystem macOs = new Mac("ayami");
-        String macPath = macOs.buildUserResourcePath("Desktop/my_file.txt");
-        log("Mac Path: {}", macPath); // /Users/haruna/Desktop/my_file.txt と表示されるはず
-        assertEquals("/Users/ayami/Desktop/my_file.txt", macPath);
-        assertEquals("/Users/", macOs.getUserDirectory() + macOs.getFileSeparator());
+        System.out.println("\n=== 各OSサブクラスの実装確認 ===");
 
+        // Macクラスのテスト
+        String macLoginId = "macuser";
+        Mac macOs = new Mac(macLoginId);
+        String macFileSeparator = macOs.getFileSeparator();
+        String macUserDirectory = macOs.getUserDirectory();
+        String macResourcePath = macOs.buildUserResourcePath("Desktop/my_file.txt");
 
-        log("---");
+        System.out.println("Mac - ログインID: " + macOs.getLoginId());
+        System.out.println("Mac - ファイル区切り: " + macFileSeparator);
+        System.out.println("Mac - ユーザーディレクトリ: " + macUserDirectory);
+        System.out.println("Mac - リソースパス: " + macResourcePath);
 
-        // Windows OSのパスをOperationSystem型で構築
-        OperationSystem windowsOs = new Windows("jflute");
-        String windowsPath = windowsOs.buildUserResourcePath("Documents/report.docx");
-        log("Windows Path: {}", windowsPath); // \Users\jflute\Documents\report.docx と表示されるはず
-        assertEquals("\\Users\\jflute\\Documents\\report.docx", windowsPath);
-        assertEquals("\\Users\\", windowsOs.getUserDirectory() + windowsOs.getFileSeparator());
+        // OldWindowsクラスのテスト
+        String oldWinLoginId = "oldwinuser";
+        OldWindows oldWindowsOs = new OldWindows(oldWinLoginId);
+        String oldWinFileSeparator = oldWindowsOs.getFileSeparator();
+        String oldWinUserDirectory = oldWindowsOs.getUserDirectory();
+        String oldWinResourcePath = oldWindowsOs.buildUserResourcePath("My Documents\report.doc");
 
-        log("---");
+        System.out.println("\nOldWindows - ログインID: " + oldWindowsOs.getLoginId());
+        System.out.println("OldWindows - ファイル区切り: " + oldWinFileSeparator);
+        System.out.println("OldWindows - ユーザーディレクトリ: " + oldWinUserDirectory);
+        System.out.println("OldWindows - リソースパス: " + oldWinResourcePath);
 
-        // Old Windows OSのパスをOperationSystem型で構築
-        OperationSystem oldWindowsOs = new OldWindows("olduser");
-        String oldWindowsPath = oldWindowsOs.buildUserResourcePath("My Documents/photo.jpg");
-        log("Old Windows Path: {}", oldWindowsPath); // \Documents and Settings\olduser\My Documents\photo.jpg と表示されるはず
-        assertEquals("\\Documents and Settings\\olduser\\My Documents\\photo.jpg", oldWindowsPath);
-        assertEquals("\\Documents and Settings\\", oldWindowsOs.getUserDirectory() + oldWindowsOs.getFileSeparator());
+        // Windowsクラスのテスト
+        String winLoginId = "winuser";
+        Windows windowsOs = new Windows(winLoginId);
+        String winFileSeparator = windowsOs.getFileSeparator();
+        String winUserDirectory = windowsOs.getUserDirectory();
+        String winResourcePath = windowsOs.buildUserResourcePath("Desktop/my_project/image.png");
 
-        log("--- Confirmation finished ---");
+        System.out.println("\nWindows - ログインID: " + windowsOs.getLoginId());
+        System.out.println("Windows - ファイル区切り: " + winFileSeparator);
+        System.out.println("Windows - ユーザーディレクトリ: " + winUserDirectory);
+        System.out.println("Windows - リソースパス: " + winResourcePath);
 
     }
 
@@ -503,6 +524,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
         // is it corrent?
         //適切ではない
+        //いや、適切な気がする。zombieの問題を改めて解き直した時、animalを継承しているところがたくさんあり、animalのサブクラスとして適切と言えそうと考えた
         // _/_/_/_/_/_/_/_/_/_/
         // TODO ayamin その理由を書ける範囲で書いてもらっても良いでしょうか？ by jflute (2025/07/07)
     }

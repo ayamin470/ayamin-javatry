@@ -28,7 +28,7 @@ import org.docksidestage.unit.PlainTestCase;
 // done ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
 // (doneの付いてないtodoだらけになってきたのですが、どれが直したもので、どれがまだ未対応のものか判断が大変なのでm(_ _)m)
 // done jflute すみません！Step05まではすべてdoneしました。課題を進めることばかりに目が眩んでしまいました by ayamin (2025/07/08)
-// TODO ayamin [へんじ] 頑張ってるの素晴らしいことですー（＾＾。 by jflute (2025/07/08)
+// TODO done ayamin [へんじ] 頑張ってるの素晴らしいことですー（＾＾。 by jflute (2025/07/08)
 // ただ、早く進めることが目的ではないので、仕事のトレーニングとしては「ちゃんとしたものに仕上げて提出する」ってのもありますので、
 // 「通り過ぎたものも綺麗に整えてから置いておく」ってのをぜひ意識してもらえればと思います。
 // (プログラマーにはそれが大事だと思っているので)
@@ -307,7 +307,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (NightOnlyTwoDayPassport (金額は7400) のチケットも買えるようにしましょう。夜しか使えないようにしましょう)
      */
     // done jflute ParkContextの変更に伴い、元のテストコードをコメントアウトしました by ayamin (2025/07/08)
-    // TODO ayamin ありがとうございます！思考努力の結晶なので、コメントアウトで残すのGoodです。 by jflute (2025/07/08)
+    // TODO done ayamin ありがとうございます！思考努力の結晶なので、コメントアウトで残すのGoodです。 by jflute (2025/07/08)
     // 業務だと消すでしょうけど、javatryではこういうのぜひコード上で残していきたいです。
     // ただ、やりかけなのか？みたいなのが読み手に判断がつかないと迷うので...
     // 「おもいでコメントアウト」お願いします(^^。「おもいで」って一言添えるだけ。
@@ -319,6 +319,7 @@ public class Step05ClassTest extends PlainTestCase {
     // こちらコンセプトです。「おもいで」の一言も十分読み手に情報を与えます(^^。
     // https://x.com/jflute/status/1322832458543325184
 
+    // おもいで
     //    public void test_class_moreFix_wonder_night() {
     //        TicketBooth booth = new TicketBooth();
     //        int handedMoney = 10000;
@@ -451,7 +452,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     //done jflute さん
     //ここは解いていません。1on1時にご解説いただけますと幸いです
-    // done ayamin [へんじ] だいぶ全体的に綺麗にできています。気になるところはtodo入れていきますね。 by jflute (2025/07/07)
+    // done ayamin [へんじ] だいぶ全体的に綺麗にできています。気になるところはt.odo入れていきますね。 by jflute (2025/07/07)
     // このエクササイズは、コードを綺麗に整えることを意識させるために入れてあるという感じです。
     public void test_class_moreFix_yourRefactoring() {
         // your confirmation code here

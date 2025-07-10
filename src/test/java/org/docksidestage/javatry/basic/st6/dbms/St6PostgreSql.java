@@ -17,9 +17,11 @@ package org.docksidestage.javatry.basic.st6.dbms;
 
 /**
  * @author jflute
+ * @author ayamin
  */
-public class St6PostgreSql {
+public class St6PostgreSql extends Superclass{
 
+    @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
         int offset = pageSize * (pageNumber - 1);
         return "offset " + offset + " limit " + pageSize;

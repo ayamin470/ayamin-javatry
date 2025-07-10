@@ -9,12 +9,12 @@ public class Mac extends OperationSystem {
         super(loginId);
     }
 
-    @Override // 抽象メソッドの実装
+    @Override
     public String getFileSeparator() {
         return "/";
     }
 
-    @Override // 抽象メソッドの実装
+    @Override
     public String getUserDirectory() {
         return "/Users/" + loginId;
     }

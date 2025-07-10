@@ -3,10 +3,10 @@ package org.docksidestage.javatry.basic.st6.os;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO ayamin ayaminさんがjavadocのタグになっています(^^。@author ayamin でお願いします by jflute (2025/07/07)
+// TODO done ayamin ayaminさんがjavadocのタグになっています(^^。@author ayamin でお願いします by jflute (2025/07/07)
 /**
  * 様々なOSの抽象クラス
- * @ayamin
+ * @author ayamin
  */
 public abstract class OperationSystem {
 
@@ -22,14 +22,16 @@ public abstract class OperationSystem {
     //                                                                         ===========
     public OperationSystem(String loginId) {
         this.loginId = loginId;
-        // TODO ayamin [いいね] loggerうまく使いこなしてますね！ by jflute (2025/07/07)
+        // TODO done ayamin [いいね] loggerうまく使いこなしてますね！ by jflute (2025/07/07)
+        // TODO jflute とはいえ、ここではlog();で良かったなと思っています
+        //  log();がJavaの標準ライブラリではないことを知り、さらにlogger.debug()を知り、後学のために使ってみたくなってしまったのをそのままにしていました...
+        //  統一性という観点と読み手に余計な違和感を与えないという意味でlog();にするべきだったと考えています
         logger.debug("OperationSystem created for loginId: {}", loginId);
     }
 
     // ===================================================================================
     //                                                                      User Directory
     //                                                                      ==============
-    // ユーザーリソースパス、共通
     public String buildUserResourcePath(String relativePath) {
         String fileSeparator = getFileSeparator();
         String userDirectory = getUserDirectory();
@@ -37,24 +39,17 @@ public abstract class OperationSystem {
         return resourcePath.replace("/", fileSeparator);
     }
 
-    // TODO ayamin タグコメント、フォーマットがちょっとズレてます!? (タグコメントうまく使く使えています！) by jflute (2025/07/07)
+    // TODO done ayamin タグコメント、フォーマットがちょっとズレてます!? (タグコメントうまく使く使えています！) by jflute (2025/07/07)
     // こういう、右にばぁーっと伸ばしてタイトルみたいなコメント入れてるのをタグコメントと読んでいます。
     // 参考例:
     // https://github.com/lastaflute/lastaflute-example-harbor/blob/master/src/main/java/org/docksidestage/app/web/signup/SignupAction.java
-    // ===================================================================================
-    //                                                                      Abstract Methods
-    //                                                                      ================
-    /**
-     * Get file separator specific to the OS. (OS固有のファイル区切り文字を取得する)
-     * @return The file separator string. (ファイル区切り文字の文字列)
-     */
-    public abstract String getFileSeparator(); // 抽象メソッド：子クラスで実装必須
 
-    /**
-     * Get user directory path specific to the OS. (OS固有のユーザーディレクトリパスを取得する)
-     * @return The user directory path. (ユーザーディレクトリパス)
-     */
-    public abstract String getUserDirectory(); // 抽象メソッド：子クラスで実装必須
+    // ===================================================================================
+    //                                                                    Abstract Methods
+    //                                                                    ================
+
+    public abstract String getFileSeparator();
+    public abstract String getUserDirectory();
 
     // ===================================================================================
     //                                                                            Accessor
