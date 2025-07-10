@@ -1,5 +1,7 @@
 package org.docksidestage.javatry.basic.st6.dbms;
 
+// TODO ayamin この潔いクラス名が良いですね笑。自身のコメントで「データベースの種類」という言葉が出ていますから... by jflute (2025/07/10)
+// MySQLは何？PostgreSQLは何？(なんて名前のスーパークラスを継承すればいいのか？) の答えが出てるんじゃないかと。
 /**
  * @author ayamin
  */

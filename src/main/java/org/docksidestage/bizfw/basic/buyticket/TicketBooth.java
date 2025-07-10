@@ -97,7 +97,7 @@ public class TicketBooth {
     // done ayamin Ticketの生成も、どのbuyも同じなので、doBuyに含めちゃって良いかと思います。 by jflute (2025/07/07)
     // done jflute 修正した...はず 1on1で確認させてください by ayamin (2025/07/08)
     // done jflute 1on1にてふぉろー (2025/07/08)
-    // TODO ayamin フォローしておきました by jflute (2025/07/09)
+    // done ayamin フォローしておきました by jflute (2025/07/09)
     private void doBuyPassport(Integer handedMoney, int price) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");

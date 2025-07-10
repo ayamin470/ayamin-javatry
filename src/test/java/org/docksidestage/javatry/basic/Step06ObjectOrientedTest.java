@@ -396,7 +396,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      */
 
     //done jfluteさん　SQLをよく勉強していないので、後で解きます　
-    // TODO done ayamin SQLの知識は、エクササイズの本質的には関係ないので、やってみたらできると思います！ by jflute (2025/07/07)
+    // done ayamin SQLの知識は、エクササイズの本質的には関係ないので、やってみたらできると思います！ by jflute (2025/07/07)
     // (気になるところあっても、ちょっと調べたらわかる程度のものではあるかと思います)
     public void test_objectOriented_writing_generalization_extractToAbstract() {
         // your confirmation code here
@@ -414,9 +414,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (St6OperationSystem (basic.st6.os) からコンクリートクラスを抽出してみましょう (スーパークラスとサブクラスの関係に))
      */
     public void test_objectOriented_writing_specialization_extractToConcrete() {
-        // TODO done ayamin テスト実行すると、アサートで落ちてます by jflute (2025/07/07)
-        // TODO Jflute アサートなしでテストコードを作成しました
+        // done ayamin テスト実行すると、アサートで落ちてます by jflute (2025/07/07)
+        // done Jflute アサートなしでテストコードを作成しました
         //  (アサートという機能を知って、使ってみたくて使ってしまいました...使わなくてもテストコード作れるんだったらそれに越したことはないと思ってます)
+        // TODO ayamin javatryではアサート使うのは必須ではないですが、アサート使うのは良いことではありますよ by jflute (2025/07/10)
+        // ただ、アサートもコツが要るので、そこに躓いて時間掛かるくらいなら無しでという感覚ですね。
 
         System.out.println("\n=== 各OSサブクラスの実装確認 ===");
 

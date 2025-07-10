@@ -21,6 +21,7 @@ package org.docksidestage.javatry.basic.st6.dbms;
  */
 public class St6MySql extends Superclass{
 
+    // TODO ayamin offsetを導出するロジックがMySQLとPostgreSQLで冗長なのでどうにかしたいですね by jflute (2025/07/10)
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
         int offset = pageSize * (pageNumber - 1);
@@ -30,3 +31,5 @@ public class St6MySql extends Superclass{
 
 // TODO ayamin @Overrideはなるべくつけよう！
 //  タイプミスによって違うメソッドだと認識されたり、スーパークラスのシグネチャが変更された時にコンパイルエラーを出してくれたり、便利
+// TODO ayamin [ふぉろー] そうですね。もう付けられるところは全部付けるみたいな感覚になっています by jflute (2025/07/10)
+// Java5から導入された機能なので、Javaさんが互換性のために必須にはできなかったんですよね。
