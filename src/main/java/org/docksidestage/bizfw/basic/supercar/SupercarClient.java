@@ -33,15 +33,23 @@ public class SupercarClient {
 
     private final Collection<Supercar> orderedCustomCarCollection = new ArrayList<>();
 
-    public void buySupercar() {
-        SupercarDealer dealer = createDealer();
-        String clientRequirement = prepareClientRequirement();
-        try { // ここでSupercarDealerが投げる例外を捕捉
-            Supercar orderedCustomCar = dealer.orderSupercar(clientRequirement);
+    public Supercar buySupercar() {
+        Supercar orderedCustomCar;
+
+        try {
+            SupercarDealer dealer = createDealer();
+            String clientRequirement = prepareClientRequirement();
+
+            // ここで例外が発生する可能性があるので、try-catchで囲む
+            orderedCustomCar = dealer.orderSupercar(clientRequirement);
             orderedCustomCarCollection.add(orderedCustomCar);
+            return orderedCustomCar;
+
+        } catch (SupercarManufactureException e) {
+            throw new SupercarClientException("スーパーカーの購入に失敗しました。顧客の要件: '" + prepareClientRequirement() + "'。詳細: " + e.getMessage(), e);
         } catch (RuntimeException e) {
-            String msg = "Failed to buy supercar due to client's requirement or internal manufacturing issue: " + clientRequirement;
-            throw new SupercarClientException(msg, e); // 例外の連鎖
+            throw new SupercarClientException(
+                    "スーパーカーの購入中に予期せぬシステムエラーが発生しました。", e);
         }
     }
 

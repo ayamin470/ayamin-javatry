@@ -49,8 +49,16 @@ public class SupercarManufacturer {
 
     public static class Supercar {
 
+        private SteeringWheel steeringWheel;
+        private String model;
+
         public Supercar(SteeringWheel steeringWheel) {
-            // dummy
+            this.steeringWheel = steeringWheel;
+            this.model = "Custom Car with Steering Wheel";
+        }
+        @Override
+        public String toString() {
+            return "Supercar[model=" + model + ", steeringWheel=" + steeringWheel + "]";
         }
     }
 }

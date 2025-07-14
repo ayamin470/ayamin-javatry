@@ -19,8 +19,18 @@ package org.docksidestage.bizfw.basic.screw;
  * @author jflute
  */
 public class SpecialScrew {
+    private final String specText;
 
     public SpecialScrew(String specText) {
-        // dummy
+        this.specText = specText;
+    }
+
+    public String getSpecText() {
+        return specText;
+    }
+
+    @Override
+    public String toString() {
+        return "SpecialScrew[specText=" + specText + "]";
     }
 }

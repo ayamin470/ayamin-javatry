@@ -19,6 +19,8 @@ import org.docksidestage.bizfw.basic.supercar.SupercarClient;
 import org.docksidestage.javatry.basic.st7.St7BasicExceptionThrower;
 import org.docksidestage.javatry.basic.st7.St7ConstructorChallengeException;
 import org.docksidestage.unit.PlainTestCase;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * The test of variable. <br>
@@ -156,17 +158,25 @@ public class Step07ExceptionTest extends PlainTestCase {
      * Refactor to immediately understand what variable (is null) causes the NullPointerException by row number in stack trace. <br>
      * (どの変数がNullPointerを引き起こしたのか(nullだったのか)、スタックトレースの行番号だけでわかるようにリファクタリングしましょう)
      */
+    // TODO done ayamin 問題が途中までしか書かれていません by jflute
+    //TODO ayamin int sum = land.length() + piari.length(); を分割する
     public void test_exception_nullpointer_refactorCode() {
         try {
             String sea = "mystic";
-            String land = !!!sea.equals("mystic") ? null : "oneman";
+            String land = !!!sea.equals("mystic") ? null : "oneman"; //条件式 ? 式1 : 式2(三項演算子)
             String piari = !!!sea.equals("mystic") ? "plaza" : null;
-            // TODO ayamin コードが中途半端になっています by jflute (2025/07/07)
-            int sum = land.length() + piari.length();
 
-            int landLength = land.length();
-            int piariLength = piari.length();
+            int landLength = 0;
+            if (land != null) {
+                landLength = land.length();
+            }
 
+            int piariLength = 0;
+            if (piari != null) {
+                piariLength = piari.length();
+            }
+
+            int sum = landLength + piariLength;
             log(sum);
         } catch (NullPointerException e) {
             log(e);
@@ -176,12 +186,22 @@ public class Step07ExceptionTest extends PlainTestCase {
     // ===================================================================================
     //                                                                   Checked Exception
     //                                                                   =================
-    // TODO ayamin これはやってない？ by jflute (2025/07/07)
+    // TODO done ayamin これはやってない？ by jflute (2025/07/07)
     /**
      * Show canonical path of new java.io.File(".") by log(), and if I/O error, show message and stack-trace instead <br>
      * (new java.io.File(".") の canonical path を取得してログに表示、I/Oエラーの時はメッセージとスタックトレースを代わりに表示)
      */
     public void test_exception_checkedException_basic() {
+        File currentDir = new File("."); // 現在の作業ディレクトリを表すFileオブジェクトを作成
+
+        try {
+            String canonicalPath = currentDir.getCanonicalPath();
+            System.out.println("Current directory canonical path: " + canonicalPath);
+        } catch (IOException e) {
+            // I/Oエラーが発生した場合
+            System.err.println("An I/O error occurred while getting the canonical path: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     // ===================================================================================
@@ -265,7 +285,7 @@ public class Step07ExceptionTest extends PlainTestCase {
      * できるだけ例外情報だけでその状況が理解できるように、Supercarのクラスたちの例外ハンドリングを改善しましょう。
      */
     public void test_exception_translation_improveChallenge() {
-        // TODO ayamin 実行しても、fail()の方に入ってしまっています。(もしかして動くように直してしまいましたか？) by jflute (2025/07/07)
+        // TODO done ayamin 実行しても、fail()の方に入ってしまっています。(もしかして動くように直してしまいましたか？) by jflute (2025/07/07)
         // (例外ハンドリングを確認するエクササイズなので、元々の例外が発生する挙動はそのままでいて欲しいのですが)
         try {
             // TODO jflute 1on1にて、例外ハンドリングの改善の実装について、説明をしてもらう予定 (2025/07/07)

@@ -23,10 +23,12 @@ public class ScrewSpec {
     private final String specText;
 
     public ScrewSpec(String specText) {
+
         this.specText = specText;
     }
 
     public String getSpecText() {
+
         return specText;
     }
 
