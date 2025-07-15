@@ -33,6 +33,8 @@ import org.docksidestage.unit.PlainTestCase;
 // 「通り過ぎたものも綺麗に整えてから置いておく」ってのをぜひ意識してもらえればと思います。
 // (プログラマーにはそれが大事だと思っているので)
 
+// TODO ayamin メモtodoの識別よろしくお願いします by jflute (2025/07/15)
+
 /**
  * The test of class. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -244,7 +246,7 @@ public class Step05ClassTest extends PlainTestCase {
     private void showTicketIfNeeds(Ticket ticket) {
         // done ayamin NightOnlyは別なので、純粋に TwoDayPassport だけがヒットするようにしましょう by jflute (2025/07/07)
         // done jflute よくわからなかったので、1on1で一緒に確認させていただきたいです！ by ayamin (2025/07/08)
-        // TODO ayamin りょうかいですー。説明の準備だけしておきます by jflute (2025/07/08)
+        // done ayamin りょうかいですー。説明の準備だけしておきます by jflute (2025/07/08)
         // チケットの種別は4種類。
         //  o OneDayPassport
         //  o TwoDayPassport
@@ -252,6 +254,7 @@ public class Step05ClassTest extends PlainTestCase {
         //  o NightOnlyTwoDayPassport
         // TwoDayPassport と NightOnlyTwoDayPassport は日数が似てるけど、チケットとして別物。
         // なので、TwoDayPassport を判定するというときに、NightOnlyTwoDayPassport はヒットしてはいけない。
+        // TODO ayamin 修行++: NightOnlyが紛れないようにしましょう by jflute (2025/07/15)
         if (ticket.getValidDays() == 2) { // write determination for two-day passport
             log("それは2日パスポートだよ");
         } else {

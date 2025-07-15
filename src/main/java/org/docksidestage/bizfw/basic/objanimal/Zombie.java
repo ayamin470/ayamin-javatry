@@ -45,13 +45,15 @@ public class Zombie extends Animal {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
-    // TODO ayamin 単純に消すだけだと、Zombieの息を吸うごとに日記を付けるという挙動がなくなってしまいます by jflute (2025/07/08)
+    // done ayamin 単純に消すだけだと、Zombieの息を吸うごとに日記を付けるという挙動がなくなってしまいます by jflute (2025/07/08)
     // BarkingProcessに切り出したことで、Zombieの機能にデグレが発生してしまうのは良くないです。
     // (リファクタリングは、既存の挙動を変えずにコードの形を変えるというもの)'
 
     //　TODO ayamin animalとzombieはis-aの関係で、animalとBarkingProcessはcanの関係
     // BarkingProcessをzombieに直接持ってくる方法はなさそうだから、breatheInをzombieの中で作って使ってしまうのが良さそう
 
+    // TODO ayamin 息を吸ったときに、日記を付けるという挙動がロスしてしまっている by jflute (2025/07/15)
+    // BarkingProcess に切り出すのはやって欲しいけど、既存のクラスの挙動を変えてはいけない。
     protected void breatheIn() {
         breatheIn();
         zombieDiary.countBreatheIn();

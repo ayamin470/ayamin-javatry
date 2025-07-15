@@ -75,7 +75,25 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     // done ayamin [質問] ちょっとだけ元のコードが残ってるので、↓に間違いがまだ残ってますね。どこが間違ってるでしょうか？ by jflute (2025/07/07)
     // alreadyInはもう使っていないので、間違い。チケットを複数日数使用できるように変更した時に、isAlreadyInという変数に置き換えた上で、1回でも入場したらisAlreadyInがtrueを返すように変更した
-    // TODO jflute 1on1にてフォロー予定 (2025/07/08)
+    // done jflute 1on1にてフォロー予定 (2025/07/08)
+    // #1on1: まず、こういうメソッドを(自分が)極力作らないこと
+    // o データの関連性をもとに作ったオブジェクトを使うことで防ぐことができる
+    // o (完璧ではないけど)引数の順序を工夫するとかもあり
+    //
+    // (質問)引数の順序の話: (個人的には)
+    // o (そもそも引数の順序が気になるほどの引数の数にしないことは前提として...)
+    // o 基本的にはカテゴリごと、でも多少そのときの都合でアドリブもあり
+    // o 加えて、重要な引数を先に定義したりする
+    // o その上で、型の並びを最後に微調整 (e.g. intが連続しないようにとか)
+    // 
+    // #1on1: 呼び出すときの注意 (オブジェクト指向とか関係ない話 / 開発者として)
+    // o ここぞってときは、(比喩的な)指差し確認をする (その5秒を取れるか？)
+    // o 自分でどういうミスをしやすいのか？を普段から自己分析しておくことが大切
+    // o ここぞの集中力を上げどころを意識しておく
+    
+    // 呼び出し側
+    //saveBuyingHistory(quantity, displayPrice, salesProceeds, alreadyIn);
+    //
 //    private void saveBuyingHistory(int quantity, Integer salesProceeds, int displayPrice, boolean alreadyIn) {
 //        if (alreadyIn) {
 //            // simulation: only logging here (normally e.g. DB insert)
@@ -111,8 +129,16 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     // 確かに...現実の物体ではないと思います。ということは、現実に存在して目に見える物体をオブジェクトとして考えているわけではない
     // であれば、役割や責任をまず考え、その役割や責任をオブジェクトとして持たせる、という考えに行きつきました
     // 例えば、「TicketBoothはお金を受け取り、チケットとお金を返し、チケットの枚数を管理する責任」、TicketBuyResultは「チケットの購入履歴を一時的に保管しておく責任」といった感じ
-    // TODO jflute 1on1にてふぉろー予定 (2025/07/08)
-
+    // done jflute 1on1にてふぉろー予定 (2025/07/08)
+    //
+    // #1on1: "概念" をオブジェクトにするというのがちょうどいいかなと
+    //
+    // 最初から概念が思いついて、その概念が持つデータと振る舞いを考えるのはトップダウンな設計。
+    // (これはだいぶ慣れた人じゃないと)
+    //
+    // データだけがバラバラとあって、そこからデータ同士の関連性や処理を見出してオブジェクトを作るのがボトムアップ設計。
+    // 例えば、「購入されたチケット」と「お釣り」で「購入した結果」という概念になる。
+    //
     public void test_objectOriented_aboutObject_usingObject() {
         //
         // [ticket booth info]
@@ -186,8 +212,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
     // write your memo here:
     // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     // what is object?
-    //
     // _/_/_/_/_/_/_/_/_/_/
+    // 上の方で書いた by jflute
 
     // ===================================================================================
     //                                                              Polymorphism Beginning
@@ -277,7 +303,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // _/_/_/_/_/_/_/_/_/_/
         // done ayamin [いいね] それっぽく扱う、というのがなかなかおもしろい表現です^^ by jflute (2025/07/07)
         // でも、的を得てはいると思います。「動物」って概念で (扱えるものは) 扱う、って感覚でしょうか。
-        // TODO jflute 1on1にて、少し補足する予定 (2025/07/07)
+        // done jflute 1on1にて、少し補足する予定 (2025/07/07)
+        // #1on1: 抽象化した概念って、日常でもよく使っている。
+        // e.g. 車、新卒
     }
 
     // ===================================================================================
@@ -470,7 +498,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     //TODO ayamin Animalクラスは、「HPを持つ」だけでなく、「鳴く」や「息を吸う」などまで責任を持っていて、保守性が低い
     public void test_objectOriented_writing_withDelegation() {
-        // TODO ayamin Zonbie でコンパイルエラーが出ています。 by jflute (2025/07/07)
+        // TODO ayamin Zombie でコンパイルエラーが出ています。 by jflute (2025/07/07)
         log("--- Confirmation: BarkingProcess delegation ---");
 
         Dog dog = new Dog();
@@ -528,6 +556,8 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //適切ではない
         //いや、適切な気がする。zombieの問題を改めて解き直した時、animalを継承しているところがたくさんあり、animalのサブクラスとして適切と言えそうと考えた
         // _/_/_/_/_/_/_/_/_/_/
-        // TODO ayamin その理由を書ける範囲で書いてもらっても良いでしょうか？ by jflute (2025/07/07)
+        // done ayamin その理由を書ける範囲で書いてもらっても良いでしょうか？ by jflute (2025/07/07)
+        // #1on1: バイオハザードのゾンビの解釈で考えると、状態と捉えることもできるかもしれない。
+        // (もちろん、ゾンビの業務設定次第ではある)
     }
 }

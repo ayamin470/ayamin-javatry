@@ -98,6 +98,7 @@ public class TicketBooth {
     // done jflute 修正した...はず 1on1で確認させてください by ayamin (2025/07/08)
     // done jflute 1on1にてふぉろー (2025/07/08)
     // done ayamin フォローしておきました by jflute (2025/07/09)
+    // TODO ayamin doBuyPassport()の再利用範囲、もうちょい広げることができます by jflute (2025/07/15)
     private void doBuyPassport(Integer handedMoney, int price) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
