@@ -1,4 +1,4 @@
-// TODO ayamin クラスを作り直したのでこのクラスは全てコメントアウト
+// TODO done ayamin クラスを作り直したのでこのクラスは全てコメントアウト
 
 ///*
 // * Copyright 2019-2022 the original author or authors.

@@ -29,7 +29,7 @@ public class St6MySql extends Superclass{
     }
 }
 
-// TODO ayamin @Overrideはなるべくつけよう！
+// TODO [memo] ayamin @Overrideはなるべくつけよう！
 //  タイプミスによって違うメソッドだと認識されたり、スーパークラスのシグネチャが変更された時にコンパイルエラーを出してくれたり、便利
-// TODO ayamin [ふぉろー] そうですね。もう付けられるところは全部付けるみたいな感覚になっています by jflute (2025/07/10)
+// TODO done ayamin [ふぉろー] そうですね。もう付けられるところは全部付けるみたいな感覚になっています by jflute (2025/07/10)
 // Java5から導入された機能なので、Javaさんが互換性のために必須にはできなかったんですよね。

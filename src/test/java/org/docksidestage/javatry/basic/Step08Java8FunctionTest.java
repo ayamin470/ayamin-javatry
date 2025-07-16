@@ -48,7 +48,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * (コールバック処理の中で　出力しているログの文字列はすべて同じでしょうか？ (yes or no))
      */
 
-    // TODO ayaminコールバック処理とは?
+    // TODO[memo]ayaminコールバック処理とは?
     //  ある処理が完了した後に、別の特定の処理（関数やメソッド）を呼び出す仕組みのこと
     //  時間のかかる処理を待っている間にプログラム全体が停止してしまうとユーザ体験が悪くなりがちなので使用する
 

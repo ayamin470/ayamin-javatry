@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * @author ayamin
  */
 
-// TODO ayamin
+// TODO[memo]ayamin
 //  Animal を継承しているけど、getInitialHitPoint() と downHitPoint() はオーバーライドしていないことに注意
 public class Dog extends Animal implements FastRunner {
     private static final Logger logger = LoggerFactory.getLogger(Dog.class);

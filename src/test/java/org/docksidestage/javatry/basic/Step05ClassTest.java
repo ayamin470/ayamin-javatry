@@ -33,7 +33,7 @@ import org.docksidestage.unit.PlainTestCase;
 // 「通り過ぎたものも綺麗に整えてから置いておく」ってのをぜひ意識してもらえればと思います。
 // (プログラマーにはそれが大事だと思っているので)
 
-// TODO ayamin メモtodoの識別よろしくお願いします by jflute (2025/07/15)
+// TODO done ayamin メモtodoの識別よろしくお願いします by jflute (2025/07/15)
 
 /**
  * The test of class. <br>
@@ -141,7 +141,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (OneDayとTwoDayで冗長なロジックがあったら、クラス内のprivateメソッドなどで再利用しましょう (修正前と修正後の実行結果を確認))
      */
 
-    // TODO ayamin 以下の点が重複しているはず
+    // TODO[memo] ayamin 以下の点が重複しているはず
     //    チケット在庫のチェック
     //    支払われた金額が不足していないかのチェック
     //    チケット在庫を減らす
@@ -176,7 +176,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (TwoDayPassportもチケットをもらえませんでした。チケットとお釣りを戻すクラスを作って戻すようにしましょう)
      */
 
-    //TODO ayamin そもそもなぜTicketBuyResult.javaを作る必要があったのか？
+    //TODO[memo] ayamin そもそもなぜTicketBuyResult.javaを作る必要があったのか？
     // Javaは、原則として一つの値しか直接返すことができない。そのままだとチケットとお釣りの両方を返せない
     // TicketBuyResultとして一つのクラスにお釣りとチケットを内包することで、クリアできる
     // done ayamin [ふぉろー] いいですね、そういうところに視点を置くというのは。 by jflute (2025/07/07)

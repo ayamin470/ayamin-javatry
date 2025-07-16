@@ -77,7 +77,7 @@ public class Step02IfForTest extends PlainTestCase {
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
-    // TODO ayamin 長くて複雑なコードを読む時は、目的を持って、下から、拾い読み！
+    // TODO[memo]ayamin 長くて複雑なコードを読む時は、目的を持って、下から、拾い読み！
     //  log(sea);の最終結果を知りたいな、一番下のlog(sea);には10が代入されてるな、じゃぁこの10の前はなんだったっけ？falseは見なくていいな、、と言う感じ
 
     public void test_if_elseif_nested() {
@@ -213,7 +213,7 @@ public class Step02IfForTest extends PlainTestCase {
      * (foreach文をforEach()メソッドへの置き換えてみましょう (修正前と修正後で実行結果が同じになるように))
      */
 
-    //TODO ayamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
+    //TODO[memo] ayamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
     public void test_iffor_refactor_foreach_to_forEach()
     {
         List<String> stageList = prepareStageList();
@@ -242,7 +242,7 @@ public class Step02IfForTest extends PlainTestCase {
         // ちょっと今回の話と少し違いものですが、booleanの変数名にまつわるブログ:
         // done ayamin [読み物課題] なんとかフラグというboolean変数名 by jflute (2025/07/09)
         // https://jflute.hatenadiary.jp/entry/20181013/flgornuance
-        // TODO ayamin flagを使うときは、そのflagがいつtrueになるのか？ニュアンスを伝えるといい
+        // TODO [memo]ayamin flagを使うときは、そのflagがいつtrueになるのか？ニュアンスを伝えるといい
         //  三単現の動詞 (e.g. has, exists, needs) を使えば、"ニュアンス" と "判定" であることを示しやすい
         //  今回だったら"gagoming"とかにするべきだったかも
 
@@ -268,7 +268,7 @@ public class Step02IfForTest extends PlainTestCase {
         String sea = resultSea[0];
         log(sea);
     }
-    // TODO auamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
+    // TODO[memo] auamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
     //  breakFlag を使わずに、Stream API の reduce を用いて同じ結果を得る
 
     public void test_original2_forEach() {

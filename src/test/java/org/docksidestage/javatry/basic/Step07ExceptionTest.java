@@ -159,7 +159,7 @@ public class Step07ExceptionTest extends PlainTestCase {
      * (どの変数がNullPointerを引き起こしたのか(nullだったのか)、スタックトレースの行番号だけでわかるようにリファクタリングしましょう)
      */
     // TODO done ayamin 問題が途中までしか書かれていません by jflute
-    //TODO ayamin int sum = land.length() + piari.length(); を分割する
+    //TODO [memo] ayamin int sum = land.length() + piari.length(); を分割する
     public void test_exception_nullpointer_refactorCode() {
         try {
             String sea = "mystic";

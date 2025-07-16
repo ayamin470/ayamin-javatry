@@ -80,7 +80,7 @@ public class Step01VariableTest extends PlainTestCase
         log(sea); // your answer? => 416
     }
 
-    // TODO ayamin BigDecimalの用法に注意！
+    // TODO [memo] ayamin BigDecimalの用法に注意！
     //  BigDecimalは新しいインスタンスを作るために、元の変数は置き換わらない
     //  sea.add(new BigDecimal(1));しても、seaの中身は+１されていない。sea(2)が作られて、それが+1されているイメージ
 

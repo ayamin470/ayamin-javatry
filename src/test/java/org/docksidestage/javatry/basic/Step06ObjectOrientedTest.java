@@ -64,7 +64,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //TODO done ayamin チケットを購入し、入園するまでを書く
         // done ayamin [ふぉろー] すごい、書き換えてるのびっくりしました(^^ by jflute (2025/07/07)
         // 書き直すことで、ベタ書きの状態とオブジェクトを使った状態までの変化がわかりやすくなるので良いと思います。
-        // ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
+        // TODO auamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
 
         TicketBooth booth = new TicketBooth();
         Ticket ticket = booth.buyOneDayPassport(10000);
@@ -445,7 +445,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // done ayamin テスト実行すると、アサートで落ちてます by jflute (2025/07/07)
         // done Jflute アサートなしでテストコードを作成しました
         //  (アサートという機能を知って、使ってみたくて使ってしまいました...使わなくてもテストコード作れるんだったらそれに越したことはないと思ってます)
-        // TODO ayamin javatryではアサート使うのは必須ではないですが、アサート使うのは良いことではありますよ by jflute (2025/07/10)
+        // TODO done ayamin javatryではアサート使うのは必須ではないですが、アサート使うのは良いことではありますよ by jflute (2025/07/10)
         // ただ、アサートもコツが要るので、そこに躓いて時間掛かるくらいなら無しでという感覚ですね。
 
         System.out.println("\n=== 各OSサブクラスの実装確認 ===");
@@ -496,9 +496,9 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (抽象クラス肥大化を抑制するためにも、Animalのbark()のプロセス(処理)をBarkingProcessクラスとして切り出しましょう)
      */
 
-    //TODO ayamin Animalクラスは、「HPを持つ」だけでなく、「鳴く」や「息を吸う」などまで責任を持っていて、保守性が低い
+    //TODO [memo] ayamin Animalクラスは、「HPを持つ」だけでなく、「鳴く」や「息を吸う」などまで責任を持っていて、保守性が低い
     public void test_objectOriented_writing_withDelegation() {
-        // TODO ayamin Zombie でコンパイルエラーが出ています。 by jflute (2025/07/07)
+        // TODO done ayamin Zombie でコンパイルエラーが出ています。 by jflute (2025/07/07)
         log("--- Confirmation: BarkingProcess delegation ---");
 
         Dog dog = new Dog();
