@@ -158,8 +158,8 @@ public class Step07ExceptionTest extends PlainTestCase {
      * Refactor to immediately understand what variable (is null) causes the NullPointerException by row number in stack trace. <br>
      * (どの変数がNullPointerを引き起こしたのか(nullだったのか)、スタックトレースの行番号だけでわかるようにリファクタリングしましょう)
      */
-    // TODO done ayamin 問題が途中までしか書かれていません by jflute
-    //TODO [memo] ayamin int sum = land.length() + piari.length(); を分割する
+    // done ayamin 問題が途中までしか書かれていません by jflute
+    //TODO ayamin int sum = land.length() + piari.length(); を分割する
     public void test_exception_nullpointer_refactorCode() {
         try {
             String sea = "mystic";
@@ -186,7 +186,7 @@ public class Step07ExceptionTest extends PlainTestCase {
     // ===================================================================================
     //                                                                   Checked Exception
     //                                                                   =================
-    // TODO done ayamin これはやってない？ by jflute (2025/07/07)
+    // done ayamin これはやってない？ by jflute (2025/07/07)
     /**
      * Show canonical path of new java.io.File(".") by log(), and if I/O error, show message and stack-trace instead <br>
      * (new java.io.File(".") の canonical path を取得してログに表示、I/Oエラーの時はメッセージとスタックトレースを代わりに表示)
@@ -276,6 +276,7 @@ public class Step07ExceptionTest extends PlainTestCase {
             //「スペシャルネジ」を製造するにあたり、「可愛い顔」の仕様がサポートされていないため
             // _/_/_/_/_/_/_/_/_/_/
             // TODO ayamin [質問] 原因ですが、「仕様がサポートされていない」ことが原因と断定できるものでしょうか？ by jflute (2025/07/07)
+            // TODO jflute 1on1にて原因に関してフォロー予定 (2025/07/15)
         }
     }
 
@@ -285,7 +286,7 @@ public class Step07ExceptionTest extends PlainTestCase {
      * できるだけ例外情報だけでその状況が理解できるように、Supercarのクラスたちの例外ハンドリングを改善しましょう。
      */
     public void test_exception_translation_improveChallenge() {
-        // TODO done ayamin 実行しても、fail()の方に入ってしまっています。(もしかして動くように直してしまいましたか？) by jflute (2025/07/07)
+        // done ayamin 実行しても、fail()の方に入ってしまっています。(もしかして動くように直してしまいましたか？) by jflute (2025/07/07)
         // (例外ハンドリングを確認するエクササイズなので、元々の例外が発生する挙動はそのままでいて欲しいのですが)
         try {
             // TODO jflute 1on1にて、例外ハンドリングの改善の実装について、説明をしてもらう予定 (2025/07/07)
