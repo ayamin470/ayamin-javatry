@@ -2,13 +2,16 @@ package org.docksidestage.javatry.basic.st6.dbms;
 
 // TODO done ayamin この潔いクラス名が良いですね笑。自身のコメントで「データベースの種類」という言葉が出ていますから... by jflute (2025/07/10)
 // MySQLは何？PostgreSQLは何？(なんて名前のスーパークラスを継承すればいいのか？) の答えが出てるんじゃないかと。
-// // TODO ayamin とはいえ、もう少しクラス名は練ったほうがいいですよね。反省。何の Superclass 七日見た人はわからないかもしれないので by ayamin (2025/07/11)
+// // TODO done ayamin とはいえ、もう少しクラス名は練ったほうがいいですよね。反省。何の Superclass なのか見た人はわからないかもしれないので by ayamin (2025/07/11)
 
 /**
  * @author ayamin
  */
 
 public abstract class Superclass {
+    protected int calculateOffset(int pageSize, int pageNumber) {
+        return pageSize * (pageNumber - 1);
+    }
     public abstract String buildPagingQuery(int pageSize, int pageNumber);
 }
 

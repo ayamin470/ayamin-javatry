@@ -48,13 +48,17 @@ import java.time.LocalTime;
 
 // done jflute [へんじ] by ayamin (2025/07/08)
 //  「現在日時で夜かどうか？を判定」するようにコードを変更しました
-// TODO ayamin [思考課題] ParkContextという名前が、ちょっと広いような気がします。 by jflute (2025/07/08)
+// TODO done ayamin [思考課題] ParkContextという名前が、ちょっと広いような気がします。 by jflute (2025/07/08)
 // 将来的に時間帯以外にも入れる想定なのであれば、ってところですが、現状ではちょっと迷いどころですね。
 // ParkTimeContext というように専用のものにするか？あらかじめParkContextで他にも色々と入れられるようにするか？
 // どう思います？
-public class ParkContext {
+// TODO jflute もはやなぜこのようなクラス名にしたのか忘れてしまったのですが by ayamin
+//  少なくともぱっと見で何をしているクラスなのか理解できないため不適切なクラス名だと思います
+//  あまりカッコ良くはないですが、DayNightCheckerにしてみました
 
-    private ParkContext() {
+public class DayNightChecker {
+
+    private DayNightChecker() {
 
     }
 

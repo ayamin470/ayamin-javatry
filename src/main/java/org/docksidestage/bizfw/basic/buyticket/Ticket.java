@@ -85,10 +85,8 @@ public class Ticket {
         if (nightOnly && ParkContext.isDay(checkTime)) {
             throw new IllegalStateException("このチケットは夜間専用です。指定された時刻(" + checkTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ")は昼間のため使用できません。");
         }
-
         entryCount++;
     }
-
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

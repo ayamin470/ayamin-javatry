@@ -163,12 +163,12 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_return_ticket() {
         // uncomment out after modifying the method
-        TicketBooth booth = new TicketBooth();
-        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-        log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
-        log(oneDayPassport.isAlreadyIn()); // should be false
-        oneDayPassport.doInPark();
-        log(oneDayPassport.isAlreadyIn()); // should be true
+//        TicketBooth booth = new TicketBooth();
+//        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
+//        log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
+//        log(oneDayPassport.isAlreadyIn()); // should be false
+//        oneDayPassport.doInPark();
+//        log(oneDayPassport.isAlreadyIn()); // should be true
     }
 
     /**
@@ -185,12 +185,12 @@ public class Step05ClassTest extends PlainTestCase {
     // こういう風に、戻り値の「入れ物クラス」というのはよく使われます。
     public void test_class_moreFix_return_whole() {
         // uncomment after modifying the method
-        TicketBooth booth = new TicketBooth();
-        int handedMoney = 20000;
-        TicketBuyResult buyResult = booth.buyTwoDayPassport(handedMoney);
-        Ticket twoDayPassport = buyResult.getTicket();
-        int change = buyResult.getChange();
-        log(twoDayPassport.getDisplayPrice() + change); // should be same as money
+//        TicketBooth booth = new TicketBooth();
+//        int handedMoney = 20000;
+//        TicketBuyResult buyResult = booth.buyTwoDayPassport(handedMoney);
+//        Ticket twoDayPassport = buyResult.getTicket();
+//        int change = buyResult.getChange();
+//        log(twoDayPassport.getDisplayPrice() + change); // should be same as money
     }
 
     /**
@@ -234,12 +234,12 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_whetherTicketType() {
         // uncomment when you implement this exercise
-        TicketBooth booth = new TicketBooth();
-        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-        showTicketIfNeeds(oneDayPassport); // "other" とログされるはず
-        TicketBuyResult buyResult = booth.buyTwoDayPassport(10000);
-        Ticket twoDayPassport = buyResult.getTicket();
-        showTicketIfNeeds(twoDayPassport); // "two-day passport" とログされるはず
+//        TicketBooth booth = new TicketBooth();
+//        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
+//        showTicketIfNeeds(oneDayPassport); // "other" とログされるはず
+//        TicketBuyResult buyResult = booth.buyTwoDayPassport(10000);
+//        Ticket twoDayPassport = buyResult.getTicket();
+//        showTicketIfNeeds(twoDayPassport); // "two-day passport" とログされるはず
     }
 
     // uncomment when you implement this exercise

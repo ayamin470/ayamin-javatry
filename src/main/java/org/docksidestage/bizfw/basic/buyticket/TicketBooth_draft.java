@@ -19,7 +19,7 @@ package org.docksidestage.bizfw.basic.buyticket;
  * @author jflute
  * @author ayamin
  */
-public class TicketBooth{
+public class TicketBooth_draft {
 
     // ===================================================================================
     //                                                                          Definition
@@ -39,29 +39,68 @@ public class TicketBooth{
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public TicketBooth() {
+    public TicketBooth_draft() {
     }
 
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    public TicketBuyResult buyOneDayPassport(Integer handedMoney) {
-        return doBuyPassport(handedMoney, ONE_DAY_PRICE, 1, false);
+    // you can rewrite comments for your own language by jflute
+    // e.g. Japanese
+    // /**
+    // * 1Dayパスポートを買う、パークゲスト用のメソッド。
+    // * @param handedMoney パークゲストから手渡しされたお金(金額) (NotNull, NotMinus)
+    // * @throws TicketSoldOutException ブース内のチケットが売り切れだったら
+    // * @throws TicketShortMoneyException 買うのに金額が足りなかったら
+    // */
+    // done ayamin javadoc, @returnが抜けています。 by jflute (2025/07/07)
+    // done ayamin javadoc, one dayだけにjavadocがあるのはバランス悪いので、publicのbuyにはjavadocを入れましょう by jflute (2025/07/07)
+    // done jflute なくてもいいかなと判断した(他のコードにはそもそもjavadocを入れてないため統一性がない)ので、消しました by ayamin (2025/07/08)
+
+    // done ayamin javadoc直下、通常空行は空けないので削除でお願いします by jflute (2025/07/07)
+    public Ticket buyOneDayPassport(Integer handedMoney) {
+        doBuyPassport(handedMoney, ONE_DAY_PRICE);
+        return new Ticket(ONE_DAY_PRICE, 1, false);
     }
 
+    // done ayamin [質問] これは...空行をどう空けたら、見やすいのか？を実験してますかね？(^^ by jflute (2025/07/07)
+    // 慣れてくるとこの程度であれば、TwoDayスタイルで書いちゃいますが、FourDayがバランス良いのかなとは思いました。
+
     public TicketBuyResult buyTwoDayPassport(Integer handedMoney) {
-        return doBuyPassport(handedMoney, TWO_DAY_PRICE, 2, false);
+        doBuyPassport(handedMoney, TWO_DAY_PRICE);
+
+        Ticket ticket = new Ticket(TWO_DAY_PRICE, 2, false);
+        int change = handedMoney - TWO_DAY_PRICE;
+
+        return new TicketBuyResult(ticket, change);
     }
 
     public TicketBuyResult buyFourDayPassport(Integer handedMoney) {
-        return doBuyPassport(handedMoney, FOUR_DAY_PRICE, 4, false);
+        doBuyPassport(handedMoney, FOUR_DAY_PRICE);
+
+        Ticket ticket = new Ticket(FOUR_DAY_PRICE, 4,false);
+        int change = handedMoney - FOUR_DAY_PRICE;
+
+        return new TicketBuyResult(ticket, change);
     }
 
     public TicketBuyResult buyNightOnlyTwoDayPassport(Integer handedMoney) {
-        return doBuyPassport(handedMoney, NIGHT_ONLY_TWO_DAY_PRICE, 2, true);
+
+        doBuyPassport(handedMoney, NIGHT_ONLY_TWO_DAY_PRICE);
+
+        Ticket ticket = new Ticket(NIGHT_ONLY_TWO_DAY_PRICE, 2, true); // ★ nightOnly を true に設定
+        int change = handedMoney - NIGHT_ONLY_TWO_DAY_PRICE;
+
+        return new TicketBuyResult(ticket, change);
     }
 
-    private TicketBuyResult doBuyPassport(Integer handedMoney, int price, int ticketValidDays, boolean nightOnly) {
+    // done ayamin Ticketの生成も、どのbuyも同じなので、doBuyに含めちゃって良いかと思います。 by jflute (2025/07/07)
+    // done jflute 修正した...はず 1on1で確認させてください by ayamin (2025/07/08)
+    // done jflute 1on1にてふぉろー (2025/07/08)
+    // done ayamin フォローしておきました by jflute (2025/07/09)
+    // TODO done ayamin doBuyPassport()の再利用範囲、もうちょい広げることができます by jflute (2025/07/15)
+    //TODO jflute チケットとお釣りを返すように、doBuyPassportを変更しました。また、コメントが増えてみにくくなってしまったので、本クラスとファイル名をTicketBooth_draftにした上で、新しく書いたコードをTicketBoothにしました
+    private void doBuyPassport(Integer handedMoney, int price) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");
         }
@@ -70,29 +109,31 @@ public class TicketBooth{
         }
         --quantity;
 
-        if (salesProceeds != null) {
+        if (salesProceeds != null) { // 2回目以降の購入
             salesProceeds = salesProceeds + price;
-        } else {
+        } else { // 初回購入
             salesProceeds = price;
         }
-        Ticket ticket = new Ticket(price, ticketValidDays, nightOnly);
-        int change = handedMoney - price;
-        return new TicketBuyResult(ticket, change);
     }
 
     public static class TicketSoldOutException extends RuntimeException {
+
         private static final long serialVersionUID = 1L;
+
         public TicketSoldOutException(String msg) {
             super(msg);
         }
     }
 
     public static class TicketShortMoneyException extends RuntimeException {
+
         private static final long serialVersionUID = 1L;
+
         public TicketShortMoneyException(String msg) {
             super(msg);
         }
     }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

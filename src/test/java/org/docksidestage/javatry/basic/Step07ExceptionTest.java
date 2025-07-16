@@ -159,7 +159,7 @@ public class Step07ExceptionTest extends PlainTestCase {
      * (どの変数がNullPointerを引き起こしたのか(nullだったのか)、スタックトレースの行番号だけでわかるようにリファクタリングしましょう)
      */
     // done ayamin 問題が途中までしか書かれていません by jflute
-    //TODO ayamin int sum = land.length() + piari.length(); を分割する
+    //TODO [memo] ayamin int sum = land.length() + piari.length(); を分割する
     public void test_exception_nullpointer_refactorCode() {
         try {
             String sea = "mystic";
@@ -275,8 +275,9 @@ public class Step07ExceptionTest extends PlainTestCase {
             //原因：SpecialScrewManufacturer クラスの makeSpecialScrew() メソッドの 29行目
             //「スペシャルネジ」を製造するにあたり、「可愛い顔」の仕様がサポートされていないため
             // _/_/_/_/_/_/_/_/_/_/
-            // TODO ayamin [質問] 原因ですが、「仕様がサポートされていない」ことが原因と断定できるものでしょうか？ by jflute (2025/07/07)
+            // TODO done ayamin [質問] 原因ですが、「仕様がサポートされていない」ことが原因と断定できるものでしょうか？ by jflute (2025/07/07)
             // TODO jflute 1on1にて原因に関してフォロー予定 (2025/07/15)
+            // TODO jflute　使用がサポートされていないというより、お客さん⇨ディーラー⇨ホイール屋さん⇨ネジ⇨と伝わって行った時に、ネジのサポートができない！とエラーを出した by ayamin
         }
     }
 
@@ -342,7 +343,7 @@ public class Step07ExceptionTest extends PlainTestCase {
         //Exceptionnの場合、プログラムで捕捉して回復したり、代替処理を提供したりすることが可能
         //Errorは起こった時点でプログラムが終了する
         // _/_/_/_/_/_/_/_/_/_/
-        // TODO ayamin [ふぉろー] Errorでも起こった時点でプログラムが終了するわけではないです。 by jflute (2025/07/07)
+        // TODO done ayamin [ふぉろー] Errorでも起こった時点でプログラムが終了するわけではないです。 by jflute (2025/07/07)
         // Error も Throwable なので、Exception と同じように throw されます。
         // そういう意味では、Error も「プログラムで捕捉して回復したり、代替処理を提供したりすることが可能」ではあります。
         // ただ、発生原因の意味合い的に Error は補足して回復もできないし、代替処理を提供も基本はできない、くらいの状況というニュアンスです。

@@ -21,10 +21,10 @@ package org.docksidestage.javatry.basic.st6.dbms;
  */
 public class St6MySql extends Superclass{
 
-    // TODO ayamin offsetを導出するロジックがMySQLとPostgreSQLで冗長なのでどうにかしたいですね by jflute (2025/07/10)
+    // TODO done offsetを導出するロジックがMySQLとPostgreSQLで冗長なのでどうにかしたいですね by jflute (2025/07/10)
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = pageSize * (pageNumber - 1);
+        int offset = calculateOffset(pageSize, pageNumber);
         return "limit " + offset + ", " + pageSize;
     }
 }

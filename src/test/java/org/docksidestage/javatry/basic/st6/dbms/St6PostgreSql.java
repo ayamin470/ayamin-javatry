@@ -23,7 +23,7 @@ public class St6PostgreSql extends Superclass{
 
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = pageSize * (pageNumber - 1);
+        int offset = calculateOffset(pageSize, pageNumber);
         return "offset " + offset + " limit " + pageSize;
     }
 }
