@@ -98,8 +98,9 @@ public class TicketBooth_draft {
     // done jflute 修正した...はず 1on1で確認させてください by ayamin (2025/07/08)
     // done jflute 1on1にてふぉろー (2025/07/08)
     // done ayamin フォローしておきました by jflute (2025/07/09)
-    // TODO done ayamin doBuyPassport()の再利用範囲、もうちょい広げることができます by jflute (2025/07/15)
-    //TODO jflute チケットとお釣りを返すように、doBuyPassportを変更しました。また、コメントが増えてみにくくなってしまったので、本クラスとファイル名をTicketBooth_draftにした上で、新しく書いたコードをTicketBoothにしました
+    // done ayamin doBuyPassport()の再利用範囲、もうちょい広げることができます by jflute (2025/07/15)
+    // done jflute チケットとお釣りを返すように、doBuyPassportを変更しました。また、コメントが増えてみにくくなってしまったので、本クラスとファイル名をTicketBooth_draftにした上で、新しく書いたコードをTicketBoothにしました
+    // → おおぉ、すっきりしましたねー by jflute (2025/07/16)
     private void doBuyPassport(Integer handedMoney, int price) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out");

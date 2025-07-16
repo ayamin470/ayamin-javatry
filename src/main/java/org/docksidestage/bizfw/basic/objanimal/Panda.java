@@ -5,6 +5,8 @@ package org.docksidestage.bizfw.basic.objanimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// TODO ayamin ↑import分のunusedの警告が出ちゃってます。(logger消したときに残っちゃったか) by jflute (2025/07/16)
+
 /**
  * The object for panda (パンダ).
  * (FastRunnerではないAnimalクラスのコンクリートクラスの例)
@@ -12,7 +14,7 @@ import org.slf4j.LoggerFactory;
  */
 public class Panda extends Animal { // Animalクラスを継承
 
-    // TODO done ayamin unusedの警告が出ています。最初使おうとして持ってきたけど結局使わなかったのでしょうか？ by jflute (2025/07/07)
+    // done ayamin unusedの警告が出ています。最初使おうとして持ってきたけど結局使わなかったのでしょうか？ by jflute (2025/07/07)
 //    private static final Logger logger = LoggerFactory.getLogger(Panda.class);
 
     // ===================================================================================
@@ -26,9 +28,10 @@ public class Panda extends Animal { // Animalクラスを継承
     //                                                                              ======
     @Override
     protected String getBarkWord() {
-        // TODO done ayamin [ざつだん] そういえばパンダの鳴き声って全然知らない...＞＜ by jflute (2025/07/07)
-        // TODO jflute  [ざつだん] 私も知らなくて調べたのですが、パンダはにゃん！と鳴くらしいです。だから熊猫なのかも...?
+        // done ayamin [ざつだん] そういえばパンダの鳴き声って全然知らない...＞＜ by jflute (2025/07/07)
+        // done jflute  [ざつだん] 私も知らなくて調べたのですが、パンダはにゃん！と鳴くらしいです。だから熊猫なのかも...?
+        // なんとー、そうだったのかー (^^
         return "gao gao"; // パンダの鳴き声
     }
-    // TODO done ayamin ここの空行は削除で by jflute (2025/07/07)
+    // done ayamin ここの空行は削除で by jflute (2025/07/07)
 }

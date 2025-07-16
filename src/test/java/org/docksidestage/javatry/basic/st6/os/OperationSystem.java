@@ -23,10 +23,10 @@ public abstract class OperationSystem {
     public OperationSystem(String loginId) {
         this.loginId = loginId;
         // done ayamin [いいね] loggerうまく使いこなしてますね！ by jflute (2025/07/07)
-        // TODO jflute とはいえ、ここではlog();で良かったなと思っています
+        // done jflute とはいえ、ここではlog();で良かったなと思っています
         //  log();がJavaの標準ライブラリではないことを知り、さらにlogger.debug()を知り、後学のために使ってみたくなってしまったのをそのままにしていました...
         //  統一性という観点と読み手に余計な違和感を与えないという意味でlog();にするべきだったと考えています
-        // TODO done ayamin [へんじ] いや、ここは log() じゃなくて logger でいいですよ。というのは... by jflute (2025/07/10)
+        // done ayamin [へんじ] いや、ここは log() じゃなくて logger でいいですよ。というのは... by jflute (2025/07/10)
         // log(); は、UnitTestの中だけでしか使えないメソッドだからです。
         // UnitTestのsuperクラスに定義して継承しているから使えるものなので、通常のクラスであれば logger が正解です。
         // ちなみに、log(); もソースコードを追っていくと、実は同じ logger です(^^。log()メソッドを経由してるだけです。

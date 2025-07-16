@@ -33,7 +33,7 @@ import org.docksidestage.unit.PlainTestCase;
 // 「通り過ぎたものも綺麗に整えてから置いておく」ってのをぜひ意識してもらえればと思います。
 // (プログラマーにはそれが大事だと思っているので)
 
-// TODO done ayamin メモtodoの識別よろしくお願いします by jflute (2025/07/15)
+// done ayamin メモtodoの識別よろしくお願いします by jflute (2025/07/15)
 
 /**
  * The test of class. <br>

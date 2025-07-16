@@ -445,7 +445,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // done ayamin テスト実行すると、アサートで落ちてます by jflute (2025/07/07)
         // done Jflute アサートなしでテストコードを作成しました
         //  (アサートという機能を知って、使ってみたくて使ってしまいました...使わなくてもテストコード作れるんだったらそれに越したことはないと思ってます)
-        // TODO done ayamin javatryではアサート使うのは必須ではないですが、アサート使うのは良いことではありますよ by jflute (2025/07/10)
+        // done ayamin javatryではアサート使うのは必須ではないですが、アサート使うのは良いことではありますよ by jflute (2025/07/10)
         // ただ、アサートもコツが要るので、そこに躓いて時間掛かるくらいなら無しでという感覚ですね。
 
         System.out.println("\n=== 各OSサブクラスの実装確認 ===");
@@ -498,7 +498,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 
     //TODO [memo] ayamin Animalクラスは、「HPを持つ」だけでなく、「鳴く」や「息を吸う」などまで責任を持っていて、保守性が低い
     public void test_objectOriented_writing_withDelegation() {
-        // TODO done ayamin Zombie でコンパイルエラーが出ています。 by jflute (2025/07/07)
+        // done ayamin Zombie でコンパイルエラーが出ています。 by jflute (2025/07/07)
         log("--- Confirmation: BarkingProcess delegation ---");
 
         Dog dog = new Dog();

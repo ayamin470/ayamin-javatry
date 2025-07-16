@@ -40,10 +40,12 @@ public class BarkedSound {
         return barkWord;
     }
     
-    // TODO done ayamin [質問] BarkingProcess を BarkedSound のインナークラスとして作った理由(設計思想)は何でしょうか by jflute (2025/07/07)
-    // TODO jflute 以下のいくつかの理由があります by ayamin
+    // done ayamin [質問] BarkingProcess を BarkedSound のインナークラスとして作った理由(設計思想)は何でしょうか by jflute (2025/07/07)
+    // TODO done jflute 以下のいくつかの理由があります by ayamin
     //目的の明確化・プロセスと結果という繋がりの明確化：BarkingProcessの結果としてBarkedSoundが鳴るという関係性を表現したかったから
     //とはいえ、例えばパンダが鳴く、のような似た構造のコードを作ろうとした時に、再利用性がなくてよくなかったかもしれないです
+    // TODO ayamin [いいね] ありがとうございます。是非は置いておいて、しっかりと説明ができるってことは良いことです by jflute (2025/07/16)
+    // TODO jflute #1on1 にてフォロー予定 (2025/07/16)
 
     /**
      * 動物の鳴き声のプロセス
@@ -62,8 +64,9 @@ public class BarkedSound {
         // ===================================================================================
         //                                                                               Bark
         //                                                                              ======
-        // TODO done ayamin [質問] おおぉ、コールバック！ Runnable は元々知ってましたか？ by jflute (2025/07/07)
-        // TODO jflute 知らなかったので調べてから作りました！ by aymin
+        // done ayamin [質問] おおぉ、コールバック！ Runnable は元々知ってましたか？ by jflute (2025/07/07)
+        // TODO done jflute 知らなかったので調べてから作りました！ by aymin
+        // TODO jflute #1on1 にてコールバックの補足する予定 (2025/07/16)
         public BarkedSound bark(String barkWord, Runnable hitPointCallback) {
             breatheIn(hitPointCallback);
             prepareAbdominalMuscle(hitPointCallback);

@@ -7,7 +7,7 @@ package org.docksidestage.bizfw.basic.objanimal.special;
  */
 public interface Nocturnal {
 
-    // TODO done ayamin javadoc, @return もお願いします by jflute (2025/07/07)
+    // done ayamin javadoc, @return もお願いします by jflute (2025/07/07)
     /**
      * @return　夜に特別な音を出す
      */
