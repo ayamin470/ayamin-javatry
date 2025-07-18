@@ -3,12 +3,14 @@ package org.docksidestage.javatry.basic.st6.dbms;
 // done ayamin この潔いクラス名が良いですね笑。自身のコメントで「データベースの種類」という言葉が出ていますから... by jflute (2025/07/10)
 // MySQLは何？PostgreSQLは何？(なんて名前のスーパークラスを継承すればいいのか？) の答えが出てるんじゃないかと。
 // done ayamin とはいえ、もう少しクラス名は練ったほうがいいですよね。反省。何の Superclass なのか見た人はわからないかもしれないので by ayamin (2025/07/11)
-// TODO done ayamin ↑ということで、良い名前が思いついたら renameリファクタリングしてみてください by jflute (2025/07/16)
+// done ayamin ↑ということで、良い名前が思いついたら renameリファクタリングしてみてください by jflute (2025/07/16)
 // #1on1: 抽象クラスの名前を考えるとき、まだ見ぬ具象クラスを想像してみると良い。
 // #1on1: (質問) スーパークラスはやることを名前にした方がいいかなと思いましたが？
 // (回答) step6のオブジェクト指向とインターフェースの違いの話とつながるのでそっちへ
 // TODO jflute #1on1: オブジェクト指向とインターフェースの違いの話をする (2025/07/18)
 
+// TODO ayamin Javaのクラス名はキャメルケースが慣習なので... DatabeseSet にしましょう by jflute (2025/07/18)
+// 一方で、スペルミス？ Databese -> Database ですかね。 
 /**
  * @author ayamin
  */
@@ -16,7 +18,8 @@ package org.docksidestage.javatry.basic.st6.dbms;
 public abstract class databeseset {
     // TODO ayamin [見比べ課題] Animal の bark() と、ここの buildPagingQuery() を比べてみてください。 by jflute (2025/07/16)
     // 再利用の方法というか構造というか方向性がちょっと違うと思いません？
-    // TODO jflute あまりピンとこなかったので、1on1でお話しさせていただきたいです！
+    // TODO done jflute あまりピンとこなかったので、1on1でお話しさせていただきたいです！
+    // TODO jflute #1on1 でフォロー予定 (2025/07/18)
     protected int calculateOffset(int pageSize, int pageNumber) {
         return pageSize * (pageNumber - 1);
     }
