@@ -66,10 +66,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // 書き直すことで、ベタ書きの状態とオブジェクトを使った状態までの変化がわかりやすくなるので良いと思います。
         // TODO auamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
 
-        TicketBooth booth = new TicketBooth();
-        Ticket ticket = booth.buyOneDayPassport(10000);
-        ticket.doInPark();
-        saveBuyingHistory(booth, ticket);
+//        TicketBooth booth = new TicketBooth();
+//        Ticket ticket = booth.buyOneDayPassport(10000);
+//        ticket.doInPark();
+//        saveBuyingHistory(booth, ticket);
 
     }
 
