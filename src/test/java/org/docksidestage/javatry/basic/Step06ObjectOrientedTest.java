@@ -18,7 +18,6 @@ package org.docksidestage.javatry.basic;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.objanimal.Animal;
-import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
 import org.docksidestage.bizfw.basic.objanimal.Zombie;
@@ -34,8 +33,6 @@ import org.docksidestage.bizfw.basic.objanimal.special.Nocturnal;
 import org.docksidestage.javatry.basic.st6.os.Mac;
 import org.docksidestage.javatry.basic.st6.os.Windows;
 import org.docksidestage.javatry.basic.st6.os.OldWindows;
-import org.docksidestage.javatry.basic.st6.os.OperationSystem;
-
 
 // done ayamin 全体的に空行が、チグハグなところが見受けられますので、気をつけてみてください。 by jflute (2025/07/07)
 // ↓ぜひこちらを改めて読んでもらえればと:
