@@ -33,7 +33,6 @@ public abstract class Animal implements Loudable {
     // ===================================================================================
     //                                                                               Bark
     //                                                                              ======
-
     public BarkedSound bark() {
 
         return barkingProcess.bark(getBarkWord(), this::downHitPoint);
@@ -44,6 +43,9 @@ public abstract class Animal implements Loudable {
     // ===================================================================================
     //                                                                           Hit Point
     //                                                                           =========
+    // #1on1: public / protected など、カプセル化をどう意識していけばいいか？話 (2025/07/18)
+    // 日常でめちゃカプセル化使ってる。それと照らし合わせると、自然と必要であると解釈できる。
+    // すべてのメソッド、変数、クラスで、常にカプセル化のことを考えてても良い。
     protected void downHitPoint() {
         --hitPoint;
         if (hitPoint <= 0) {
