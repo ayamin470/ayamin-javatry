@@ -370,7 +370,7 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * 詳しくはGeminiの回答を参照
      */
 
-    // TODO　ayamin flatmapした後にfilterしてるのがよくわからない...なんでそんなことするんだろう
+    // TODO ayamin flatmapした後にfilterしてるのがよくわからない...なんでそんなことするんだろう
 
     public void test_java8_stream_map_flatMap() {
         List<St8Member> memberList = new St8DbFacade().selectMemberListAll();

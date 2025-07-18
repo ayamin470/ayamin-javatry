@@ -21,6 +21,7 @@ import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
 import org.docksidestage.bizfw.basic.objanimal.Zombie;
+import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.loud.AlarmClock;
 import org.docksidestage.bizfw.basic.objanimal.loud.Loudable;
 import org.docksidestage.bizfw.basic.objanimal.runner.FastRunner;
@@ -57,11 +58,11 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * Fix several mistakes (except simulation) in buying one-day passport and in-park process. <br>
      * (OneDayPassportを買って InPark する処理の中で、(simulationを除いて)間違いがいくつかあるので修正しましょう)
      */
-    public void test_objectOriented_aboutObject_againstObject() {
+    public void test_objectOriented2_aboutObject_againstObject() {
         //TODO done ayamin チケットを購入し、入園するまでを書く
         // done ayamin [ふぉろー] すごい、書き換えてるのびっくりしました(^^ by jflute (2025/07/07)
         // 書き直すことで、ベタ書きの状態とオブジェクトを使った状態までの変化がわかりやすくなるので良いと思います。
-        // TODO ayamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
+        // TODO done ayamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
 
 //        TicketBooth booth = new TicketBooth();
 //        Ticket ticket = booth.buyOneDayPassport(10000);
