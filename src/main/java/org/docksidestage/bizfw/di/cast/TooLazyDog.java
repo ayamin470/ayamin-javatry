@@ -15,7 +15,6 @@
  */
 package org.docksidestage.bizfw.di.cast;
 
-import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
 
