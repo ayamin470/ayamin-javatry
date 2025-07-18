@@ -2,10 +2,7 @@
 
 package org.docksidestage.bizfw.basic.objanimal;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-// TODO ayamin ↑import分のunusedの警告が出ちゃってます。(logger消したときに残っちゃったか) by jflute (2025/07/16)
+// TODO done ayamin ↑import分のunusedの警告が出ちゃってます。(logger消したときに残っちゃったか) by jflute (2025/07/16)
 
 /**
  * The object for panda (パンダ).
