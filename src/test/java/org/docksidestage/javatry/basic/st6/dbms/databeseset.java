@@ -3,7 +3,7 @@ package org.docksidestage.javatry.basic.st6.dbms;
 // done ayamin この潔いクラス名が良いですね笑。自身のコメントで「データベースの種類」という言葉が出ていますから... by jflute (2025/07/10)
 // MySQLは何？PostgreSQLは何？(なんて名前のスーパークラスを継承すればいいのか？) の答えが出てるんじゃないかと。
 // done ayamin とはいえ、もう少しクラス名は練ったほうがいいですよね。反省。何の Superclass なのか見た人はわからないかもしれないので by ayamin (2025/07/11)
-// TODO ayamin ↑ということで、良い名前が思いついたら renameリファクタリングしてみてください by jflute (2025/07/16)
+// TODO done ayamin ↑ということで、良い名前が思いついたら renameリファクタリングしてみてください by jflute (2025/07/16)
 // #1on1: 抽象クラスの名前を考えるとき、まだ見ぬ具象クラスを想像してみると良い。
 // #1on1: (質問) スーパークラスはやることを名前にした方がいいかなと思いましたが？
 // (回答) step6のオブジェクト指向とインターフェースの違いの話とつながるのでそっちへ
@@ -13,9 +13,10 @@ package org.docksidestage.javatry.basic.st6.dbms;
  * @author ayamin
  */
 
-public abstract class Superclass {
+public abstract class databeseset {
     // TODO ayamin [見比べ課題] Animal の bark() と、ここの buildPagingQuery() を比べてみてください。 by jflute (2025/07/16)
     // 再利用の方法というか構造というか方向性がちょっと違うと思いません？
+    // TODO jflute あまりピンとこなかったので、1on1でお話しさせていただきたいです！
     protected int calculateOffset(int pageSize, int pageNumber) {
         return pageSize * (pageNumber - 1);
     }
@@ -29,5 +30,5 @@ public abstract class Superclass {
 // 抽象クラスがあれば、新しい St6OracleSql クラスを Superclass を継承して作成し、buildPagingQuery を実装するだけで済みます。dbms オブジェクトを呼び出している既存のコードは一切変更する必要がなくなる
 
 //TODO[memo] ayamin
-// テストコード作るのが難しくなってきた^^;
+// テストコード作るのが難しくなってきた
 // そもそもテストとはコードを設計意図通りに動いているかを確認するもの。だから、コードを作る時点での設計意図を明確にして覚えておく(メモしておく)必要があるね

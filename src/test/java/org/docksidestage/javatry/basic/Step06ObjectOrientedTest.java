@@ -64,7 +64,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //TODO done ayamin チケットを購入し、入園するまでを書く
         // done ayamin [ふぉろー] すごい、書き換えてるのびっくりしました(^^ by jflute (2025/07/07)
         // 書き直すことで、ベタ書きの状態とオブジェクトを使った状態までの変化がわかりやすくなるので良いと思います。
-        // TODO auamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
+        // TODO ayamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
 
 //        TicketBooth booth = new TicketBooth();
 //        Ticket ticket = booth.buyOneDayPassport(10000);

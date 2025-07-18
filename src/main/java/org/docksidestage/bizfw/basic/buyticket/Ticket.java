@@ -30,8 +30,6 @@ public class Ticket {
     private final int validDays;
     private final boolean nightOnly;// チケットが有効な日数 (例: 1日パスポートなら1, 2日パスポートなら2)
     private int entryCount;// 既に入園した回数
-
-
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
@@ -82,7 +80,7 @@ public class Ticket {
             throw new IllegalStateException("値段" + displayPrice + ", validDays=" + validDays + ", entryCount=" + entryCount);
         }
 
-        if (nightOnly && ParkContext.isDay(checkTime)) {
+        if (nightOnly && DayNightChecker.isDay(checkTime)) {
             throw new IllegalStateException("このチケットは夜間専用です。指定された時刻(" + checkTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ")は昼間のため使用できません。");
         }
         entryCount++;
