@@ -65,12 +65,16 @@ public class Ticket {
 //        entryCount++;
 //    }
 
-    // TODO ayamin 修行++: LocalTimeを指定できるメソッドをpublicにはしない方良いと思います。 by jflute (2025/07/08)
+    // TODO done ayamin 修行++: LocalTimeを指定できるメソッドをpublicにはしない方良いと思います。 by jflute (2025/07/08)
     // ちになりますので。
-    // 業務のコードでも、現在日時限定の場合は、外から日時を指定できないように作りました。
     // (検索とかだと、呼び出し側に自由に日時を渡せるようにするとかはありますが、今回は業務の振る舞いないので)
     // (でも、テストの都合上、時間を指定して動作確認したいってのはありますよね...さあそこが課題です)
     // (このtodoは最後でもOKです)
+    //
+    // 業務のコードでも、現在日時限定の場合は、外から日時を指定できないように作りました。
+    // TODO ayamin [いいね] おおぉ、ClockProviderインターフェース方式、いいですね！ by jflute (2025/07/24)
+    // TicketBoothから受け取って現在日付を裏から細工できるようになってるの素晴らしいです。
+    // TODO jflute 1on1にて、ClockProvider一緒に見ていきましょう (2025/07/24)
     public void doInPark() {
         if (entryCount >= validDays) {
             throw new IllegalStateException("有効日数を超えています。現在の入園カウント: " + entryCount + ", 有効日数: " + validDays);
@@ -78,6 +82,7 @@ public class Ticket {
 
         LocalTime currentTime = clockProvider.getCurrentTime();
         if (nightOnly && DayNightChecker.isDay(currentTime)) {
+            // TODO ayamin [いいね] 例外メッセージ、とても詳しくて素晴らしい by jflute (2025/07/24)
             throw new IllegalStateException("このチケットは夜間専用です。現在時刻(" + currentTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ")は昼間のため使用できません。");
         }
         entryCount++;

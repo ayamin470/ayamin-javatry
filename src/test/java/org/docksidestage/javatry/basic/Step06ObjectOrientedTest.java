@@ -59,10 +59,10 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
      * (OneDayPassportを買って InPark する処理の中で、(simulationを除いて)間違いがいくつかあるので修正しましょう)
      */
     public void test_objectOriented2_aboutObject_againstObject() {
-        //TODO done ayamin チケットを購入し、入園するまでを書く
+        // done ayamin チケットを購入し、入園するまでを書く
         // done ayamin [ふぉろー] すごい、書き換えてるのびっくりしました(^^ by jflute (2025/07/07)
         // 書き直すことで、ベタ書きの状態とオブジェクトを使った状態までの変化がわかりやすくなるので良いと思います。
-        // TODO done ayamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
+        // done ayamin ただ、間違い探しが、ちゃんと探せてたのかどうか？もう知るすべがない。。。笑
 
 //        TicketBooth booth = new TicketBooth();
 //        Ticket ticket = booth.buyOneDayPassport(10000);
@@ -100,7 +100,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 //        }
 //    }
 
-    //TODO done ayamin Ticket や TicketBooth オブジェクトを使わずに直接 int や boolean の値を受け取っているため、オブジェクト指向ではない
+    // done ayamin Ticket や TicketBooth オブジェクトを使わずに直接 int や boolean の値を受け取っているため、オブジェクト指向ではない
 //    private void showTicketBooth(int quantity, Integer salesProceeds) {
 //        log("Ticket Booth: quantity={}, salesProceeds={}", quantity, salesProceeds);
 //    }
