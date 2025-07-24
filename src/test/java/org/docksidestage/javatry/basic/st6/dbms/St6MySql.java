@@ -21,7 +21,7 @@ package org.docksidestage.javatry.basic.st6.dbms;
  */
 public class St6MySql extends databeseset{
 
-    // TODO done offsetを導出するロジックがMySQLとPostgreSQLで冗長なのでどうにかしたいですね by jflute (2025/07/10)
+    // done offsetを導出するロジックがMySQLとPostgreSQLで冗長なのでどうにかしたいですね by jflute (2025/07/10)
     @Override
     public String buildPagingQuery(int pageSize, int pageNumber) {
         int offset = calculateOffset(pageSize, pageNumber);
