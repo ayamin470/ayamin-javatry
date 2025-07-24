@@ -39,17 +39,16 @@ public class TooLazyDog extends Dog {
         friendCat = cat;
     }
 
-    @Override
-    public BarkedSound bark() {
-        if (feed == null) {
-            throw new IllegalStateException("Hungry?");
-        }
-        if (!goodMood) {
-            throw new IllegalStateException("Bad mood");
-        }
-        if (friendCat == null) {
-            throw new IllegalStateException("Lonely");
-        }
-        return friendCat.bark();
+//    @Override
+//    publicBarkedSoundedSound bark() {
+//        if (feed == null) {
+//            throw new IllegalStateException("Hungry?");
+//        }
+//        if (!goodMood) {
+//            throw new IllegalStateException("Bad mood");
+//        }
+//        if (friendCat == null) {
+//            throw new IllegalStateException("Lonely");
+//        }
+//        return friendCat.bark();
     }
-}

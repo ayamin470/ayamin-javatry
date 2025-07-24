@@ -64,10 +64,6 @@ public class Ticket {
 //        entryCount++;
 //    }
 
-    public void doInPark() {
-        doInPark(LocalTime.now());
-    }
-
     // TODO ayamin 修行++: LocalTimeを指定できるメソッドをpublicにはしない方良いと思います。 by jflute (2025/07/08)
     // チケットのユーザーが時刻を細工して呼び出せちゃうということになりますので。
     // 業務のコードでも、現在日時限定の場合は、外から日時を指定できないように作りました。

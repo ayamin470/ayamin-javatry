@@ -246,26 +246,50 @@ public class Step02IfForTest extends PlainTestCase {
         //  三単現の動詞 (e.g. has, exists, needs) を使えば、"ニュアンス" と "判定" であることを示しやすい
         //  今回だったら"gagoming"とかにするべきだったかも
 
+        //        List<String> stageList = prepareStageList();
+        //        final String[] resultSea = new String[1];
+        //        final boolean[] breakFlag = new boolean[1];
+        //
+        //        stageList.forEach(stage -> {
+        //            if (breakFlag[0]) {
+        //                return;
+        //            }
+        //            if (stage.startsWith("br")) {
+        //                return;
+        //            }
+        //            resultSea[0] = stage;
+        //
+        //            if (stage.contains("ga")) {
+        //                breakFlag[0] = true;
+        //            }
+        //        });
+        //
+        //        String sea = resultSea[0];
+        //        log(sea);
 
         List<String> stageList = prepareStageList();
-        final String[] resultSea = new String[1];
-        final boolean[] breakFlag = new boolean[1];
+        String resultSea = null;
+        boolean gaFound = false;
 
-        stageList.forEach(stage -> {
-            if (breakFlag[0]) {
-                return;
+        for (int i = 0; i < stageList.size(); i++) {
+            String stage = stageList.get(i);
+
+            if (gaFound) {
+                break;
             }
+
             if (stage.startsWith("br")) {
-                return;
+                continue;
             }
-            resultSea[0] = stage;
+
+            resultSea = stage;
 
             if (stage.contains("ga")) {
-                breakFlag[0] = true;
+                gaFound = true;
             }
-        });
+        }
 
-        String sea = resultSea[0];
+        String sea = resultSea;
         log(sea);
     }
     // TODO[memo] auamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
