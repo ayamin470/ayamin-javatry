@@ -30,15 +30,16 @@ public class Ticket {
     private final int validDays;
     private final boolean nightOnly;// チケットが有効な日数 (例: 1日パスポートなら1, 2日パスポートなら2)
     private int entryCount;// 既に入園した回数
+    private final ClockProvider clockProvider;
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public Ticket(int displayPrice, int validDays,boolean nightOnly) { // コンストラクタに validDays を追加
+    public Ticket(int displayPrice, int validDays, boolean nightOnly, ClockProvider clockProvider) { // ← ここに clockProvider を追加
         this.displayPrice = displayPrice;
         this.validDays = validDays;
         this.nightOnly = nightOnly;
-        this.entryCount = 0; // 初期入園回数は0
-        // done ayamin ここの空行は不要だと思うので削除しましょう by jflute (2025/07/07)
+        this.entryCount = 0;
+        this.clockProvider = clockProvider;
     }
     // ===================================================================================
     //                                                                             In Park
@@ -65,19 +66,19 @@ public class Ticket {
 //    }
 
     // TODO ayamin 修行++: LocalTimeを指定できるメソッドをpublicにはしない方良いと思います。 by jflute (2025/07/08)
-    // チケットのユーザーが時刻を細工して呼び出せちゃうということになりますので。
+    // ちになりますので。
     // 業務のコードでも、現在日時限定の場合は、外から日時を指定できないように作りました。
     // (検索とかだと、呼び出し側に自由に日時を渡せるようにするとかはありますが、今回は業務の振る舞いないので)
     // (でも、テストの都合上、時間を指定して動作確認したいってのはありますよね...さあそこが課題です)
     // (このtodoは最後でもOKです)
-    public void doInPark(LocalTime checkTime) {
-
+    public void doInPark() {
         if (entryCount >= validDays) {
-            throw new IllegalStateException("値段" + displayPrice + ", validDays=" + validDays + ", entryCount=" + entryCount);
+            throw new IllegalStateException("有効日数を超えています。現在の入園カウント: " + entryCount + ", 有効日数: " + validDays);
         }
 
-        if (nightOnly && DayNightChecker.isDay(checkTime)) {
-            throw new IllegalStateException("このチケットは夜間専用です。指定された時刻(" + checkTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ")は昼間のため使用できません。");
+        LocalTime currentTime = clockProvider.getCurrentTime();
+        if (nightOnly && DayNightChecker.isDay(currentTime)) {
+            throw new IllegalStateException("このチケットは夜間専用です。現在時刻(" + currentTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ")は昼間のため使用できません。");
         }
         entryCount++;
     }

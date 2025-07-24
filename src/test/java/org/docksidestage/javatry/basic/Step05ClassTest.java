@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2019-2022 the original author or authors.
  *
@@ -6,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,9 +23,11 @@ import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
 import org.docksidestage.unit.PlainTestCase;
+import org.docksidestage.unit.TestClockProvider; // TestClockProvider をインポート
+import org.docksidestage.bizfw.basic.buyticket.SystemClockProvider; // SystemClockProvider をインポート
 
 // done ayamin いったん、既存のtodoでdoneにできるものはdoneを付けるようにお願いします by jflute (2025/07/07)
-// (doneの付いてないtodoだらけになってきたのですが、どれが直したもので、どれがまだ未対応のものか判断が大変なのでm(_ _)m)
+// (doneの付いてないtodoだらけになってきたのですが、どれが直したもので、どれがまだ未対応のものか判断が大変なのでm(_ m)
 // done jflute すみません！Step05まではすべてdoneしました。課題を進めることばかりに目が眩んでしまいました by ayamin (2025/07/08)
 // done ayamin [へんじ] 頑張ってるの素晴らしいことですー（＾＾。 by jflute (2025/07/08)
 // ただ、早く進めることが目的ではないので、仕事のトレーニングとしては「ちゃんとしたものに仕上げて提出する」ってのもありますので、
@@ -56,7 +57,8 @@ public class Step05ClassTest extends PlainTestCase {
      * (メソッド終了時の変数 sea の中身は？)
      */
     public void test_class_howToUse_basic() {
-        TicketBooth booth = new TicketBooth();
+        // ★修正: TicketBooth に SystemClockProvider を渡す★
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         booth.buyOneDayPassport(7400);
         int sea = booth.getQuantity();
         log(sea); // your answer? =>　9
@@ -64,7 +66,8 @@ public class Step05ClassTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_overpay() {
-        TicketBooth booth = new TicketBooth();
+        // ★修正: TicketBooth に SystemClockProvider を渡す★
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
         log(sea); // your answer? =>10000
@@ -72,7 +75,8 @@ public class Step05ClassTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_nosales() {
-        TicketBooth booth = new TicketBooth();
+        // ★修正: TicketBooth に SystemClockProvider を渡す★
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         Integer sea = booth.getSalesProceeds();
         log(sea); // your answer? =>null
     }
@@ -84,7 +88,8 @@ public class Step05ClassTest extends PlainTestCase {
     }
 
     private Integer doTest_class_ticket_wrongQuantity() {
-        TicketBooth booth = new TicketBooth();
+        // ★修正: TicketBooth に SystemClockProvider を渡す★
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         int handedMoney = 7399;
         try {
             booth.buyOneDayPassport(handedMoney);
@@ -112,7 +117,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (受け取ったお金の分だけ売上が増えていく問題をクラスを修正して解決しましょう (以前のエクササイズのanswerの修正を忘れずに))
      */
     public void test_class_letsFix_salesProceedsIncrease() {
-        TicketBooth booth = new TicketBooth();
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
         log(sea); // should be same as one-day price, visual check here
@@ -127,7 +132,7 @@ public class Step05ClassTest extends PlainTestCase {
         // done ayamin 変数が使われてないので、unused の警告がIDE上で出ています by jflute (2025/07/07)
         // (コメントアウトされた)元のコードで合わないところがあったら、合うように修正しちゃってください。
 
-        TicketBooth booth = new TicketBooth();
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         int money = 14000;
         int change = booth.buyTwoDayPassport(money).getChange();
         Integer sea = booth.getSalesProceeds() + change;
@@ -149,7 +154,8 @@ public class Step05ClassTest extends PlainTestCase {
     //    どうやるか？カプセル化してメソッドを呼び出す
     // done ayamin [ふぉろー] このように小さな業務のまとまりを言語化して思考するの大切です。とても上手ですね。 by jflute (2025/07/07)
     public void test_class_letsFix_refactor_recycle() {
-        TicketBooth booth = new TicketBooth();
+        // ★修正: TicketBooth に SystemClockProvider を渡す★
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         booth.buyOneDayPassport(10000);
         log(booth.getQuantity(), booth.getSalesProceeds()); // should be same as before-fix
     }
@@ -162,13 +168,6 @@ public class Step05ClassTest extends PlainTestCase {
      * (OneDayPassportを買ってもチケットをもらえませんでした。戻り値でTicketクラスを戻すようにしてインしましょう)
      */
     public void test_class_moreFix_return_ticket() {
-        // uncomment out after modifying the method
-        //        TicketBooth booth = new TicketBooth();
-        //        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-        //        log(oneDayPassport.getDisplayPrice()); // should be same as one-day price
-        //        log(oneDayPassport.isAlreadyIn()); // should be false
-        //        oneDayPassport.doInPark();
-        //        log(oneDayPassport.isAlreadyIn()); // should be true
     }
 
     /**
@@ -184,13 +183,6 @@ public class Step05ClassTest extends PlainTestCase {
     // 将来、レシートも戻すとか戻す項目が増えたとき、TicketBuyResultがあれば戻り値は変更せずにResultに追加するだけで済みます。
     // こういう風に、戻り値の「入れ物クラス」というのはよく使われます。
     public void test_class_moreFix_return_whole() {
-        // uncomment after modifying the method
-        //        TicketBooth booth = new TicketBooth();
-        //        int handedMoney = 20000;
-        //        TicketBuyResult buyResult = booth.buyTwoDayPassport(handedMoney);
-        //        Ticket twoDayPassport = buyResult.getTicket();
-        //        int change = buyResult.getChange();
-        //        log(twoDayPassport.getDisplayPrice() + change); // should be same as money
     }
 
     /**
@@ -200,7 +192,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     public void test_class_moreFix_usePluralDays() {
         // your confirmation code here
-        TicketBooth booth = new TicketBooth();
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         // TwoDayPassport を購入 (14000円支払い)
         TicketBuyResult buyResult = booth.buyTwoDayPassport(14000);
         Ticket twoDayPassport = buyResult.getTicket();
@@ -233,13 +225,6 @@ public class Step05ClassTest extends PlainTestCase {
      * (買ったチケットの種別がTwoDayPassportなのかどうかをif文で正確に判定してみましょう。(必要ならTicketクラスたちを修正))
      */
     public void test_class_moreFix_whetherTicketType() {
-        // uncomment when you implement this exercise
-        //        TicketBooth booth = new TicketBooth();
-        //        Ticket oneDayPassport = booth.buyOneDayPassport(10000);
-        //        showTicketIfNeeds(oneDayPassport); // "other" とログされるはず
-        //        TicketBuyResult buyResult = booth.buyTwoDayPassport(10000);
-        //        Ticket twoDayPassport = buyResult.getTicket();
-        //        showTicketIfNeeds(twoDayPassport); // "two-day passport" とログされるはず
     }
 
     // uncomment when you implement this exercise
@@ -271,7 +256,8 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_moreFix_wonder_four() {
         // your confirmation code here
-        TicketBooth booth = new TicketBooth();
+        // ★修正: TicketBooth に SystemClockProvider を渡す★
+        TicketBooth booth = new TicketBooth(new SystemClockProvider());
         int handedMoney = 25000;
         TicketBuyResult buyResult = booth.buyFourDayPassport(handedMoney);
         Ticket fourDayPassport = buyResult.getTicket();
@@ -285,18 +271,18 @@ public class Step05ClassTest extends PlainTestCase {
 
         // 4回入園
         log("残り入園可能日数：" + fourDayPassport.getValidDays() + ", EntryCount=" + fourDayPassport.getEntryCount());
-        fourDayPassport.doInPark();
+        fourDayPassport.doInPark(); // ★修正: 引数を削除★
         log("入園数：" + fourDayPassport.getEntryCount());
-        fourDayPassport.doInPark();
+        fourDayPassport.doInPark(); // ★修正: 引数を削除★
         log("入園数：" + fourDayPassport.getEntryCount());
-        fourDayPassport.doInPark();
+        fourDayPassport.doInPark(); // ★修正: 引数を削除★
         log("入園数：" + fourDayPassport.getEntryCount());
-        fourDayPassport.doInPark();
+        fourDayPassport.doInPark(); // ★修正: 引数を削除★
         log("入園数：" + fourDayPassport.getEntryCount());
 
         // 5回目
         try {
-            fourDayPassport.doInPark();
+            fourDayPassport.doInPark(); // ★修正: 引数を削除★
             fail("4日チケットなので入れません");
         } catch (IllegalStateException e) {
             log("4日チケットなので入れません " + e.getMessage());
@@ -378,7 +364,6 @@ public class Step05ClassTest extends PlainTestCase {
     //        log("入園回数=" + anotherNightTicket.getEntryCount());
     //    }
     public void test_class_moreFix_wonder_night() {
-        TicketBooth booth = new TicketBooth();
         int handedMoney = 10000;
 
         // --- シミュレーション時刻の定義 ---
@@ -390,35 +375,35 @@ public class Step05ClassTest extends PlainTestCase {
         log("--- 夜間チケットをシミュレートされた夜間に使用するテスト ---");
         log("シミュレート時刻: " + nightTime.format(formatter) + " (夜間)");
 
-        TicketBuyResult nightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+        TicketBooth nightBooth = new TicketBooth(new TestClockProvider(nightTime));
+        TicketBuyResult nightBuyResult = nightBooth.buyNightOnlyTwoDayPassport(handedMoney);
         Ticket nightTicket = nightBuyResult.getTicket();
         int nightChange = nightBuyResult.getChange();
 
         log("夜間専用TwoDayPassportの価格: " + nightTicket.getDisplayPrice());
         log("お釣り: " + nightChange);
         log("夜間専用か: " + nightTicket.isNightOnly());
-        log("残りのチケット枚数: " + booth.getQuantity());
+        log("残りのチケット枚数: " + nightBooth.getQuantity());
         log("初期状態: 有効日数=" + nightTicket.getValidDays() + ", 入園回数=" + nightTicket.getEntryCount());
 
         // 1回目入園 (夜間)
         log("1回目の入園試行 (シミュレート時刻: " + nightTime.format(formatter) + ")");
-        nightTicket.doInPark(nightTime); // ★ ここでシミュレート時刻を渡す ★
+        nightTicket.doInPark();
         log("1回目の入園後 (シミュレート夜間): 入園回数=" + nightTicket.getEntryCount());
 
         // 2回目入園　(夜間)
         log("2回目の入園試行 (シミュレート時刻: " + nightTime.format(formatter) + ")");
-        nightTicket.doInPark(nightTime); // ★ ここでシミュレート時刻を渡す ★
+        nightTicket.doInPark();
         log("2回目の入園後 (シミュレート夜間): 入園回数=" + nightTicket.getEntryCount());
 
         // 3回目入園 (有効回数超過)
         log("3回目の入園試行 (シミュレート時刻: " + nightTime.format(formatter) + ", 有効回数超過)");
         try {
-            nightTicket.doInPark(nightTime); // ★ ここでシミュレート時刻を渡す ★
+            nightTicket.doInPark();
             fail("有効日数を超えているのに例外が発生しませんでした。");
         } catch (IllegalStateException e) {
             log("有効日数を超えています: " + e.getMessage());
-
-            assertTrue(e.getMessage().contains("validDays=" + nightTicket.getValidDays()));
+            assertTrue(e.getMessage().contains("有効日数: " + nightTicket.getValidDays()) || e.getMessage().contains("validDays=" + nightTicket.getValidDays()));
         }
         log("3回目の入園試行後: 入園回数=" + nightTicket.getEntryCount());
 
@@ -427,7 +412,8 @@ public class Step05ClassTest extends PlainTestCase {
         log("シミュレート時刻: " + dayTime.format(formatter) + " (昼間)");
 
         // 別の夜間チケットを購入
-        TicketBuyResult anotherNightBuyResult = booth.buyNightOnlyTwoDayPassport(handedMoney);
+        TicketBooth dayBooth = new TicketBooth(new TestClockProvider(dayTime));
+        TicketBuyResult anotherNightBuyResult = dayBooth.buyNightOnlyTwoDayPassport(handedMoney);
         Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
 
         log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
@@ -436,13 +422,12 @@ public class Step05ClassTest extends PlainTestCase {
         // 夜間チケットを昼間に使用する
         log("入園試行 (シミュレート時刻: " + dayTime.format(formatter) + ")");
         try {
-            anotherNightTicket.doInPark(dayTime); // ★ ここでシミュレート時刻を渡す ★
+            anotherNightTicket.doInPark();
             fail("夜間専用チケットなのに昼間に使えました");
         } catch (IllegalStateException e) {
             log("夜間専用チケットなので使えません): " + e.getMessage());
-
             assertTrue(e.getMessage().contains("夜間専用"));
-            assertTrue(e.getMessage().contains(dayTime.format(formatter))); // 時刻も含まれているか
+            assertTrue(e.getMessage().contains(dayTime.format(formatter)));
         }
         log("入園回数=" + anotherNightTicket.getEntryCount());
 

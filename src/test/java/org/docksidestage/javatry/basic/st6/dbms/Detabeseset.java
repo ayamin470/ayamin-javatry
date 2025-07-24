@@ -9,13 +9,13 @@ package org.docksidestage.javatry.basic.st6.dbms;
 // (回答) step6のオブジェクト指向とインターフェースの違いの話とつながるのでそっちへ
 // TODO jflute #1on1: オブジェクト指向とインターフェースの違いの話をする (2025/07/18)
 
-// TODO ayamin Javaのクラス名はキャメルケースが慣習なので... DatabeseSet にしましょう by jflute (2025/07/18)
+// TODO done ayamin Javaのクラス名はキャメルケースが慣習なので... DatabeseSet にしましょう by jflute (2025/07/18)
 // 一方で、スペルミス？ Databese -> Database ですかね。 
 /**
  * @author ayamin
  */
 
-public abstract class databeseset {
+public abstract class Detabeseset {
     // TODO ayamin [見比べ課題] Animal の bark() と、ここの buildPagingQuery() を比べてみてください。 by jflute (2025/07/16)
     // 再利用の方法というか構造というか方向性がちょっと違うと思いません？
     // TODO done jflute あまりピンとこなかったので、1on1でお話しさせていただきたいです！
