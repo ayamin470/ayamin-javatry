@@ -31,7 +31,6 @@ public abstract class Animal implements Loudable {
     //                                                                               Bark
     //                                                                              ======
     public BarkedSound bark() {
-
         return barkingProcess.bark(getBarkWord(), this::downHitPoint);
     }
 

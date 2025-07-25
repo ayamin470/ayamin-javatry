@@ -19,6 +19,8 @@ import java.math.BigDecimal;
 
 import org.docksidestage.unit.PlainTestCase;
 
+// #1on1: よもやま話: 途切れ途切れの作業でも困らない工夫を (2025/07/25)
+// #1on1: Live Templatesのimportのデモ: 繰り返す指を効率化する工夫を (2025/07/25)
 /**
  * The test of variable. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -26,8 +28,7 @@ import org.docksidestage.unit.PlainTestCase;
  * @author jflute
  * @author ayamin
  */
-public class Step01VariableTest extends PlainTestCase
-{
+public class Step01VariableTest extends PlainTestCase {
 
     // ===================================================================================
     //                                                                      Local Variable
@@ -80,7 +81,6 @@ public class Step01VariableTest extends PlainTestCase
         log(sea); // your answer? => 416
     }
 
-    // TODO [memo] ayamin BigDecimalの用法に注意！
     //  BigDecimalは新しいインスタンスを作るために、元の変数は置き換わらない
     //  sea.add(new BigDecimal(1));しても、seaの中身は+１されていない。sea(2)が作られて、それが+1されているイメージ
 
@@ -93,14 +93,14 @@ public class Step01VariableTest extends PlainTestCase
     // イミュータブル (Immutable) オブジェクトだと思います
     // 今回はBigDecimalですが、ほかにもBigIntegerや、String クラス: concat(), substring(), replace() など、Stringイミュータブルです メソッドも
     // これらは一度作られた後は変更できないので、元のオブジェクトを変更するのではなく、新しいオブジェクトを生成してその結果を返します
-    
+
     // done ayamin [へんじ] Goodです。ありがとうございます！1on1のときに少しだけ補足する予定です。 by jflute (2025/07/02)
     // ちなみに、todoに対するdoneですが、
     // ↓の「レビューのやり取り」の欄を参考にお願いします。
     // https://dbflute.seasar.org/ja/tutorial/handson/review/jflutereview.html#review
     // TODOにはこのように返事をすると言うこと。理解しました。次回から修正いたします
     // done ayamin 改めて、Slackでtodoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
-    
+
     // done jflute 1on1にて、immutableの補足をする (2025/07/08)
     // #1on1: 質問、BigDecimalだったら何でもできるから、最初からそうしてた方が汎用性が高いか？
     // 回答: 論理的にはその通りですが、BigDecimalはちょっと扱いづらいクラスなので、
@@ -203,12 +203,13 @@ public class Step01VariableTest extends PlainTestCase
         String seaStr = sea.toString(); // is "harbor"
         sea = new StringBuilder(seaStr).append(land);
     }
-    
+
     // #1on1: インスタンスとは？のお話
 
     // ===================================================================================
     //                                                                           Challenge
     //                                                                           =========
+
     /**
      * Define variables as followings:
      * <pre>
@@ -248,8 +249,7 @@ public class Step01VariableTest extends PlainTestCase
     // done jflute 1on1にて、字下げだけじゃなくフォーマット全体の話をする (2025/07/08)
     // #1on1 フォーマッターのお話。javaのデフォルトのフォーマットのお話。
 
-    public class original extends PlainTestCase
-    {
+    public class original extends PlainTestCase {
         private int piari;
         public void test_variable_writing() {
             String sea = "mystic";
@@ -258,11 +258,10 @@ public class Step01VariableTest extends PlainTestCase
         }
     }
 
-
-
     // ===================================================================================
     //                                                                           Good Luck
     //                                                                           =========
+
     /**
      * Make your original exercise as question style about variable. <br>
      * (変数についてあなたのオリジナルの質問形式のエクササイズを作ってみましょう)
@@ -313,6 +312,5 @@ public class Step01VariableTest extends PlainTestCase
      type,price,toppingそれぞれがインスタンス変数で、
      それぞれに"チョコレートケーキ","ショートケーキ","500""600"というように、インスタンスごとに別の値を入れられる
      */
-
 
 }
