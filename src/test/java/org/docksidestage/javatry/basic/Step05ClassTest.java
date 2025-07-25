@@ -228,24 +228,38 @@ public class Step05ClassTest extends PlainTestCase {
     }
 
     // uncomment when you implement this exercise
+//    private void showTicketIfNeeds(Ticket ticket) {
+//        // done ayamin NightOnlyは別なので、純粋に TwoDayPassport だけがヒットするようにしましょう by jflute (2025/07/07)
+//        // done jflute よくわからなかったので、1on1で一緒に確認させていただきたいです！ by ayamin (2025/07/08)
+//        // done ayamin りょうかいですー。説明の準備だけしておきます by jflute (2025/07/08)
+//        // チケットの種別は4種類。
+//        //  o OneDayPassport
+//        //  o TwoDayPassport
+//        //  o FourDayPassport
+//        //  o NightOnlyTwoDayPassport
+//        // TwoDayPassport と NightOnlyTwoDayPassport は日数が似てるけど、チケットとして別物。
+//        // なので、TwoDayPassport を判定するというときに、NightOnlyTwoDayPassport はヒットしてはいけない。
+//        // TODO done ayamin 修行++: NightOnlyが紛れないようにしましょう by jflute (2025/07/15)
+//        if (ticket.getValidDays() == 2) { // write determination for two-day passport
+//            log("それは2日パスポートだよ");
+//        } else {
+//            log("2日パスポートじゃないよ");
+//        }
+//    }
+
+    //TODO  jflute 修行++:を解いてみましたが、テスト実行ができず、合っているか確認できない...そもそもテストコードの仕組みがよくわかっていないようなので、そこから教えていただきたいです by ayamin
     private void showTicketIfNeeds(Ticket ticket) {
-        // done ayamin NightOnlyは別なので、純粋に TwoDayPassport だけがヒットするようにしましょう by jflute (2025/07/07)
-        // done jflute よくわからなかったので、1on1で一緒に確認させていただきたいです！ by ayamin (2025/07/08)
-        // done ayamin りょうかいですー。説明の準備だけしておきます by jflute (2025/07/08)
-        // チケットの種別は4種類。
-        //  o OneDayPassport
-        //  o TwoDayPassport
-        //  o FourDayPassport
-        //  o NightOnlyTwoDayPassport
-        // TwoDayPassport と NightOnlyTwoDayPassport は日数が似てるけど、チケットとして別物。
-        // なので、TwoDayPassport を判定するというときに、NightOnlyTwoDayPassport はヒットしてはいけない。
-        // TODO ayamin 修行++: NightOnlyが紛れないようにしましょう by jflute (2025/07/15)
-        if (ticket.getValidDays() == 2) { // write determination for two-day passport
+        if (ticket.isNightOnly()) {
+            log("それは夜間専用2日パスポートだよ");
+        }
+        else if (ticket.getValidDays() == 2) {
             log("それは2日パスポートだよ");
-        } else {
+        }
+        else {
             log("2日パスポートじゃないよ");
         }
     }
+
 
     // ===================================================================================
     //                                                                           Good Luck
