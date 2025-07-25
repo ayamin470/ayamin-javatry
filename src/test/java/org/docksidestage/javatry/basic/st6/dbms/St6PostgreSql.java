@@ -19,11 +19,10 @@ package org.docksidestage.javatry.basic.st6.dbms;
  * @author jflute
  * @author ayamin
  */
-public class St6PostgreSql extends Detabeseset{
+public class St6PostgreSql extends DetabaseSet {
 
     @Override
-    public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = calculateOffset(pageSize, pageNumber);
+    protected String doBuildPagingSqlPart(int pageSize, int offset) {
         return "offset " + offset + " limit " + pageSize;
     }
 }

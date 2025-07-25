@@ -1,7 +1,5 @@
 package org.docksidestage.javatry.basic.st6.dbms;
 
-import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
-
 // done ayamin この潔いクラス名が良いですね笑。自身のコメントで「データベースの種類」という言葉が出ていますから... by jflute (2025/07/10)
 // MySQLは何？PostgreSQLは何？(なんて名前のスーパークラスを継承すればいいのか？) の答えが出てるんじゃないかと。
 // done ayamin とはいえ、もう少しクラス名は練ったほうがいいですよね。反省。何の Superclass なのか見た人はわからないかもしれないので by ayamin (2025/07/11)
@@ -18,22 +16,25 @@ import org.docksidestage.bizfw.basic.objanimal.barking.BarkedSound;
  * @author ayamin
  */
 
-public abstract class Detabeseset {
+public abstract class DetabaseSet {
     // done ayamin [見比べ課題] Animal の bark() と、ここの buildPagingQuery() を比べてみてください。 by jflute (2025/07/16)
     // 再利用の方法というか構造というか方向性がちょっと違うと思いません？
     // done jflute あまりピンとこなかったので、1on1でお話しさせていただきたいです！
     // done jflute #1on1 でフォロー予定 (2025/07/18)
     // #1on1: bark()は、流れが再利用できている。こっちは、流れが再利用できていない。
-    // TODO ayamin ということで伝統的なテンプレートメソッドパターンになおしてみましょう by jflute (2025/07/25)
+    // TODO done ayamin ということで伝統的なテンプレートメソッドパターンになおしてみましょう by jflute (2025/07/25)
     protected int calculateOffset(int pageSize, int pageNumber) {
         return pageSize * (pageNumber - 1);
     }
 
-    // 比較用:
-    //public BarkedSound bark() {
-    //    return barkingProcess.bark(getBarkWord(), this::downHitPoint);
-    //}
-    public abstract String buildPagingQuery(int pageSize, int pageNumber);
+    public final String buildPagingQuery(int pageSize, int pageNumber) {
+        int offset = calculateOffset(pageSize, pageNumber); // 共通手順
+        String pagingSqlPart = doBuildPagingSqlPart(pageSize, offset); // ★フックメソッドを呼び出す★
+        return pagingSqlPart;
+    }
+
+    protected abstract String doBuildPagingSqlPart(int pageSize, int offset);
+
 }
 
 //TODO [memo] ayamin

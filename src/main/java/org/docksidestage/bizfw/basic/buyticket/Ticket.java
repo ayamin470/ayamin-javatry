@@ -83,8 +83,10 @@ public class Ticket {
         LocalTime currentTime = clockProvider.getCurrentTime();
         if (nightOnly && DayNightChecker.isDay(currentTime)) {
             // done ayamin [いいね] 例外メッセージ、とても詳しくて素晴らしい by jflute (2025/07/24)
-            // TODO ayamin 横長すぎるので、現在時刻のところ、変数に抽出しましょう by jflute (2025/07/25)
-            throw new IllegalStateException("このチケットは夜間専用です。現在時刻(" + currentTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + ")は昼間のため使用できません。");
+            // TODO done ayamin 横長すぎるので、現在時刻のところ、変数に抽出しましょう by jflute (2025/07/25)
+            String CurrentTime = currentTime.format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+            String errorMessage = "このチケットは夜間専用です。現在時刻(" + CurrentTime + ")は昼間のため使用できません。";
+            throw new IllegalStateException(errorMessage);
         }
         entryCount++;
     }

@@ -19,12 +19,11 @@ package org.docksidestage.javatry.basic.st6.dbms;
  * @author jflute
  * @author ayamin
  */
-public class St6MySql extends Detabeseset{
+public class St6MySql extends DetabaseSet {
 
     // done offsetを導出するロジックがMySQLとPostgreSQLで冗長なのでどうにかしたいですね by jflute (2025/07/10)
     @Override
-    public String buildPagingQuery(int pageSize, int pageNumber) {
-        int offset = calculateOffset(pageSize, pageNumber);
+    protected String doBuildPagingSqlPart(int pageSize, int offset) {
         return "limit " + offset + ", " + pageSize;
     }
 }
