@@ -239,7 +239,7 @@ public class Step05ClassTest extends PlainTestCase {
 //        //  o NightOnlyTwoDayPassport
 //        // TwoDayPassport と NightOnlyTwoDayPassport は日数が似てるけど、チケットとして別物。
 //        // なので、TwoDayPassport を判定するというときに、NightOnlyTwoDayPassport はヒットしてはいけない。
-//        // TODO done ayamin 修行++: NightOnlyが紛れないようにしましょう by jflute (2025/07/15)
+//        // done ayamin 修行++: NightOnlyが紛れないようにしましょう by jflute (2025/07/15)
 //        if (ticket.getValidDays() == 2) { // write determination for two-day passport
 //            log("それは2日パスポートだよ");
 //        } else {
@@ -247,8 +247,12 @@ public class Step05ClassTest extends PlainTestCase {
 //        }
 //    }
 
-    //TODO  jflute 修行++:を解いてみましたが、テスト実行ができず、合っているか確認できない...そもそもテストコードの仕組みがよくわかっていないようなので、そこから教えていただきたいです by ayamin
+    // done jflute 修行++:を解いてみましたが、テスト実行ができず、合っているか確認できない...そもそもテストコードの仕組みがよくわかっていないようなので、そこから教えていただきたいです by ayamin
+    // TODO ayamin [へんじ] りょうかいです。1on1でテスト実行についてのフォローも入れますね by jflute (2025/07/31)
     private void showTicketIfNeeds(Ticket ticket) {
+        // TODO ayamin [いいね] 夜間専用の2日のパスポードは除外できるようになりましたね by jflute (2025/07/31)
+        // TODO ayamin 修行#: 一方で、昔スターライトパスポートってのものがありましたが、夜間ではないけど時間制限の2日パスポートとかあったとき... by jflute (2025/07/31)
+        // やっぱりそれが紛れてしまう問題が残ります。hint1: チケットの種別という概念で比較できたら...
         if (ticket.isNightOnly()) {
             log("それは夜間専用2日パスポートだよ");
         }
@@ -460,11 +464,25 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
     }
 
+    // TODO ayamin 実はjavatry本家でちょっとここのエクササイズのニュアンスが変わりました by jflute (2025/07/31)
+    // いざJavaDocが書いたほうが良いという場面で、しっかりとJavaDocを書けるスキルもあった方が良いということで、
+    // 本気でJavaDocを書いてみる体験をしてもらいたいと思いまして。
+    // Ticketクラスが世に公開するクラスのつもりで、JavaDocを書いてみて欲しいです。
+    // 
+    // before:
+    ///**
+    // * Write intelligent comments on source code to the main code in buyticket package. <br>
+    // * (buyticketパッケージのクラスに、気の利いたコメントを追加してみましょう)
+    // */
+    //public void test_class_moreFix_yourSuperComments() {
+    //    // your confirmation code here
+    //}
+    // after:
     /**
-     * Write intelligent comments on source code to the main code in buyticket package. <br>
-     * (buyticketパッケージのクラスに、気の利いたコメントを追加してみましょう)
+     * Write intelligent JavaDoc comments seriously on the public classes/constructors/methods of the Ticket class. <br>
+     * (Ticketクラスのpublicなクラス/コンストラクター/メソッドに、気の利いたJavaDocコメントを本気で書いてみましょう)
      */
-    public void test_class_moreFix_yourSuperComments() {
+    public void test_class_moreFix_yourSuperJavaDoc() {
         // your confirmation code here
     }
 }
