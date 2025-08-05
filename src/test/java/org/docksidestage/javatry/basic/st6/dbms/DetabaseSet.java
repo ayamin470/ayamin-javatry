@@ -22,7 +22,12 @@ public abstract class DetabaseSet {
     // done jflute あまりピンとこなかったので、1on1でお話しさせていただきたいです！
     // done jflute #1on1 でフォロー予定 (2025/07/18)
     // #1on1: bark()は、流れが再利用できている。こっちは、流れが再利用できていない。
-    // TODO done ayamin ということで伝統的なテンプレートメソッドパターンになおしてみましょう by jflute (2025/07/25)
+    // done ayamin ということで伝統的なテンプレートメソッドパターンになおしてみましょう by jflute (2025/07/25)
+    // TODO ayamin [いいね] おおおぉ、Good。buildPagingQuery()の流れが見事に再利用できていますね！ by jflute (2025/07/31)
+    // オブジェクト階層を作るのであれば、できればこういった構造を作っていきたいところです。
+    
+    // TODO ayamin 細かいところですが、publicメソッドに対して、呼ばれるprotectedメソッドはpublicメソッドの下に by jflute (2025/07/31)
+    // buildPagingQuery() の下に doBuildPagingSqlPart() が定義されているのと同様に、calculateOffset() も。
     protected int calculateOffset(int pageSize, int pageNumber) {
         return pageSize * (pageNumber - 1);
     }
