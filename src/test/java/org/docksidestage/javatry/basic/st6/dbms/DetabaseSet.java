@@ -37,6 +37,8 @@ public abstract class DetabaseSet {
 
 }
 
+    // TODO ayami.hatano  (2025/08/01)
+
 //TODO [memo] ayamin
 // 中身が空(に見える)抽象クラスを作って何が嬉しいのか？意味があるのか？
 // ①もし抽象クラスがない場合、それぞれの場所で「もしMySQLならこう、もしPostgreSQLならこう」とデータベースの種類に応じて異なるクラスをインスタンス化し、異なるメソッドを呼び出すためのif-elseやswitch文を書く必要が出てきて面倒&複雑
