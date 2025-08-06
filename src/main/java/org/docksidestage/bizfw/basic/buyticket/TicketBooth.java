@@ -42,7 +42,7 @@ public class TicketBooth {
     //                                                                         Constructor
     //                                                                         ===========
     public TicketBooth(ClockProvider clockProvider) {
-        // TODO done ayamin インスタンス変数と同じ初期化しているので、どっちか不要 by jflute (2025/07/25)
+        // done ayamin インスタンス変数と同じ初期化しているので、どっちか不要 by jflute (2025/07/25)
         this.clockProvider = clockProvider;
     }
 

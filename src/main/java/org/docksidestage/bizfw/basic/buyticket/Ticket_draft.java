@@ -85,9 +85,9 @@
 //        if (nightOnly && DayNightChecker.isDay(currentTime)) {
 //            // done ayamin [いいね] 例外メッセージ、とても詳しくて素晴らしい by jflute (2025/07/24)
 //            // done ayamin 横長すぎるので、現在時刻のところ、変数に抽出しましょう by jflute (2025/07/25)
-//            // TODO done ayamin 細かいですが、変数名の先頭は小文字で (CurrentTime -> currentTime) by jflute (2025/07/31)
+//            // done ayamin 細かいですが、変数名の先頭は小文字で (CurrentTime -> currentTime) by jflute (2025/07/31)
 //            // スコープ短いですが、IntelliJのrenameのショートカット機能を使ってrenameしてみましょう。(指トレーニング)
-//            // TODO done ayamin 細かいですが、java.time.format.DateTimeFormatter のところ、FQCN じゃなくて良いと思います by jflute (2025/07/31)
+//            // done ayamin 細かいですが、java.time.format.DateTimeFormatter のところ、FQCN じゃなくて良いと思います by jflute (2025/07/31)
 //            String CurrentTime = currentTime.format(DateTimeFormatter.ofPattern("HH:mm"));
 //            String errorMessage = "このチケットは夜間専用です。現在時刻(" + CurrentTime + ")は昼間のため使用できません。";
 //            throw new IllegalStateException(errorMessage);

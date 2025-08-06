@@ -17,6 +17,11 @@ package org.docksidestage.bizfw.basic.buyticket;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+// TODO ayamin [いいね] javadoc素晴らしい、特に2行目の補足の抽象度が良い by jflute (2025/08/06)
+// #1on1: javadoc, 読み手を想像して書く (2025/08/06)
+// #1on1: javadocを見る意義、ググってもAIでも、レアなクラス、業務内のクラスはわからない (2025/08/06)
+// #1on1: 本気のJavaDocの例
+// https://github.com/lastaflute/lastaflute-example-maihama/blob/master/maihama-orleans/src/main/java/org/docksidestage/bizfw/job/contributed/NxBatchRecorder.java
 /**
  * 遊園地のチケットを表すクラス
  * チケットの情報(有効日数、価格など)と、入園処理を定義
@@ -37,6 +42,9 @@ public class Ticket {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
+    // #1on1: コンストラクターが一個しか無いので、重要なの@param, 説明がなくてもいいかも
+    // 一方で、TicketBoothみたいに、コンストラクターあって用途の区別があるのであればそれは説明したい。
+    // #1on1: (NotNull) の話
     /**
      * チケットを構築する
      * @param displayPrice チケットに表示される価格
@@ -65,6 +73,9 @@ public class Ticket {
 
         LocalTime currentTime = clockProvider.getCurrentTime();
         if (nightOnly && DayNightChecker.isDay(currentTime)) {
+            // TODO ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
+            // TODO ayamin 同じ概念でも型違いの変数が同じスコープに入るときは名前で区別しましょう by jflute (2025/08/06)
+            //  e.g. currentTimeStr, currentTimeDisp, currentTimeExp
             String CurrentTime = currentTime.format(DateTimeFormatter.ofPattern("HH:mm"));
             String errorMessage = "このチケットは夜間専用です。現在時刻(" + CurrentTime + ")は昼間のため使用できません。";
             throw new IllegalStateException(errorMessage);
@@ -74,6 +85,9 @@ public class Ticket {
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
+    // #1on1: getterのjavadoc, 書かれないことが多いけど...特に業務の項目に関しては、javadocあると嬉しい。
+    // #1on1: privateのインスタンス変数にあるよりかは、publicのgetterにある方が呼び出し側にとって嬉しい。
+    // #1on1: オウム返し問題の話、個人的には@returnのみのjavadocでもいいかなと思う、よくやる。
     /**
      * チケットに表示されている価格を取得
      * @return チケットの表示価格
