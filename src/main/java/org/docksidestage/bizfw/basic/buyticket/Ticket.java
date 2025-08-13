@@ -73,11 +73,11 @@ public class Ticket {
 
         LocalTime currentTime = clockProvider.getCurrentTime();
         if (nightOnly && DayNightChecker.isDay(currentTime)) {
-            // TODO ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
-            // TODO ayamin 同じ概念でも型違いの変数が同じスコープに入るときは名前で区別しましょう by jflute (2025/08/06)
+            // TODO done ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
+            // TODO done ayamin 同じ概念でも型違いの変数が同じスコープに入るときは名前で区別しましょう by jflute (2025/08/06)
             //  e.g. currentTimeStr, currentTimeDisp, currentTimeExp
-            String CurrentTime = currentTime.format(DateTimeFormatter.ofPattern("HH:mm"));
-            String errorMessage = "このチケットは夜間専用です。現在時刻(" + CurrentTime + ")は昼間のため使用できません。";
+            String currentTimeStr = currentTime.format(DateTimeFormatter.ofPattern("HH:mm"));
+            String errorMessage = "このチケットは夜間専用です。現在時刻(" + currentTimeStr + ")は昼間のため使用できません。";
             throw new IllegalStateException(errorMessage);
         }
         entryCount++;

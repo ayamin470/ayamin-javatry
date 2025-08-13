@@ -56,15 +56,12 @@ public class TicketBooth {
     public TicketBuyResult buyOneDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, ONE_DAY_PRICE, 1, false);
     }
-
     public TicketBuyResult buyTwoDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, TWO_DAY_PRICE, 2, false);
     }
-
     public TicketBuyResult buyFourDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, FOUR_DAY_PRICE, 4, false);
     }
-
     public TicketBuyResult buyNightOnlyTwoDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, NIGHT_ONLY_TWO_DAY_PRICE, 2, true);
     }

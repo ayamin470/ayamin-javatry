@@ -292,7 +292,7 @@ public class Step02IfForTest extends PlainTestCase {
         String sea = resultSea;
         log(sea);
     }
-    // TODO[memo] auamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
+    // TODO[memo] ayamin 最終的なseaの値：hanger "br"で始まらず、かつ最初に"ga"を含む要素が見つかったその時の要素
     //  breakFlag を使わずに、Stream API の reduce を用いて同じ結果を得る
 
     public void test_original2_forEach() {

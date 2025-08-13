@@ -253,6 +253,8 @@ public class Step05ClassTest extends PlainTestCase {
         // TODO ayamin [いいね] 夜間専用の2日のパスポードは除外できるようになりましたね by jflute (2025/07/31)
         // TODO ayamin 修行#: 一方で、昔スターライトパスポートってのものがありましたが、夜間ではないけど時間制限の2日パスポートとかあったとき... by jflute (2025/07/31)
         // やっぱりそれが紛れてしまう問題が残ります。hint1: チケットの種別という概念で比較できたら...
+        //TODO jflute "nightOnlyTwoDayPassport"に関しては、入るときの現在時刻で使えるかどうかを判定しているので、まぎれないのでは...？と思ってます。多分私の認識が間違っているので、教えてください！ by ayamin (2025/08/13)
+        //TODO jflute [ざつだん] 修行#と修行++の違いって、なんですか？ (これもざつだんですが、同期同士の会話で、ちょっとストレッチな業務タスクやプライベートの問題に対して「修行++だねえ」と発言するのが一瞬流行りました笑)　by ayamin (2025/08/13)
         if (ticket.isNightOnly()) {
             log("それは夜間専用2日パスポートだよ");
         }
@@ -263,8 +265,6 @@ public class Step05ClassTest extends PlainTestCase {
             log("2日パスポートじゃないよ");
         }
     }
-
-
     // ===================================================================================
     //                                                                           Good Luck
     //                                                                           =========
@@ -464,7 +464,7 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
     }
 
-    // TODO ayamin 実はjavatry本家でちょっとここのエクササイズのニュアンスが変わりました by jflute (2025/07/31)
+    // TODO done 実はjavatry本家でちょっとここのエクササイズのニュアンスが変わりました by jflute (2025/07/31)
     // いざJavaDocが書いたほうが良いという場面で、しっかりとJavaDocを書けるスキルもあった方が良いということで、
     // 本気でJavaDocを書いてみる体験をしてもらいたいと思いまして。
     // Ticketクラスが世に公開するクラスのつもりで、JavaDocを書いてみて欲しいです。

@@ -26,23 +26,19 @@ public abstract class DetabaseSet {
     // TODO ayamin [いいね] おおおぉ、Good。buildPagingQuery()の流れが見事に再利用できていますね！ by jflute (2025/07/31)
     // オブジェクト階層を作るのであれば、できればこういった構造を作っていきたいところです。
     
-    // TODO ayamin 細かいところですが、publicメソッドに対して、呼ばれるprotectedメソッドはpublicメソッドの下に by jflute (2025/07/31)
+    // TODO done ayamin 細かいところですが、publicメソッドに対して、呼ばれるprotectedメソッドはpublicメソッドの下に by jflute (2025/07/31)
     // buildPagingQuery() の下に doBuildPagingSqlPart() が定義されているのと同様に、calculateOffset() も。
-    protected int calculateOffset(int pageSize, int pageNumber) {
-        return pageSize * (pageNumber - 1);
-    }
-
     public final String buildPagingQuery(int pageSize, int pageNumber) {
         int offset = calculateOffset(pageSize, pageNumber); // 共通手順
         String pagingSqlPart = doBuildPagingSqlPart(pageSize, offset); // ★フックメソッドを呼び出す★
         return pagingSqlPart;
     }
+    protected int calculateOffset(int pageSize, int pageNumber) {
+        return pageSize * (pageNumber - 1);
+    }
 
     protected abstract String doBuildPagingSqlPart(int pageSize, int offset);
-
 }
-
-    // TODO ayami.hatano  (2025/08/01)
 
 //TODO [memo] ayamin
 // 中身が空(に見える)抽象クラスを作って何が嬉しいのか？意味があるのか？
