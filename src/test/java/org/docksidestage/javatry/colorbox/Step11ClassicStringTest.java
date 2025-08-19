@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.ArrayList; // ArrayList をインポート
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,6 +30,11 @@ import org.docksidestage.bizfw.colorbox.ColorBox;
 import org.docksidestage.bizfw.colorbox.color.BoxColor;
 import org.docksidestage.bizfw.colorbox.space.BoxSpace;
 import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom;
+import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom.BittersweetMemorableException;
+import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom.FavoriteProvider;
+import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom.GuardianBox;
+import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom.GuardianBoxTextNotFoundException;
+import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom.SecretBox;
 import org.docksidestage.unit.PlainTestCase;
 
 /**
@@ -44,7 +49,6 @@ import org.docksidestage.unit.PlainTestCase;
  * @author ayamin
  */
 public class Step11ClassicStringTest extends PlainTestCase {
-
     // ===================================================================================
     //                                                                            length()
     //                                                                            ========
@@ -69,27 +73,28 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * Which color name has max length in color-boxes? <br>
      * (カラーボックスの中で、色の名前が一番長いものは？)
      */
-    //TODO[memo]ayamin 最初に、リストが空でないかを必ず確認する(エラー防止のため)
+    //TODO[memo]ayamin：最初に、リストが空でないかを必ず確認する(エラー防止のため)
+    //TODO[memo]ayamin：最長文字列が複数ある場合はclearせずにリストに追加、最長文字列以外はclearしてからadd
     public void test_length_findMax_colorSize() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        // リストが空でないことを確認
+        // カラーボックスの中身が空の場合
         if (colorBoxList.isEmpty()) {
             log("ColorBoxリストが空です。");
             return;
         }
 
+        // リストを初期化
         int maxLength = 0;
         List<String> maxColorNames = new ArrayList<>();
 
+        // for文で検索
         for (ColorBox colorBox : colorBoxList) {
             BoxColor boxColor = colorBox.getColor();
-
             if (boxColor != null) {
                 String colorName = boxColor.getColorName();
                 if (colorName != null) {
                     int currentLength = colorName.length();
-
                     if (currentLength > maxLength) {
                         maxLength = currentLength;
                         maxColorNames.clear();
@@ -103,6 +108,7 @@ public class Step11ClassicStringTest extends PlainTestCase {
             }
         }
 
+        // 結果を出力
         if (maxColorNames.isEmpty()) {
             log("色の名前が見つかりませんでした。");
         } else if (maxColorNames.size() == 1) {
@@ -111,139 +117,37 @@ public class Step11ClassicStringTest extends PlainTestCase {
             log("色の名前が一番長いもの (" + maxColorNames.size() + "つ): " + maxColorNames + " (長さ: " + maxLength + ")");
         }
     }
-
     /**
      * Which string has max length in color-boxes? <br>
      * (カラーボックスに入ってる文字列の中で、一番長い文字列は？)
      */
+    //TODO[memo]ayamin：getContent() メソッドは Object 型を返すため、中身が本当に String かどうかを判断する⇨instanceof 演算子
     public void test_length_findMax_stringContent() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
-        // リストが空でないことを確認
+        // カラーボックスの中身が空の場合
         if (colorBoxList.isEmpty()) {
             log("ColorBoxリストが空です。");
             return;
         }
 
+        // リスト初期化
         int maxLength = 0;
-        List<String> maxContentStrings = new ArrayList<>(); // 最長文字列を複数保持するためListを使用
+        List<String> maxContentStrings = new ArrayList<>();
 
+        // for文で検索かける
         for (ColorBox colorBox : colorBoxList) {
             List<BoxSpace> boxSpaceList = colorBox.getSpaceList();
             for (BoxSpace boxSpace : boxSpaceList) {
                 Object content = boxSpace.getContent();
-
-                // nullの場合はスキップ
-                if (content == null) {
-                    continue;
-                }
-
-                // 文字列に変換して長さを比較するための変数
-                String currentString = null;
-
-                // Contentの型に応じて適切な文字列を取得
                 if (content instanceof String) {
-                    currentString = (String) content;
-                } else if (content instanceof Integer || content instanceof Long || content instanceof Double || content instanceof Float ||
-                        content instanceof BigDecimal || content instanceof BigInteger) {
-                    currentString = String.valueOf(content);
-                } else if (content instanceof Boolean) {
-                    currentString = String.valueOf(content);
-                } else if (content instanceof File) {
-                    currentString = ((File) content).getName(); // ファイル名を取得
-                } else if (content instanceof LocalDateTime) {
-                    currentString = ((LocalDateTime) content).toString();
-                } else if (content instanceof LocalDate) {
-                    currentString = ((LocalDate) content).toString();
-                } else if (content instanceof LocalTime) {
-                    currentString = ((LocalTime) content).toString();
-                } else if (content instanceof Map) {
-                    StringBuilder sb = new StringBuilder();
-                    ((Map<?, ?>) content).forEach((key, value) -> {
-                        sb.append(key != null ? key.toString() : "null");
-                        sb.append("=");
-                        sb.append(value != null ? value.toString() : "null");
-                        sb.append(", ");
-                    });
-                    if (sb.length() > 0) {
-                        sb.setLength(sb.length() - 2); // 最後の ", " を削除
-                    }
-                    currentString = "{" + sb.toString() + "}";
-                } else if (content instanceof List) {
-                    // Listの場合、各要素の文字列を結合して長さを比較
-                    StringBuilder sb = new StringBuilder();
-                    ((List<?>) content).forEach(element -> {
-                        if (element != null) {
-                            if (element instanceof Number) { // 数字はそのまま文字列化
-                                sb.append(element.toString());
-                            } else if (element instanceof YourPrivateRoom.BoxedResort) { // BoxedResortを処理
-                                sb.append(((YourPrivateRoom.BoxedResort) element).getRegion());
-                                ((YourPrivateRoom.BoxedResort) element).getPark().ifPresent(park -> {
-                                    sb.append(park.getTheme());
-                                    park.getStage().ifPresent(stage -> {
-                                        sb.append(stage.getShowName());
-                                        String keyword = stage.getKeyword();
-                                        if (keyword != null) {
-                                            sb.append(keyword);
-                                        }
-                                    });
-                                });
-                            } else {
-                                sb.append(element.toString());
-                            }
-                        }
-                    });
-                    currentString = sb.toString();
-                } else if (content instanceof Set) {
-                    // Setの場合、各要素の文字列を結合して長さを比較
-                    StringBuilder sb = new StringBuilder();
-                    ((Set<?>) content).forEach(element -> {
-                        if (element != null) {
-                            sb.append(element.toString());
-                        }
-                    });
-                    currentString = sb.toString();
-                } else if (content instanceof YourPrivateRoom.SecretBox) {
-                    currentString = ((YourPrivateRoom.SecretBox) content).getText();
-                } else if (content instanceof YourPrivateRoom.GuardianBox) {
-                    YourPrivateRoom.GuardianBox guardianBox = (YourPrivateRoom.GuardianBox) content;
-                    try {
-                        guardianBox.wakeUp();
-                        guardianBox.allowMe();
-                        guardianBox.open();
-                        currentString = guardianBox.getText();
-                    } catch (IllegalStateException | YourPrivateRoom.GuardianBoxTextNotFoundException e) {
-                        // GuardianBoxの仕様により、getText()が例外を投げる場合があるためキャッチ
-                        // この場合は文字列としてカウントしない、またはエラーメッセージを文字列として扱うか決める
-                        // ここではカウントしない方針で続行
-                        log("GuardianBox content could not be retrieved: {}", e.getMessage());
-                        continue; // 次のコンテンツへ
-                    }
-                } else if (content instanceof YourPrivateRoom.BittersweetMemorableException) {
-                    currentString = ((YourPrivateRoom.BittersweetMemorableException) content).getMessage();
-                } else if (content instanceof YourPrivateRoom.FavoriteProvider) {
-                    // FavoriteProviderはjustHere()を持つ
-                    try {
-                        currentString = ((YourPrivateRoom.FavoriteProvider) content).justHere();
-                    } catch (YourPrivateRoom.BittersweetMemorableException e) {
-                        log("FavoriteProvider justHere() threw exception: {}", e.getMessage());
-                        continue;
-                    }
-                } else {
-                    // 上記以外の不明な型の場合、toString()を使用
-                    currentString = content.toString();
-                }
-
-                // 文字列が取得できた場合のみ長さを比較
-                if (currentString != null) {
+                    String currentString = (String) content;
                     int currentLength = currentString.length();
-
                     if (currentLength > maxLength) {
                         maxLength = currentLength;
-                        maxContentStrings.clear(); // より長い文字列が見つかったらクリア
+                        maxContentStrings.clear();
                         maxContentStrings.add(currentString);
                     } else if (currentLength == maxLength) {
-                        // 同じ長さの文字列は追加（重複を避けるためにcontainsチェック）
                         if (!maxContentStrings.contains(currentString)) {
                             maxContentStrings.add(currentString);
                         }
@@ -251,6 +155,7 @@ public class Step11ClassicStringTest extends PlainTestCase {
                 }
             }
         }
+        // 結果の出力
         if (maxContentStrings.isEmpty()) {
             log("カラーボックス内に有効な文字列コンテンツは見つかりませんでした。");
         } else {
@@ -258,11 +163,13 @@ public class Step11ClassicStringTest extends PlainTestCase {
             log("最長文字列のリスト: {}", maxContentStrings);
         }
     }
-
     /**
      * Which value (toString() if non-string) has second-max length in color-boxes? (latter if same length) <br>
      * (カラーボックスに入ってる値 (文字列以外はtoString()) の中で、二番目に長い文字列は？ (同じ長さのものがあれば後の方を))
      */
+    //TODO[memo]ayamin：リストの「一番目の要素を二番目に移動する」という操作はできないので、複数の変数を条件分岐で値を入れ替える
+    //TODO[memo]ayamin：それぞれの型が持つ固有のメソッド(Stringクラスのlength()、fileクラスのgetName()など)を呼び出すために、
+    // 各オブジェクトが何クラスなのか？(fileなのか、SecretBoxなのかなど)を判定する
     public void test_length_findSecondMax_contentToString() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
@@ -331,8 +238,8 @@ public class Step11ClassicStringTest extends PlainTestCase {
 
         if (content instanceof String) {
             return (String) content;
-        } else if (content instanceof Integer || content instanceof Long || content instanceof Double || content instanceof Float ||
-                content instanceof BigDecimal || content instanceof BigInteger) {
+        } else if (content instanceof Integer || content instanceof Long || content instanceof Double || content instanceof Float
+                || content instanceof BigDecimal || content instanceof BigInteger) {
             return String.valueOf(content);
         } else if (content instanceof Boolean) {
             return String.valueOf(content);
@@ -389,25 +296,25 @@ public class Step11ClassicStringTest extends PlainTestCase {
                 }
             });
             return sb.toString();
-        } else if (content instanceof YourPrivateRoom.SecretBox) {
-            return ((YourPrivateRoom.SecretBox) content).getText();
-        } else if (content instanceof YourPrivateRoom.GuardianBox) {
-            YourPrivateRoom.GuardianBox guardianBox = (YourPrivateRoom.GuardianBox) content;
+        } else if (content instanceof SecretBox) {
+            return ((SecretBox) content).getText();
+        } else if (content instanceof GuardianBox) {
+            GuardianBox guardianBox = (GuardianBox) content;
             try {
                 guardianBox.wakeUp();
                 guardianBox.allowMe();
                 guardianBox.open();
                 return guardianBox.getText();
-            } catch (IllegalStateException | YourPrivateRoom.GuardianBoxTextNotFoundException e) {
+            } catch (IllegalStateException | GuardianBoxTextNotFoundException e) {
                 log("GuardianBox content could not be retrieved: {}", e.getMessage());
                 return null;
             }
-        } else if (content instanceof YourPrivateRoom.BittersweetMemorableException) {
-            return ((YourPrivateRoom.BittersweetMemorableException) content).getMessage();
-        } else if (content instanceof YourPrivateRoom.FavoriteProvider) {
+        } else if (content instanceof BittersweetMemorableException) {
+            return ((BittersweetMemorableException) content).getMessage();
+        } else if (content instanceof FavoriteProvider) {
             try {
-                return ((YourPrivateRoom.FavoriteProvider) content).justHere();
-            } catch (YourPrivateRoom.BittersweetMemorableException e) {
+                return ((FavoriteProvider) content).justHere();
+            } catch (BittersweetMemorableException e) {
                 log("FavoriteProvider justHere() threw exception: {}", e.getMessage());
                 return null;
             }

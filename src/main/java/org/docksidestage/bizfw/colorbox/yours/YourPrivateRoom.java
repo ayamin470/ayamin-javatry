@@ -255,6 +255,7 @@ public class YourPrivateRoom {
     // ===================================================================================
     //                                                                            Guardian
     //                                                                            ========
+    //TODO[memo]ayamin：ネストクラスだ！珍しい
     private GuardianBox asGuardian(String mapString) {
         return new GuardianBox(mapString);
     }
