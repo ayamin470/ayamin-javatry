@@ -167,9 +167,9 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * Which value (toString() if non-string) has second-max length in color-boxes? (latter if same length) <br>
      * (カラーボックスに入ってる値 (文字列以外はtoString()) の中で、二番目に長い文字列は？ (同じ長さのものがあれば後の方を))
      */
-    //TODO[memo]ayamin：リストの「一番目の要素を二番目に移動する」という操作はできないので、複数の変数を条件分岐で値を入れ替える
-    //TODO[memo]ayamin：それぞれの型が持つ固有のメソッド(Stringクラスのlength()、fileクラスのgetName()など)を呼び出すために、
-    // 各オブジェクトが何クラスなのか？(fileなのか、SecretBoxなのかなど)を判定する
+    //TODO[memo]ayamin：リストの「一番目の要素を二番目に移動する」という操作はできないので、複数の変数を用意して値を移す。
+    //TODO[memo]ayamin：それぞれの型が持つ固有のメソッド(Stringクラスのlength()、fileクラスのgetName()など)を呼び出すために、各オブジェクトが何クラスなのか？(fileなのか、SecretBoxなのかなど)を判定する。
+    //TODO[memo]ayamin：Map,List,Setはそれ自体が一つのオブジェクトなので、要素をすべて連結して返す必要がある
     public void test_length_findSecondMax_contentToString() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
@@ -235,7 +235,6 @@ public class Step11ClassicStringTest extends PlainTestCase {
         if (content == null) {
             return null;
         }
-
         if (content instanceof String) {
             return (String) content;
         } else if (content instanceof Integer || content instanceof Long || content instanceof Double || content instanceof Float
