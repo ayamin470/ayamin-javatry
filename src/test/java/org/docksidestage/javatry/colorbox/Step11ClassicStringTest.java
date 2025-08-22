@@ -231,6 +231,10 @@ public class Step11ClassicStringTest extends PlainTestCase {
         }
     }
 
+    // done ayamin [いいね] それぞれの型に対する業務的なString表現をしっかり制定している... by jflute (2025/08/22)
+    // という面では、フレームワークとかライブラリの実装でよくやるようなことをやっていると言えて丁寧で良いです。
+    // ちゃんと (ちゃんと実装されているかどうかわからない) toString() に頼らずに、自分で値を決めている。
+    // あと、馬力トレーニングになってます。
     private String convertContentToString(Object content) {
         if (content == null) {
             return null;

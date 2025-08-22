@@ -17,7 +17,7 @@ package org.docksidestage.bizfw.basic.buyticket;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-// TODO ayamin [いいね] javadoc素晴らしい、特に2行目の補足の抽象度が良い by jflute (2025/08/06)
+// done ayamin [いいね] javadoc素晴らしい、特に2行目の補足の抽象度が良い by jflute (2025/08/06)
 // #1on1: javadoc, 読み手を想像して書く (2025/08/06)
 // #1on1: javadocを見る意義、ググってもAIでも、レアなクラス、業務内のクラスはわからない (2025/08/06)
 // #1on1: 本気のJavaDocの例
@@ -73,8 +73,8 @@ public class Ticket {
 
         LocalTime currentTime = clockProvider.getCurrentTime();
         if (nightOnly && DayNightChecker.isDay(currentTime)) {
-            // TODO done ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
-            // TODO done ayamin 同じ概念でも型違いの変数が同じスコープに入るときは名前で区別しましょう by jflute (2025/08/06)
+            // done ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
+            // done ayamin 同じ概念でも型違いの変数が同じスコープに入るときは名前で区別しましょう by jflute (2025/08/06)
             //  e.g. currentTimeStr, currentTimeDisp, currentTimeExp
             String currentTimeStr = currentTime.format(DateTimeFormatter.ofPattern("HH:mm"));
             String errorMessage = "このチケットは夜間専用です。現在時刻(" + currentTimeStr + ")は昼間のため使用できません。";

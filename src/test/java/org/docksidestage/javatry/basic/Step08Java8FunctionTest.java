@@ -369,8 +369,8 @@ public class Step08Java8FunctionTest extends PlainTestCase {
      * Stream API
      * 詳しくはGeminiの回答を参照
      */
-    // TODO ayamin flatmapした後にfilterしてるのがよくわからない...なんでそんなことするんだろう
-    // TODO ayamin [ふぉろー] フラットな購入の一覧状態にしないと、purchaseIdを使ったfilterをすることができないから、という感じでしょうか by jflute (2025/07/24)
+    // done ayamin flatmapした後にfilterしてるのがよくわからない...なんでそんなことするんだろう
+    // done ayamin [ふぉろー] フラットな購入の一覧状態にしないと、purchaseIdを使ったfilterをすることができないから、という感じでしょうか by jflute (2025/07/24)
     public void test_java8_stream_map_flatMap() {
         List<St8Member> memberList = new St8DbFacade().selectMemberListAll();
         int sea = memberList.stream()
@@ -381,7 +381,9 @@ public class Step08Java8FunctionTest extends PlainTestCase {
                 .distinct()
                 .sum();
         log(sea); // your answer? =>
-        // TODO jflute 1on1にて、mapとflatMap()の違いについてフォロー予定 (2025/07/24)
+        // done jflute 1on1にて、mapとflatMap()の違いについてフォロー予定 (2025/07/24)
+        // #1on1: がっつりmapとflatMap()の話しして、ayamin様に楽しんで頂けて光栄ございます (2025/08/22)
+        // https://dbflute.seasar.org/ja/manual/topic/programming/java/java8/mapandflat.html
     }
 
     // *Stream API will return at Step12 again, it's worth the wait!

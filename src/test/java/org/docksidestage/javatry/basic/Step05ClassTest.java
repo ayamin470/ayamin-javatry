@@ -225,6 +225,14 @@ public class Step05ClassTest extends PlainTestCase {
      * (買ったチケットの種別がTwoDayPassportなのかどうかをif文で正確に判定してみましょう。(必要ならTicketクラスたちを修正))
      */
     public void test_class_moreFix_whetherTicketType() {
+        // TODO ayamin "showTicketIfNeeds()" が誰からも呼ばれてないので...javatryの元のコメントをuncommentして復元しましょう by jflute (2025/08/22)
+        // uncomment when you implement this exercise
+        //TicketBooth booth = new TicketBooth();
+        //Ticket oneDayPassport = booth.buyOneDayPassport(10000);
+        //showTicketIfNeeds(oneDayPassport);
+        //TicketBuyResult buyResult = booth.buyTwoDayPassport(10000);
+        //Ticket twoDayPassport = buyResult.getTicket();
+        //showTicketIfNeeds(twoDayPassport);
     }
 
     // uncomment when you implement this exercise
@@ -248,13 +256,21 @@ public class Step05ClassTest extends PlainTestCase {
 //    }
 
     // done jflute 修行++:を解いてみましたが、テスト実行ができず、合っているか確認できない...そもそもテストコードの仕組みがよくわかっていないようなので、そこから教えていただきたいです by ayamin
-    // TODO ayamin [へんじ] りょうかいです。1on1でテスト実行についてのフォローも入れますね by jflute (2025/07/31)
+    // done ayamin [へんじ] りょうかいです。1on1でテスト実行についてのフォローも入れますね by jflute (2025/07/31)
     private void showTicketIfNeeds(Ticket ticket) {
-        // TODO ayamin [いいね] 夜間専用の2日のパスポードは除外できるようになりましたね by jflute (2025/07/31)
-        // TODO ayamin 修行#: 一方で、昔スターライトパスポートってのものがありましたが、夜間ではないけど時間制限の2日パスポートとかあったとき... by jflute (2025/07/31)
+        // done ayamin [いいね] 夜間専用の2日のパスポードは除外できるようになりましたね by jflute (2025/07/31)
+        // done ayamin 修行#: 一方で、昔スターライトパスポートってのものがありましたが、夜間ではないけど時間制限の2日パスポートとかあったとき... by jflute (2025/07/31)
         // やっぱりそれが紛れてしまう問題が残ります。hint1: チケットの種別という概念で比較できたら...
-        //TODO jflute "nightOnlyTwoDayPassport"に関しては、入るときの現在時刻で使えるかどうかを判定しているので、まぎれないのでは...？と思ってます。多分私の認識が間違っているので、教えてください！ by ayamin (2025/08/13)
-        //TODO jflute [ざつだん] 修行#と修行++の違いって、なんですか？ (これもざつだんですが、同期同士の会話で、ちょっとストレッチな業務タスクやプライベートの問題に対して「修行++だねえ」と発言するのが一瞬流行りました笑)　by ayamin (2025/08/13)
+        //done jflute "nightOnlyTwoDayPassport"に関しては、入るときの現在時刻で使えるかどうかを判定しているので、まぎれないのでは...？と思ってます。多分私の認識が間違っているので、教えてください！ by ayamin (2025/08/13)
+        // ↑確かに、ぼくがそのifを見逃してみました。ただ本質的にはちょっと違ったことをやってもらいたいので...
+        // TODO ayamin 修行#: (続き) チケット種別のユニーク性って、日数と夜間かどうかだけ？とは限らないかもという前提... by jflute (2025/08/22)
+        // 日数と夜間だけとは限らない前提で、チケット種別をピンポイントで判別できるようにしてみましょう。
+        // (ユニーク性の要素で言うと無限にできるので、そこを気にせず判定できるように)
+        
+        // done jflute [ざつだん] 修行#と修行++の違いって、なんですか？ (これもざつだんですが、同期同士の会話で、ちょっとストレッチな業務タスクやプライベートの問題に対して「修行++だねえ」と発言するのが一瞬流行りました笑)　by ayamin (2025/08/13)
+        // done ayamin [へんじ] C言語ってのがあって...C++, さらに C#... 難しさがインクリメントされている by jflute (2025/08/22)
+        // TODO ayamin { を下ろすなら下ろすのに徹底したほうが良いかも。今だと独立ifに見えちゃう... by jflute (2025/08/22)
+        // (どのみち現場のフォーマットスタイルがあるのでそれに合わせることにはなりますが)
         if (ticket.isNightOnly()) {
             log("それは夜間専用2日パスポートだよ");
         }
@@ -464,7 +480,7 @@ public class Step05ClassTest extends PlainTestCase {
         // your confirmation code here
     }
 
-    // TODO done 実はjavatry本家でちょっとここのエクササイズのニュアンスが変わりました by jflute (2025/07/31)
+    // done 実はjavatry本家でちょっとここのエクササイズのニュアンスが変わりました by jflute (2025/07/31)
     // いざJavaDocが書いたほうが良いという場面で、しっかりとJavaDocを書けるスキルもあった方が良いということで、
     // 本気でJavaDocを書いてみる体験をしてもらいたいと思いまして。
     // Ticketクラスが世に公開するクラスのつもりで、JavaDocを書いてみて欲しいです。
