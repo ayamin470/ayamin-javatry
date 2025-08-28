@@ -84,7 +84,23 @@ public class TicketBooth {
             salesProceeds = price;
         }
 
-        Ticket ticket = new Ticket(price, ticketValidDays, nightOnly, clockProvider);
+        final Ticket ticket;
+        if (nightOnly && ticketValidDays == 2) {
+            // NightOnlyTwoDayPassportの場合
+            ticket = new NightOnlyTwoDayPassport(clockProvider);
+        } else if (ticketValidDays == 1) {
+            // OneDayPassportの場合
+            ticket = new OneDayPassport(clockProvider);
+        } else if (ticketValidDays == 2) {
+            // TwoDayPassportの場合
+            ticket = new TwoDayPassport(clockProvider);
+        } else if (ticketValidDays == 4) {
+            // FourDayPassportの場合
+            ticket = new FourDayPassport(clockProvider);
+        } else {
+            // 想定外のチケット情報の場合
+            throw new IllegalArgumentException("無効なチケット情報です。有効日数: " + ticketValidDays + ", 夜間専用: " + nightOnly);
+        }
         int change = handedMoney - price;
         return new TicketBuyResult(ticket, change);
     }

@@ -28,10 +28,11 @@ import java.time.format.DateTimeFormatter;
  * @author jflute
  * @author ayamin
  */
-public class Ticket {
-
+public abstract class Ticket  {
+    public abstract String getTicketTypeDisplayName();
     // ===================================================================================
     //                                                                           Attribute
+    //
     //                                                                           =========
     private final int displayPrice;
     private final int validDays;
@@ -45,13 +46,6 @@ public class Ticket {
     // #1on1: コンストラクターが一個しか無いので、重要なの@param, 説明がなくてもいいかも
     // 一方で、TicketBoothみたいに、コンストラクターあって用途の区別があるのであればそれは説明したい。
     // #1on1: (NotNull) の話
-    /**
-     * チケットを構築する
-     * @param displayPrice チケットに表示される価格
-     * @param validDays チケットの有効日数
-     * @param nightOnly 夜間専用チケットであるか
-     * @param clockProvider 現在時刻を提供するプロバイダ
-     */
     public Ticket(int displayPrice, int validDays, boolean nightOnly, ClockProvider clockProvider) {
         this.displayPrice = displayPrice;
         this.validDays = validDays;
@@ -59,6 +53,7 @@ public class Ticket {
         this.entryCount = 0;
         this.clockProvider = clockProvider;
     }
+
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
@@ -82,6 +77,7 @@ public class Ticket {
         }
         entryCount++;
     }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========
