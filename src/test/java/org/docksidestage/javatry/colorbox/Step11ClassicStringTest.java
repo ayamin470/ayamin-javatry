@@ -331,6 +331,30 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (カラーボックスに入ってる文字列の長さの合計は？)
      */
     public void test_length_calculateLengthSum() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        if (colorBoxList.isEmpty()) {
+            log("ColorBoxリストが空です。");
+            return;
+        }
+
+        int totalLengthSum = 0;
+
+        for (ColorBox colorBox : colorBoxList) {
+            List<BoxSpace> boxSpaceList = colorBox.getSpaceList();
+            for (BoxSpace boxSpace : boxSpaceList) {
+                Object content = boxSpace.getContent();
+
+                if (content == null || !(content instanceof String)) {
+                    continue;
+                }
+
+                String stringContent = (String) content;
+                totalLengthSum += stringContent.length();
+            }
+        }
+
+        log("カラーボックスに入っている文字列の長さの合計: {}", totalLengthSum);
     }
 
     // ===================================================================================
@@ -341,6 +365,33 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * ("Water" で始まる文字列をしまっているカラーボックスの色は？)
      */
     public void test_startsWith_findFirstWord() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        if (colorBoxList.isEmpty()) {
+            log("ColorBoxリストが空です。");
+            return;
+        }
+
+        for (ColorBox colorBox : colorBoxList) {
+            List<BoxSpace> boxSpaceList = colorBox.getSpaceList();
+            for (BoxSpace boxSpace : boxSpaceList) {
+                Object content = boxSpace.getContent();
+
+                if (content == null) {
+                    continue;
+                }
+
+                if (content instanceof String) {
+                    String stringContent = (String) content;
+                    if (stringContent.startsWith("Water")) {
+                        BoxColor color = colorBox.getColor();
+                        log("「Water」で始まる文字列をしまっているカラーボックスの色は: {}", color.getColorName());
+                        return;
+                    }
+                }
+            }
+        }
+        log("「Water」で始まる文字列は見つかりませんでした。");
     }
 
     /**
