@@ -398,9 +398,36 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * What number character is starting with the late "ど" of string containing two or more "ど"s in color-boxes? (e.g. "どんどん" => 3) <br>
      * (カラーボックスに入ってる「ど」を二つ以上含む文字列で、最後の「ど」は何文字目から始まる？ (e.g. "どんどん" => 3))
      */
+    //lastIndexOf()
+    //この問題を30分以上考えても突破できなかったので、AIに修正してもらった
     public void test_lastIndexOf_findIndex() {
-    }
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 
+        if (colorBoxList.isEmpty()) {
+            log("ColorBoxリストが空です。");
+            return;
+        }
+
+        for (ColorBox colorBox : colorBoxList) {
+            List<BoxSpace> boxSpaceList = colorBox.getSpaceList();
+            for (BoxSpace boxSpace : boxSpaceList) {
+                Object content = boxSpace.getContent();
+
+                if (content instanceof String) {
+                    String stringContent = (String) content;
+
+                    if (stringContent.indexOf("ど") != stringContent.lastIndexOf("ど")) {
+                        int lastIndex = stringContent.lastIndexOf("ど");
+                        int characterNumber = lastIndex + 1;
+                        log("最後の「ど」は{}文字目から。文字列: {}", characterNumber, stringContent);
+                        return;
+                    }
+                }
+            }
+        }
+
+        log("「ど」を2つ以上含む文字列は見つかりませんでした。");
+    }
     // ===================================================================================
     //                                                                 Welcome to Guardian
     //                                                                 ===================
@@ -408,7 +435,43 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * What is total length of text of GuardianBox class in color-boxes? <br>
      * (カラーボックスの中に入っているGuardianBoxクラスのtextの長さの合計は？)
      */
+    //totalLengthSum += text.length(); リストを使わなくても文字数カウントできる
     public void test_welcomeToGuardian() {
+        List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
+
+        if (colorBoxList.isEmpty()) {
+            log("ColorBoxリストが空です。");
+            return;
+        }
+
+        int totalLengthSum = 0;
+
+        for (ColorBox colorBox : colorBoxList) {
+            List<BoxSpace> boxSpaceList = colorBox.getSpaceList();
+            for (BoxSpace boxSpace : boxSpaceList) {
+                Object content = boxSpace.getContent();
+
+                if (content instanceof GuardianBox) {
+                    GuardianBox guardianBox = (GuardianBox) content;
+                    try {
+
+                        //手順通りに開けないとエラーになるので、try-catchで補足する
+                        guardianBox.wakeUp();
+                        guardianBox.allowMe();
+                        guardianBox.open();
+                        String text = guardianBox.getText();
+
+                        totalLengthSum += text.length();
+
+                    } catch (IllegalStateException | GuardianBoxTextNotFoundException e) {
+
+                        log("GuardianBoxのtext取得中にエラー: {}", e.getMessage());
+                    }
+                }
+            }
+        }
+
+        log("GuardianBoxクラスのtextの長さの合計: {}", totalLengthSum);
     }
 
     // ===================================================================================
