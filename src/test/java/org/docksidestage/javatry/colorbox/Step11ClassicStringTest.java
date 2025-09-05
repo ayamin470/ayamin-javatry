@@ -37,6 +37,11 @@ import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom.GuardianBoxTextNot
 import org.docksidestage.bizfw.colorbox.yours.YourPrivateRoom.SecretBox;
 import org.docksidestage.unit.PlainTestCase;
 
+// #1on1: 独学
+// https://jflute.hatenadiary.jp/entry/20160210/selfgrowth
+// o 外の勉強会に行ってみる、他社のITエンジニアと接してみる (JJUG, 渋谷javaなど)
+// o オープンソース活動の紹介
+// o そういったことができるようになるために頑張ろう、というモチベーションにも
 /**
  * The test of String with color-box, not using Stream API. <br>
  * Show answer by log() for question of javadoc. <br>
