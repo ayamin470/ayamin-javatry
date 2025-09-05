@@ -400,6 +400,8 @@ public class Step11ClassicStringTest extends PlainTestCase {
      */
     //lastIndexOf()
     //この問題を30分以上考えても突破できなかったので、AIに修正してもらった
+    // #1on1: どうやったら思いつけたか？論理的な期待値を明確にして、それが探すみたいなプロセス。
+    // どんな機能があったら、自分はこれを実現できるのか？を考える習慣。
     public void test_lastIndexOf_findIndex() {
         List<ColorBox> colorBoxList = new YourPrivateRoom().getColorBoxList();
 

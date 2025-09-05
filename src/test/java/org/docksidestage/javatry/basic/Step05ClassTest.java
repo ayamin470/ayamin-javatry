@@ -18,13 +18,14 @@ package org.docksidestage.javatry.basic;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import org.docksidestage.bizfw.basic.buyticket.SystemClockProvider;
 import org.docksidestage.bizfw.basic.buyticket.Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
+import org.docksidestage.bizfw.basic.buyticket.TwoDayPassport;
 import org.docksidestage.unit.PlainTestCase;
 import org.docksidestage.unit.TestClockProvider;
-import org.docksidestage.bizfw.basic.buyticket.SystemClockProvider;
 
 /**
  * The test of class. <br>
@@ -196,7 +197,7 @@ public class Step05ClassTest extends PlainTestCase {
         showTicketIfNeeds(twoDayPassport);
     }
 
-    // TODO done ayamin { を下ろすなら下ろすのに徹底したほうが良いかも。今だと独立ifに見えちゃう... by jflute (2025/08/22)
+    // done ayamin { を下ろすなら下ろすのに徹底したほうが良いかも。今だと独立ifに見えちゃう... by jflute (2025/08/22)
     private void showTicketIfNeeds(Ticket ticket) {
         if (ticket.isNightOnly()) {
             log("それは夜間専用2日パスポートだよ");
@@ -339,9 +340,15 @@ public class Step05ClassTest extends PlainTestCase {
     // ===================================================================================
     //                                             ayamin original test for abstract class
     //                                                                           =========
-    //TODO done ayamin 修行#: (続き) チケット種別のユニーク性って、日数と夜間かどうかだけ？とは限らないかもという前提... by jflute (2025/08/22)
+    // done ayamin 修行#: (続き) チケット種別のユニーク性って、日数と夜間かどうかだけ？とは限らないかもという前提... by jflute (2025/08/22)
             // 日数と夜間だけとは限らない前提で、チケット種別をピンポイントで判別できるようにしてみましょう。
             // (ユニーク性の要素で言うと無限にできるので、そこを気にせず判定できるように)
+    // #1on1: まず、継承を使って、チケット種別をサブクラスとして表現しているのはGood。 (2025/09/05)
+    // これ自分もよくやります。うまくstep6の知識と融合できてて素晴らしい！
+    // 一方で、step5なので継承を使わないやり方も別途存在しています。どっちが良いというわけでもないくらい。
+    // 「チャレンジしたい！」by あやみんさん => 素敵です。
+    // TODO ayamin 修行#++: 継承を使わないやり方もどこかでやってみましょう by jflute (2025/09/05)
+    // 既存の今のコードは残しつつ、なんかクラス名にprefix付けるなどして、独立して作った方がいいかも。
     public void test_class_moreFix_whetherTicketType_withPolymorphism() {
         // チケットブースをインスタンス化
         TicketBooth booth = new TicketBooth(new SystemClockProvider());
@@ -353,6 +360,7 @@ public class Step05ClassTest extends PlainTestCase {
         // 2日パスポートを購入し、チケット種別を表示
         Ticket twoDayPassport = booth.buyTwoDayPassport(30000).getTicket();
         log("パスポートの種別: " + twoDayPassport.getTicketTypeDisplayName());
+        // TODO ayamin 一応、if文で分岐(確認)できるプログラムも書いておきましょう(instanceof) by jflute (2025/09/05)
 
         // 4日パスポートを購入し、チケット種別を表示
         Ticket fourDayPassport = booth.buyFourDayPassport(30000).getTicket();

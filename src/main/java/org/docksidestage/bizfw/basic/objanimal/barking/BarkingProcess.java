@@ -3,6 +3,7 @@ package org.docksidestage.bizfw.basic.objanimal.barking;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// TODO ayamin authorおねがいしまーす by jflute (2025/09/05)
 /**
  * The process for animal barking.
  * (動物の鳴き声のプロセス)

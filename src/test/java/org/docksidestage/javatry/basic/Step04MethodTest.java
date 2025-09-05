@@ -133,7 +133,7 @@ public class Step04MethodTest extends PlainTestCase {
             ++inParkCount;
         }
     }
-
+    
     // ===================================================================================
     //                                                                           Challenge
     //                                                                           =========
@@ -164,7 +164,12 @@ public class Step04MethodTest extends PlainTestCase {
         }
     }
     private boolean availableLogging = true;
-
+    
+    // TODO ayamin [いいね] 呼び出し順序と定義位置が一致していて直感的で良い by jflute (2025/09/05)
+    // 再利用しない想定で見た目のために切り出しているprivateメソッド: (基本は)呼び出し側の直下に呼び出し順序で置く
+    // 再利用する想定で切り出しているprivateメソッド: もっと下に独立させる (Small Helperなど)
+    // 再利用しなくても独立ロジックと言えて切り出しているprivateメソッド: 同様に下に独立させる (Replace Logicなど)
+    // (Javaのデフォルトとして、public/privateの順番がある: それの少し応用)
     private String replaceAwithB(String text) {
         return text.replace("A", "B");
     }
@@ -172,10 +177,10 @@ public class Step04MethodTest extends PlainTestCase {
     {
         return text.replace("C", "B");
     }
-    // done ayamin 第二引数の引数名、わかりやすくていいですね！意味のある引数名素晴らしい by jflute (2025/07/02)
     private String quote(String text, String quoteChar) {
         return quoteChar + text + quoteChar;
     }
+    // done ayamin 第二引数の引数名、わかりやすくていいですね！意味のある引数名素晴らしい by jflute (2025/07/02)
     private boolean isAvailableLogging() {
         return availableLogging;
     }
@@ -189,6 +194,4 @@ public class Step04MethodTest extends PlainTestCase {
     // done ayamin たぶん書き間違いだと思うのですが、「クラスの中から」じゃなくて「クラスの外から」ですかね by jflute (2025/07/02)
     // クラスの中からは、privateだろうがpublicだろうがどちらでもアクセスできるので...
     // クラスの外からアクセスできるかどうか？なら、privateならダメ、publicならOKということになります。
-
-
 }

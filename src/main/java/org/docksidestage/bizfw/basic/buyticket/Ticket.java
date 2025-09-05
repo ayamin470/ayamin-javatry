@@ -22,6 +22,13 @@ import java.time.format.DateTimeFormatter;
 // #1on1: javadocを見る意義、ググってもAIでも、レアなクラス、業務内のクラスはわからない (2025/08/06)
 // #1on1: 本気のJavaDocの例
 // https://github.com/lastaflute/lastaflute-example-maihama/blob/master/maihama-orleans/src/main/java/org/docksidestage/bizfw/job/contributed/NxBatchRecorder.java
+
+// #1on1: authorの話。
+// 「責任が付く」by あやみんさん => That's right!
+// ちょっと行動経済学のお話。名前を書くことで、後ろめたさが消える (責任が心理的に生まれやすい) みたいな話。
+// 「テストのときも名前を書くとピリっとする」by あやみんさん => 素晴らしい、それそれ。
+// (メソッド、下に追加されがち問題のお話)
+// 既存コード修正するときに、そのクラスに対する責任をほんの少しでも持ってほしい。authorがそのチリも積もればのチリ。
 /**
  * 遊園地のチケットを表すクラス
  * チケットの情報(有効日数、価格など)と、入園処理を定義
@@ -29,7 +36,12 @@ import java.time.format.DateTimeFormatter;
  * @author ayamin
  */
 public abstract class Ticket  {
+    
+    // TODO ayamin 一応、インスタンス変数、コンストラクター、メソッドというの定義順序の基本ではあるので... by jflute (2025/09/05)
+    // 少なくとも、コンストラクターよりも下のどこかに定義しましょう。
     public abstract String getTicketTypeDisplayName();
+    
+    // TODO ayamin あごが開いている by jflute (2025/09/05)
     // ===================================================================================
     //                                                                           Attribute
     //
@@ -65,7 +77,7 @@ public abstract class Ticket  {
         if (entryCount >= validDays) {
             throw new IllegalStateException("有効日数を超えています。現在の入園カウント: " + entryCount + ", 有効日数: " + validDays);
         }
-
+        
         LocalTime currentTime = clockProvider.getCurrentTime();
         if (nightOnly && DayNightChecker.isDay(currentTime)) {
             // done ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
