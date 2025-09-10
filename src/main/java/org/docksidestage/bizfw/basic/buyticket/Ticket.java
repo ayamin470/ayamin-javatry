@@ -30,7 +30,7 @@ import java.time.format.DateTimeFormatter;
 // (メソッド、下に追加されがち問題のお話)
 // 既存コード修正するときに、そのクラスに対する責任をほんの少しでも持ってほしい。authorがそのチリも積もればのチリ。
 /**
- * 遊園地のチケットを表すクラス
+ * パークのチケットを表すクラス
  * チケットの情報(有効日数、価格など)と、入園処理を定義
  * @author jflute
  * @author ayamin
@@ -39,12 +39,10 @@ public abstract class Ticket  {
     
     // TODO ayamin 一応、インスタンス変数、コンストラクター、メソッドというの定義順序の基本ではあるので... by jflute (2025/09/05)
     // 少なくとも、コンストラクターよりも下のどこかに定義しましょう。
-    public abstract String getTicketTypeDisplayName();
     
-    // TODO ayamin あごが開いている by jflute (2025/09/05)
+    // TODO done ayamin あごが開いている by jflute (2025/09/05)
     // ===================================================================================
     //                                                                           Attribute
-    //
     //                                                                           =========
     private final int displayPrice;
     private final int validDays;
@@ -69,6 +67,9 @@ public abstract class Ticket  {
     // ===================================================================================
     //                                                                             In Park
     //                                                                             =======
+
+    public abstract String getTicketTypeDisplayName();
+
     /**
      * チケットを使って遊園地に入園する
      * @throws IllegalStateException 入園条件を満たさない場合。
