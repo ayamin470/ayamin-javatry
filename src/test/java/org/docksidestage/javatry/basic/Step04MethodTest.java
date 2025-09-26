@@ -165,7 +165,7 @@ public class Step04MethodTest extends PlainTestCase {
     }
     private boolean availableLogging = true;
     
-    // TODO ayamin [いいね] 呼び出し順序と定義位置が一致していて直感的で良い by jflute (2025/09/05)
+    // done ayamin [いいね] 呼び出し順序と定義位置が一致していて直感的で良い by jflute (2025/09/05)
     // 再利用しない想定で見た目のために切り出しているprivateメソッド: (基本は)呼び出し側の直下に呼び出し順序で置く
     // 再利用する想定で切り出しているprivateメソッド: もっと下に独立させる (Small Helperなど)
     // 再利用しなくても独立ロジックと言えて切り出しているprivateメソッド: 同様に下に独立させる (Replace Logicなど)

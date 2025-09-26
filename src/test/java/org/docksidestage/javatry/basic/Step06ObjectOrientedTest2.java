@@ -35,7 +35,7 @@ public class Step06ObjectOrientedTest2 extends PlainTestCase {
      * Fix several mistakes (except simulation) in buying one-day passport and in-park process. <br>
      * (OneDayPassportを買って InPark する処理の中で、(simulationを除いて)間違いがいくつかあるので修正しましょう)
      */
-     //TODO jflute 以下に、「間違い探し」した結果を記載します by ayamin
+     //doneTODO jflute 以下に、「間違い探し」した結果を記載します by ayamin
     /**
         `①--quantity; の位置：顧客が渡したお金が足りなかった場合でも、quantity が減ってしまう
         　 正しくは、 if (handedMoney < oneDayPrice) が終わった後に--quantity;

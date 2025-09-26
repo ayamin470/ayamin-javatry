@@ -39,6 +39,9 @@ import org.docksidestage.javatry.basic.st6.os.OldWindows;
 // ↓ぜひこちらを改めて読んでもらえればと:
 // ハンズオンのコーディングポリシー - 4. 空行マネジメント
 // https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#emptyline
+
+// TODO ayamin [読み物課題] ホワイトボードを買ってこよう by jflute (2025/09/26)
+// https://jflute.hatenadiary.jp/entry/20110607/1307440686
 /**
  * The test of object-oriented. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
@@ -380,7 +383,21 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         // #1on1: オブジェクト指向とインターフェースの考え方、は根本的には別物
         // Javaは、オブジェクト指向言語といいつつ、色々な要素を取り入れる
         // コンセプトの話をしました。
-        // TODO jflute ColorBoxインターフェースの応用編はまた次回 (2025/07/25)
+        // done jflute ColorBoxインターフェースの応用編はまた次回 (2025/07/25)
+        // #1on1: AbstractColorBoxの役割...
+        // 1: 対外的なポリモーフィズムはinterfaceにお任せ
+        // 2: コンクリートクラスの共通化(形付け)は変わらずやっている
+        // 元々abstract classにあった「外交」と「内政」の役割を分離して、外交はinterfaceに任せた。
+        //
+        // 単純に interface に切り出されると何が呼べるのかわかりやすいってのもあるし...
+        // 内部publicメソッド:
+        // 例えば、AbstractColorBox に内部publicメソッドを作りたくなっても、
+        // ユーザーには interface で隠蔽できている。
+        // public void init() { // colorboxメーカーが呼ぶ内部publicメソッド
+        //    // ...
+        // }
+        // 半カプセル化ができる。
+        // List interface と AbstractList も見てみた。
     }
 
     // ===================================================================================

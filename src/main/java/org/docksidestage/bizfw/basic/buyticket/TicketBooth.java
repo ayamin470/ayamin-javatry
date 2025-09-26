@@ -15,6 +15,8 @@
  */
 package org.docksidestage.bizfw.basic.buyticket;
 
+// #1on1: あやみんさんは、デイリーハッスルを避けるの大事
+// https://qiita.com/arai-wa/items/4c7629276ced7e933235
 /**
  * @author jflute
  * @author ayamin

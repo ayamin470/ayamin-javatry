@@ -1,6 +1,6 @@
 package org.docksidestage.bizfw.basic.buyticket;
 
-// TODO done ayamin javadocでauthorを。自信持って自分の名前を！ by jflute (2025/09/05)
+// done ayamin javadocでauthorを。自信持って自分の名前を！ by jflute (2025/09/05)
 
 /**
  * 4日パスポートを表すクラス。

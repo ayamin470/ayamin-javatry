@@ -147,7 +147,7 @@ public class YourPrivateRoom {
     // -----------------------------------------------------
     //                                         Seventh - ...
     //                                         -------------
-    // TODO: jflute trapだらけで楽しいです!　by ayamin 2025/08/20
+    // done jflute trapだらけで楽しいです!　by ayamin 2025/08/20
     private StandardColorBox makeSeventhColorBox() {
         StandardColorBox colorBox = new StandardColorBox(new BoxColor("purple"), new BoxSize(50, 30, 40));
         colorBox.getUpperSpace().setContent(true);

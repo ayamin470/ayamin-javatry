@@ -225,7 +225,7 @@
 //     * (買ったチケットの種別がTwoDayPassportなのかどうかをif文で正確に判定してみましょう。(必要ならTicketクラスたちを修正))
 //     */
 //    public void test_class_moreFix_whetherTicketType() {
-//        // TODO ayamin "showTicketIfNeeds()" が誰からも呼ばれてないので...javatryの元のコメントをuncommentして復元しましょう by jflute (2025/08/22)
+//        // done ayamin "showTicketIfNeeds()" が誰からも呼ばれてないので...javatryの元のコメントをuncommentして復元しましょう by jflute (2025/08/22)
 //        // uncomment when you implement this exercise
 //        //TicketBooth booth = new TicketBooth();
 //        //Ticket oneDayPassport = booth.buyOneDayPassport(10000);
