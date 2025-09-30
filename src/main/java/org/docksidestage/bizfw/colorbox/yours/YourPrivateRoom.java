@@ -184,7 +184,7 @@ public class YourPrivateRoom {
         StandardColorBox colorBox = new StandardColorBox(new BoxColor("yellow"), new BoxSize(30, 50, 40));
         Set<String> set = new HashSet<String>();
         set.add("2019/04/22");
-        set.add("2O19/04/22"); // super trap　//TODO[memo]ayamin：2つ目の"2O19/04/22"は0でなくてO！super trap......
+        set.add("2O19/04/22"); // super trap　//[memo]ayamin：2つ目の"2O19/04/22"は0でなくてO！super trap......
         colorBox.getUpperSpace().setContent(set);
         colorBox.getMiddleSpace().setContent(new BittersweetMemorableException("nullsidestage", doyoulikeNullPointer()));
         colorBox.getLowerSpace().setContent((FavoriteProvider) () -> "mystic");

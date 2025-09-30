@@ -488,6 +488,7 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * What string is converted to style "map:{ key = value ; key = value ; ... }" from java.util.Map in color-boxes? <br>
      * (カラーボックスの中に入っている java.util.Map を "map:{ key = value ; key = value ; ... }" という形式で表示すると？)
      */
+    //TODO カラーボックスの中に入っている java.util.Mapがなんなのかよくわからない...importされているjava.util.Mapではない？
     public void test_showMap_flat() {
     }
 

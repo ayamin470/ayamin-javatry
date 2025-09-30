@@ -95,11 +95,11 @@ public class Step01VariableTest extends PlainTestCase {
     // これらは一度作られた後は変更できないので、元のオブジェクトを変更するのではなく、新しいオブジェクトを生成してその結果を返します
 
     // done ayamin [へんじ] Goodです。ありがとうございます！1on1のときに少しだけ補足する予定です。 by jflute (2025/07/02)
-    // ちなみに、todoに対するdoneですが、
+    // ちなみに、t_odoに対するdoneですが、
     // ↓の「レビューのやり取り」の欄を参考にお願いします。
     // https://dbflute.seasar.org/ja/tutorial/handson/review/jflutereview.html#review
-    // TODOにはこのように返事をすると言うこと。理解しました。次回から修正いたします
-    // done ayamin 改めて、Slackでtodoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
+    // T_ODOにはこのように返事をすると言うこと。理解しました。次回から修正いたします
+    // done ayamin 改めて、Slackでt_odoのdoneについて補足していますので、Slackご覧ください by jflute (2025/07/07)
 
     // done jflute 1on1にて、immutableの補足をする (2025/07/08)
     // #1on1: 質問、BigDecimalだったら何でもできるから、最初からそうしてた方が汎用性が高いか？

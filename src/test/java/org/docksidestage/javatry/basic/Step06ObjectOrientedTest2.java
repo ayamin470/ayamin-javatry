@@ -49,7 +49,6 @@ public class Step06ObjectOrientedTest2 extends PlainTestCase {
      */
 
 
-
     public void test_objectOriented_aboutObject_againstObject() {
         //
         // [ticket booth info]

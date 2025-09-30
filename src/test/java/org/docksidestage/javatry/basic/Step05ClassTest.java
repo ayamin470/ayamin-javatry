@@ -355,21 +355,36 @@ public class Step05ClassTest extends PlainTestCase {
 
         // 1日パスポートを購入し、チケット種別を表示
         Ticket oneDayPassport = booth.buyOneDayPassport(30000).getTicket();
-        log("パスポートの種別: " + oneDayPassport.getTicketTypeDisplayName());
+        if (oneDayPassport instanceof TwoDayPassport) {
+            log("それは1日パスポートです");
+        } else {
+            log("それは1日パスポートではありません");
+        }
 
         // 2日パスポートを購入し、チケット種別を表示
         Ticket twoDayPassport = booth.buyTwoDayPassport(30000).getTicket();
-        log("パスポートの種別: " + twoDayPassport.getTicketTypeDisplayName());
-        // TODO ayamin 一応、if文で分岐(確認)できるプログラムも書いておきましょう(instanceof) by jflute (2025/09/05)
+        // TODO done ayamin 一応、if文で分岐(確認)できるプログラムも書いておきましょう(instanceof) by jflute (2025/09/05)
+        if (twoDayPassport instanceof TwoDayPassport) {
+            log("それは2日パスポートです");
+        } else {
+            log("それは2日パスポートではありません");
+        }
 
         // 4日パスポートを購入し、チケット種別を表示
         Ticket fourDayPassport = booth.buyFourDayPassport(30000).getTicket();
-        log("パスポートの種別: " + fourDayPassport.getTicketTypeDisplayName());
+        if (fourDayPassport instanceof TwoDayPassport) {
+            log("それは2日パスポートです");
+        } else {
+            log("それは2日パスポートではありません");
+        }
 
         // 夜間専用2日パスポートを購入し、チケット種別を表示
         Ticket nightOnlyPassport = booth.buyNightOnlyTwoDayPassport(30000).getTicket();
-        log("パスポートの種別: " + nightOnlyPassport.getTicketTypeDisplayName());
-
+        if (nightOnlyPassport instanceof TwoDayPassport) {
+            log("それは2日パスポートです");
+        } else {
+            log("それは2日パスポートではありません");
+        }
         // もし新しいチケット（例：子供用）を追加しても、ここに追加するだけでテストできる
         // Ticket childPassport = booth.buyChildPassport(5000).getTicket();
         // log("子供用パスポートの種別: " + childPassport.getTicketTypeDisplayName());

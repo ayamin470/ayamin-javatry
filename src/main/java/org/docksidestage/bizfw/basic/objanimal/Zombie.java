@@ -49,10 +49,10 @@ public class Zombie extends Animal {
     // BarkingProcessに切り出したことで、Zombieの機能にデグレが発生してしまうのは良くないです。
     // (リファクタリングは、既存の挙動を変えずにコードの形を変えるというもの)'
 
-    //　TODO[memo] ayamin animalとzombieはis-aの関係で、animalとBarkingProcessはcanの関係
+    //　[memo] ayamin animalとzombieはis-aの関係で、animalとBarkingProcessはcanの関係
     // BarkingProcessをzombieに直接持ってくる方法はなさそうだから、breatheInをzombieの中で作って使ってしまうのが良さそう
 
-    // TODO [memo]ayamin 息を吸ったときに、日記を付けるという挙動がロスしてしまっている by jflute (2025/07/15)
+    // [memo]ayamin 息を吸ったときに、日記を付けるという挙動がロスしてしまっている by jflute (2025/07/15)
     // BarkingProcess に切り出すのはやって欲しいけど、既存のクラスの挙動を変えてはいけない。
     protected void breatheIn() {
         breatheIn();
