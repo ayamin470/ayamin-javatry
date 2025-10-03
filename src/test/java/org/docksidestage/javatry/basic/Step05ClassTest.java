@@ -349,6 +349,8 @@ public class Step05ClassTest extends PlainTestCase {
     // 「チャレンジしたい！」by あやみんさん => 素敵です。
     // TODO ayamin 修行#++: 継承を使わないやり方もどこかでやってみましょう by jflute (2025/09/05)
     // 既存の今のコードは残しつつ、なんかクラス名にprefix付けるなどして、独立して作った方がいいかも。
+    // #1on1: 継承は、"OneDayPassport extends Ticket" のこと (2025/10/03)
+    // Ticketは普通のクラスになって、種別を違う方法で表現することになる。
     public void test_class_moreFix_whetherTicketType_withPolymorphism() {
         // チケットブースをインスタンス化
         TicketBooth booth = new TicketBooth(new SystemClockProvider());
@@ -363,7 +365,7 @@ public class Step05ClassTest extends PlainTestCase {
 
         // 2日パスポートを購入し、チケット種別を表示
         Ticket twoDayPassport = booth.buyTwoDayPassport(30000).getTicket();
-        // TODO done ayamin 一応、if文で分岐(確認)できるプログラムも書いておきましょう(instanceof) by jflute (2025/09/05)
+        // done ayamin 一応、if文で分岐(確認)できるプログラムも書いておきましょう(instanceof) by jflute (2025/09/05)
         if (twoDayPassport instanceof TwoDayPassport) {
             log("それは2日パスポートです");
         } else {

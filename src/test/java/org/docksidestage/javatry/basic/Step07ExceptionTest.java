@@ -277,7 +277,33 @@ public class Step07ExceptionTest extends PlainTestCase {
             // _/_/_/_/_/_/_/_/_/_/
             // done ayamin [質問] 原因ですが、「仕様がサポートされていない」ことが原因と断定できるものでしょうか？ by jflute (2025/07/07)
             // done jflute　使用がサポートされていないというより、お客さん⇨ディーラー⇨ホイール屋さん⇨ネジ⇨と伝わって行った時に、ネジのサポートができない！とエラーを出した by ayamin
-            // TODO jflute 1on1にて原因に関してフォロー予定 (2025/07/15)
+            // done jflute 1on1にて原因に関してフォロー予定 (2025/07/15)
+            // #1on1: 仕様がサポートされていないことは事実、原因と言った時、事象の表層の原因はサポートされてないことだけど...
+            // 根本の原因というところでは...
+            //  A. DealerのcatalogKey間違い？
+            //  B. catalogDBのデータ不備？
+            //  C. componentDBのデータ不備？
+            //  D. ハンドル会社がネジ会社の選択を間違ってる？
+            //  E. ...などなどたくさん疑いポイントはある
+            // javatryとしては、根本の原因を断定するだけの情報が存在しないので、たくさん疑って正解。
+            // 原因が複合の場合もある。
+            // 例えば、"A" で落ちて "A" が "確かに" 悪いんだけど、"A" を直してもエラーが変わらないケース。
+            // たまたま、"B" も原因で、"A" を直しても結果が変わらないってのもあり得る。
+            
+            // 仮説思考みたい by ayaminさん
+            // TODO ayamin [読み物課題] My Favorite Book: 仮説思考 by jflute (2025/10/03)
+            // https://jflute.hatenadiary.jp/entry/20150111/kasetsu
+            //  → ブログ内でリンクされている記事もぜひ
+            //
+            // TODO ayamin [読み物課題] jfluteのプログラマーオススメ五冊 by jflute (2025/10/03)
+            // https://jflute.hatenadiary.jp/entry/20150727/fivebooks
+            //
+            // どう仮説を立てていけばいいか？ (見当違いの仮説を立ててしまう) by ayaminさん
+            // 「見当違いの仮説」自体は悪いことではなく、目の前に存在する(限りある)情報をちゃんと検証しているか？
+            // 限りある情報であればすみからすみまで検証してもそこまで時間は掛からない。
+            // ちゃんと検証すれば、仮説は自然と出てくる。
+            // TODO ayamin [読み物課題] 逆にテーブルスキャンもできなきゃね by jflute (2025/10/03)
+            // https://jflute.hatenadiary.jp/entry/20150112/tablescan
         }
     }
 
@@ -290,7 +316,14 @@ public class Step07ExceptionTest extends PlainTestCase {
         // done ayamin 実行しても、fail()の方に入ってしまっています。(もしかして動くように直してしまいましたか？) by jflute (2025/07/07)
         // (例外ハンドリングを確認するエクササイズなので、元々の例外が発生する挙動はそのままでいて欲しいのですが)
         try {
-            // TODO jflute 1on1にて、例外ハンドリングの改善の実装について、説明をしてもらう予定 (2025/07/07)
+            // done jflute 1on1にて、例外ハンドリングの改善の実装について、説明をしてもらう予定 (2025/07/07)
+            // TODO ayamin wheelIDが2回登場しているけど、catalogKeyがどこにも表示されていないので修正しましょう by jflute (2025/10/03)
+            // #1on1: "例外の翻訳" の話。
+            // o 1個の事象に付き、複数のエラーメッセージがありえる (レイヤごとに言い分がある)
+            // o だからこそ、Javaの例外の仕組みに "Caused by: " がある。
+            // o それがわければ、エラーが起きた時、1個メッセージ読めばOKとはならないってのがわかるはず。
+            // TODO ayamin [読み物課題] エラーメッセージ読め読め大合唱 by jflute (2025/10/03)
+            // https://jflute.hatenadiary.jp/entry/20130522/errorsinging
             new SupercarClient().buySupercar(); // you can fix the classes
             fail("always exception but none");
         } catch (RuntimeException e) {
