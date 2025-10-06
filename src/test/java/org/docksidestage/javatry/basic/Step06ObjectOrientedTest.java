@@ -40,15 +40,16 @@ import org.docksidestage.javatry.basic.st6.os.OldWindows;
 // ハンズオンのコーディングポリシー - 4. 空行マネジメント
 // https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#emptyline
 
-// TODO ayamin [読み物課題] ホワイトボードを買ってこよう by jflute (2025/09/26)
+// TODO done ayamin [読み物課題] ホワイトボードを買ってこよう by jflute (2025/09/26)
 // https://jflute.hatenadiary.jp/entry/20110607/1307440686
 // ↑ 図で表現する習慣を
 
-// TODO ayamin [読み物課題] まず何より、目の前の道具を使いこなしてください by jflute (2025/09/26)
+// TODO done ayamin [読み物課題] まず何より、目の前の道具を使いこなしてください by jflute (2025/09/26)
 // https://jflute.hatenadiary.jp/entry/20180223/mastercurrent
 // ↑ "目の前は学びの宝庫"
+// 身をつまされました。土日にしているお勉強、目の前のチャーハンを作ることにきちんと役に立っているのか、今は確かめようがないような気がしていて、不安です。、
 
-// TODO ayamin [読み物課題] 使いこなしてないAと使いこなしてるA by jflute (2025/09/26)
+// TODO done ayamin [読み物課題] 使いこなしてないAと使いこなしてるA by jflute (2025/09/26)
 // https://jflute.hatenadiary.jp/entry/20140922/twotools
 // ↑ 使いこなしてるAフレームワークと、使いこなしてないAフレームワーク、
 // 同じ A だけど、別物と言える。
