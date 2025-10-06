@@ -16,7 +16,7 @@
 package org.docksidestage.javatry.basic;
 
 import org.docksidestage.bizfw.basic.buyticket.Inheritance_Ticket;
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
+import org.docksidestage.bizfw.basic.buyticket.Inherutance_TicketBooth;
 import org.docksidestage.bizfw.basic.objanimal.Animal;
 import org.docksidestage.bizfw.basic.objanimal.Cat;
 import org.docksidestage.bizfw.basic.objanimal.Dog;
@@ -155,7 +155,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         //
         // [ticket booth info]
         //
-        TicketBooth booth = new TicketBooth();
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth();
 
         // *booth has these properties:
         //int oneDayPrice = 7400;
@@ -205,7 +205,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
 //        saveBuyingHistory(booth, ticket);
     }
 
-    private void saveBuyingHistory(TicketBooth booth, Inheritance_Ticket ticket) {
+    private void saveBuyingHistory(Inherutance_TicketBooth booth, Inheritance_Ticket ticket) {
         if (ticket.isAlreadyIn()) {
             // only logging here (normally e.g. DB insert)
             doShowTicketBooth(booth);
@@ -213,7 +213,7 @@ public class Step06ObjectOrientedTest extends PlainTestCase {
         }
     }
 
-    private void doShowTicketBooth(TicketBooth booth) {
+    private void doShowTicketBooth(Inherutance_TicketBooth booth) {
         log("Ticket Booth: quantity={}, salesProceeds={}", booth.getQuantity(), booth.getSalesProceeds());
     }
 

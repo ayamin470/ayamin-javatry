@@ -50,7 +50,7 @@ public abstract class Inheritance_Ticket {
     private final int validDays;
     private final boolean nightOnly;
     private int entryCount;
-    private final ClockProvider clockProvider;
+    private final Util_ClockProvider clockProvider;
 
     // ===================================================================================
     //                                                                         Constructor
@@ -58,7 +58,7 @@ public abstract class Inheritance_Ticket {
     // #1on1: コンストラクターが一個しか無いので、重要なの@param, 説明がなくてもいいかも
     // 一方で、TicketBoothみたいに、コンストラクターあって用途の区別があるのであればそれは説明したい。
     // #1on1: (NotNull) の話
-    public Inheritance_Ticket(int displayPrice, int validDays, boolean nightOnly, ClockProvider clockProvider) {
+    public Inheritance_Ticket(int displayPrice, int validDays, boolean nightOnly, Util_ClockProvider clockProvider) {
         this.displayPrice = displayPrice;
         this.validDays = validDays;
         this.nightOnly = nightOnly;
@@ -82,7 +82,7 @@ public abstract class Inheritance_Ticket {
         }
         
         LocalTime currentTime = clockProvider.getCurrentTime();
-        if (nightOnly && DayNightChecker.isDay(currentTime)) {
+        if (nightOnly && Util_DayNightChecker.isDay(currentTime)) {
             // done ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
             // done ayamin 同じ概念でも型違いの変数が同じスコープに入るときは名前で区別しましょう by jflute (2025/08/06)
             //  e.g. currentTimeStr, currentTimeDisp, currentTimeExp

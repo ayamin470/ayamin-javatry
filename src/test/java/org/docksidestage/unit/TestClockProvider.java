@@ -2,12 +2,12 @@
 package org.docksidestage.unit;
 
 import java.time.LocalTime;
-import org.docksidestage.bizfw.basic.buyticket.ClockProvider;
+import org.docksidestage.bizfw.basic.buyticket.Util_ClockProvider;
 
 /**
  * テスト用に固定の時刻を返すClockProvider
  */
-public class TestClockProvider implements ClockProvider {
+public class TestClockProvider implements Util_ClockProvider {
     private final LocalTime fixedTime;
 
     public TestClockProvider(LocalTime fixedTime) {

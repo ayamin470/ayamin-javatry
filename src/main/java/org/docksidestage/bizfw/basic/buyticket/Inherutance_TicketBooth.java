@@ -21,7 +21,7 @@ package org.docksidestage.bizfw.basic.buyticket;
  * @author jflute
  * @author ayamin
  */
-public class TicketBooth {
+public class Inherutance_TicketBooth {
 
     // ===================================================================================
     //                                                                          Definition
@@ -38,40 +38,40 @@ public class TicketBooth {
     private int quantity = MAX_QUANTITY;
     private Integer salesProceeds; // null allowed: until first purchase
 
-    private final ClockProvider clockProvider;
+    private final Util_ClockProvider clockProvider;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public TicketBooth(ClockProvider clockProvider) {
+    public Inherutance_TicketBooth(Util_ClockProvider clockProvider) {
         // done ayamin インスタンス変数と同じ初期化しているので、どっちか不要 by jflute (2025/07/25)
         this.clockProvider = clockProvider;
     }
 
-    public TicketBooth() {
-        this(new SystemClockProvider());
+    public Inherutance_TicketBooth() {
+        this(new Util_SystemClockProvider());
     }
 
     // ===================================================================================
     //                                                                          Buy Ticket
     //                                                                          ==========
-    public TicketBuyResult buyOneDayPassport(int handedMoney) {
+    public Inherutance_ReturnTheChange buyOneDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, ONE_DAY_PRICE, 1, false);
     }
-    public TicketBuyResult buyTwoDayPassport(int handedMoney) {
+    public Inherutance_ReturnTheChange buyTwoDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, TWO_DAY_PRICE, 2, false);
     }
-    public TicketBuyResult buyFourDayPassport(int handedMoney) {
+    public Inherutance_ReturnTheChange buyFourDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, FOUR_DAY_PRICE, 4, false);
     }
-    public TicketBuyResult buyNightOnlyTwoDayPassport(int handedMoney) {
+    public Inherutance_ReturnTheChange buyNightOnlyTwoDayPassport(int handedMoney) {
         return doBuyPassport(handedMoney, NIGHT_ONLY_TWO_DAY_PRICE, 2, true);
     }
 
     // ===================================================================================
     //                                                                       doBuyPassport
     //                                                                          ==========
-    private TicketBuyResult doBuyPassport(Integer handedMoney, int price, int ticketValidDays, boolean nightOnly) {
+    private Inherutance_ReturnTheChange doBuyPassport(Integer handedMoney, int price, int ticketValidDays, boolean nightOnly) {
         if (quantity <= 0) {
             throw new TicketSoldOutException("Sold out: quantity=" + quantity);
         }
@@ -89,22 +89,22 @@ public class TicketBooth {
         final Inheritance_Ticket ticket;
         if (nightOnly && ticketValidDays == 2) {
             // NightOnlyTwoDayPassportの場合
-            ticket = new Extends_NightOnlyTwoDayPassport(clockProvider);
+            ticket = new Inheritance_NightOnlyTwoDayPassport(clockProvider);
         } else if (ticketValidDays == 1) {
             // OneDayPassportの場合
-            ticket = new Extends_OneDayPassport(clockProvider);
+            ticket = new Inheritance_OneDayPassport(clockProvider);
         } else if (ticketValidDays == 2) {
             // TwoDayPassportの場合
-            ticket = new Extends_TwoDayPassport(clockProvider);
+            ticket = new Inheritance_TwoDayPassport(clockProvider);
         } else if (ticketValidDays == 4) {
             // FourDayPassportの場合
-            ticket = new Extends_FourDayPassport(clockProvider);
+            ticket = new Inheritance_FourDayPassport(clockProvider);
         } else {
             // 想定外のチケット情報の場合
             throw new IllegalArgumentException("無効なチケット情報です。有効日数: " + ticketValidDays + ", 夜間専用: " + nightOnly);
         }
         int change = handedMoney - price;
-        return new TicketBuyResult(ticket, change);
+        return new Inherutance_ReturnTheChange(ticket, change);
     }
 
     public static class TicketSoldOutException extends RuntimeException {

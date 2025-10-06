@@ -56,9 +56,9 @@ import java.time.LocalTime;
 //  少なくともぱっと見で何をしているクラスなのか理解できないため不適切なクラス名だと思います
 //  あまりカッコ良くはないですが、DayNightCheckerにしてみました
 
-public class DayNightChecker {
+public class Util_DayNightChecker {
 
-    private DayNightChecker() {
+    private Util_DayNightChecker() {
 
     }
 

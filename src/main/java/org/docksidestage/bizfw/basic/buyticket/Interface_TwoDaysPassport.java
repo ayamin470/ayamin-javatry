@@ -1,6 +1,10 @@
 package org.docksidestage.bizfw.basic.buyticket;
+/**
+ *
+ * @author ayamin
+ */
+public class Interface_TwoDaysPassport implements Interface_Ticket {
 
-public class Implements_NightOnlyPassport implements Interface_Ticket {
     //一旦適当にメソッド入れた、インターフェースはメソッド入れないと赤い波線が出る
     @Override
     public int getPrice() {

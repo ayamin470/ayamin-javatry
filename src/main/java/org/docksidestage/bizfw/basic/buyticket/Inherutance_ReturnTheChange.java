@@ -9,13 +9,13 @@ package org.docksidestage.bizfw.basic.buyticket;
 /**
  * @author ayamin
  */
-public class TicketBuyResult {
+public class Inherutance_ReturnTheChange {
 
     // done ayamin [いいね] Immutableになれるクラスなので、final付けるのgoodです by jflute (2025/07/02)
     private final Inheritance_Ticket ticket;
     private final int change;
 
-    public TicketBuyResult(Inheritance_Ticket ticket, int change) {
+    public Inherutance_ReturnTheChange(Inheritance_Ticket ticket, int change) {
         this.ticket = ticket;
         this.change = change;
     }

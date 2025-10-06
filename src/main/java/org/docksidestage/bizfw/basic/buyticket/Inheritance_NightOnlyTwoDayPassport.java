@@ -5,9 +5,9 @@ package org.docksidestage.bizfw.basic.buyticket;
  * 2日の有効期間と、夜間利用可のルールを持つ。
  * @author ayamin
  */
-public class Extends_NightOnlyTwoDayPassport extends Inheritance_Ticket {
+public class Inheritance_NightOnlyTwoDayPassport extends Inheritance_Ticket {
 
-    public Extends_NightOnlyTwoDayPassport(ClockProvider clockProvider) {
+    public Inheritance_NightOnlyTwoDayPassport(Util_ClockProvider clockProvider) {
         super(7400, 2, true, clockProvider);
     }
 

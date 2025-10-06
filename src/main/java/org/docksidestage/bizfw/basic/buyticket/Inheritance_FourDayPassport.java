@@ -7,9 +7,9 @@ package org.docksidestage.bizfw.basic.buyticket;
  * 4日の有効期間と、夜間利用不可のルールを持つ。
  * @author ayamin
  */
-public class Extends_FourDayPassport extends Inheritance_Ticket {
+public class Inheritance_FourDayPassport extends Inheritance_Ticket {
 
-    public Extends_FourDayPassport(ClockProvider clockProvider) {
+    public Inheritance_FourDayPassport(Util_ClockProvider clockProvider) {
         super(22000, 4, false, clockProvider);
     }
     @Override

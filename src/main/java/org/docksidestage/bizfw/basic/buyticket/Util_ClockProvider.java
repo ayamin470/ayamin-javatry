@@ -7,6 +7,6 @@ import java.time.LocalTime;
  * @return 現在時刻
  * @author ayamin
  */
-public interface ClockProvider {
+public interface Util_ClockProvider {
     LocalTime getCurrentTime();
 }

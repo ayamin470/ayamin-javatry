@@ -18,12 +18,12 @@ package org.docksidestage.javatry.basic;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import org.docksidestage.bizfw.basic.buyticket.SystemClockProvider;
+import org.docksidestage.bizfw.basic.buyticket.Util_SystemClockProvider;
 import org.docksidestage.bizfw.basic.buyticket.Inheritance_Ticket;
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
-import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
-import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
-import org.docksidestage.bizfw.basic.buyticket.Extends_TwoDayPassport;
+import org.docksidestage.bizfw.basic.buyticket.Inherutance_TicketBooth;
+import org.docksidestage.bizfw.basic.buyticket.Inherutance_TicketBooth.TicketShortMoneyException;
+import org.docksidestage.bizfw.basic.buyticket.Inherutance_ReturnTheChange;
+import org.docksidestage.bizfw.basic.buyticket.Inheritance_TwoDayPassport;
 import org.docksidestage.unit.PlainTestCase;
 import org.docksidestage.unit.TestClockProvider;
 
@@ -48,7 +48,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (メソッド終了時の変数 sea の中身は？)
      */
     public void test_class_howToUse_basic() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         booth.buyOneDayPassport(7400);
         int sea = booth.getQuantity();
         log(sea);
@@ -56,7 +56,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_overpay() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
         log(sea);
@@ -64,7 +64,7 @@ public class Step05ClassTest extends PlainTestCase {
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_class_howToUse_nosales() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         Integer sea = booth.getSalesProceeds();
         log(sea);
     }
@@ -76,7 +76,7 @@ public class Step05ClassTest extends PlainTestCase {
     }
 
     private Integer doTest_class_ticket_wrongQuantity() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         int handedMoney = 7399;
         try {
             booth.buyOneDayPassport(handedMoney);
@@ -104,7 +104,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (受け取ったお金の分だけ売上が増えていく問題をクラスを修正して解決しましょう (以前のエクササイズのanswerの修正を忘れずに))
      */
     public void test_class_letsFix_salesProceedsIncrease() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         booth.buyOneDayPassport(10000);
         Integer sea = booth.getSalesProceeds();
         log(sea);
@@ -116,7 +116,7 @@ public class Step05ClassTest extends PlainTestCase {
      */
     public void test_class_letsFix_makeMethod_twoday() {
 
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         int money = 14000;
         int change = booth.buyTwoDayPassport(money).getChange();
         Integer sea = booth.getSalesProceeds() + change;
@@ -129,7 +129,7 @@ public class Step05ClassTest extends PlainTestCase {
      * (OneDayとTwoDayで冗長なロジックがあったら、クラス内のprivateメソッドなどで再利用しましょう (修正前と修正後の実行結果を確認))
      */
     public void test_class_letsFix_refactor_recycle() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         booth.buyOneDayPassport(10000);
         log(booth.getQuantity(), booth.getSalesProceeds());
     }
@@ -157,8 +157,8 @@ public class Step05ClassTest extends PlainTestCase {
      */
 
     public void test_class_moreFix_usePluralDays() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
-        TicketBuyResult buyResult = booth.buyTwoDayPassport(14000);
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
+        Inherutance_ReturnTheChange buyResult = booth.buyTwoDayPassport(14000);
         Inheritance_Ticket twoDayPassport = buyResult.getTicket();
 
         log("--- TwoDayPassport Usage ---");
@@ -189,8 +189,8 @@ public class Step05ClassTest extends PlainTestCase {
      * (買ったチケットの種別がTwoDayPassportなのかどうかをif文で正確に判定してみましょう。(必要ならTicketクラスたちを修正))
      */
     public void test_class_moreFix_whetherTicketType() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
-        TicketBuyResult buyResult = booth.buyOneDayPassport(10000);
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
+        Inherutance_ReturnTheChange buyResult = booth.buyOneDayPassport(10000);
         Inheritance_Ticket oneDayPassport = buyResult.getTicket();
         showTicketIfNeeds(oneDayPassport);
         Inheritance_Ticket twoDayPassport = buyResult.getTicket();
@@ -216,9 +216,9 @@ public class Step05ClassTest extends PlainTestCase {
      * (FourDayPassport (金額は22400) のチケットも買えるようにしましょう)
      */
     public void test_class_moreFix_wonder_four() {
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
         int handedMoney = 25000;
-        TicketBuyResult buyResult = booth.buyFourDayPassport(handedMoney);
+        Inherutance_ReturnTheChange buyResult = booth.buyFourDayPassport(handedMoney);
         Inheritance_Ticket fourDayPassport = buyResult.getTicket();
         int change = buyResult.getChange();
 
@@ -266,8 +266,8 @@ public class Step05ClassTest extends PlainTestCase {
         log("--- 夜間チケットをシミュレートされた夜間に使用するテスト ---");
         log("シミュレート時刻: " + nightTime.format(formatter) + " (夜間)");
 
-        TicketBooth nightBooth = new TicketBooth(new TestClockProvider(nightTime));
-        TicketBuyResult nightBuyResult = nightBooth.buyNightOnlyTwoDayPassport(handedMoney);
+        Inherutance_TicketBooth nightBooth = new Inherutance_TicketBooth(new TestClockProvider(nightTime));
+        Inherutance_ReturnTheChange nightBuyResult = nightBooth.buyNightOnlyTwoDayPassport(handedMoney);
         Inheritance_Ticket nightTicket = nightBuyResult.getTicket();
         int nightChange = nightBuyResult.getChange();
 
@@ -303,8 +303,8 @@ public class Step05ClassTest extends PlainTestCase {
         log("シミュレート時刻: " + dayTime.format(formatter) + " (昼間)");
 
         // 別の夜間チケットを購入
-        TicketBooth dayBooth = new TicketBooth(new TestClockProvider(dayTime));
-        TicketBuyResult anotherNightBuyResult = dayBooth.buyNightOnlyTwoDayPassport(handedMoney);
+        Inherutance_TicketBooth dayBooth = new Inherutance_TicketBooth(new TestClockProvider(dayTime));
+        Inherutance_ReturnTheChange anotherNightBuyResult = dayBooth.buyNightOnlyTwoDayPassport(handedMoney);
         Inheritance_Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
 
         log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
@@ -352,13 +352,14 @@ public class Step05ClassTest extends PlainTestCase {
     // #1on1: 継承は、"OneDayPassport extends Ticket" のこと (2025/10/03)
     // Ticketは普通のクラスになって、種別を違う方法で表現することになる。
     // TODO jflute インターフェースを使った実装にしようと思っていますが、アリですか？(step05でインターフェースって学んでいましたっけ？) by ayamin (2025/10/06)
+    // インターフェースにしちゃうと、「Ticketは普通のクラスになって」という条件を満たせないから意味ないかも
     public void test_class_moreFix_whetherTicketType_withPolymorphism() {
         // チケットブースをインスタンス化
-        TicketBooth booth = new TicketBooth(new SystemClockProvider());
+        Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
 
         // 1日パスポートを購入し、チケット種別を表示
         Inheritance_Ticket oneDayPassport = booth.buyOneDayPassport(30000).getTicket();
-        if (oneDayPassport instanceof Extends_TwoDayPassport) {
+        if (oneDayPassport instanceof Inheritance_TwoDayPassport) {
             log("それは1日パスポートです");
         } else {
             log("それは1日パスポートではありません");
@@ -367,7 +368,7 @@ public class Step05ClassTest extends PlainTestCase {
         // 2日パスポートを購入し、チケット種別を表示
         Inheritance_Ticket twoDayPassport = booth.buyTwoDayPassport(30000).getTicket();
         // done ayamin 一応、if文で分岐(確認)できるプログラムも書いておきましょう(instanceof) by jflute (2025/09/05)
-        if (twoDayPassport instanceof Extends_TwoDayPassport) {
+        if (twoDayPassport instanceof Inheritance_TwoDayPassport) {
             log("それは2日パスポートです");
         } else {
             log("それは2日パスポートではありません");
@@ -375,7 +376,7 @@ public class Step05ClassTest extends PlainTestCase {
 
         // 4日パスポートを購入し、チケット種別を表示
         Inheritance_Ticket fourDayPassport = booth.buyFourDayPassport(30000).getTicket();
-        if (fourDayPassport instanceof Extends_TwoDayPassport) {
+        if (fourDayPassport instanceof Inheritance_TwoDayPassport) {
             log("それは2日パスポートです");
         } else {
             log("それは2日パスポートではありません");
@@ -383,7 +384,7 @@ public class Step05ClassTest extends PlainTestCase {
 
         // 夜間専用2日パスポートを購入し、チケット種別を表示
         Inheritance_Ticket nightOnlyPassport = booth.buyNightOnlyTwoDayPassport(30000).getTicket();
-        if (nightOnlyPassport instanceof Extends_TwoDayPassport) {
+        if (nightOnlyPassport instanceof Inheritance_TwoDayPassport) {
             log("それは2日パスポートです");
         } else {
             log("それは2日パスポートではありません");
