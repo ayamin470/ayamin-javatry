@@ -19,11 +19,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import org.docksidestage.bizfw.basic.buyticket.SystemClockProvider;
-import org.docksidestage.bizfw.basic.buyticket.Ticket;
+import org.docksidestage.bizfw.basic.buyticket.Inheritance_Ticket;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth;
 import org.docksidestage.bizfw.basic.buyticket.TicketBooth.TicketShortMoneyException;
 import org.docksidestage.bizfw.basic.buyticket.TicketBuyResult;
-import org.docksidestage.bizfw.basic.buyticket.TwoDayPassport;
+import org.docksidestage.bizfw.basic.buyticket.Extends_TwoDayPassport;
 import org.docksidestage.unit.PlainTestCase;
 import org.docksidestage.unit.TestClockProvider;
 
@@ -159,7 +159,7 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_usePluralDays() {
         TicketBooth booth = new TicketBooth(new SystemClockProvider());
         TicketBuyResult buyResult = booth.buyTwoDayPassport(14000);
-        Ticket twoDayPassport = buyResult.getTicket();
+        Inheritance_Ticket twoDayPassport = buyResult.getTicket();
 
         log("--- TwoDayPassport Usage ---");
         log("定価：" + twoDayPassport.getDisplayPrice() + ",残り日数：" + twoDayPassport.getValidDays() + ",入園カウント："
@@ -191,14 +191,14 @@ public class Step05ClassTest extends PlainTestCase {
     public void test_class_moreFix_whetherTicketType() {
         TicketBooth booth = new TicketBooth(new SystemClockProvider());
         TicketBuyResult buyResult = booth.buyOneDayPassport(10000);
-        Ticket oneDayPassport = buyResult.getTicket();
+        Inheritance_Ticket oneDayPassport = buyResult.getTicket();
         showTicketIfNeeds(oneDayPassport);
-        Ticket twoDayPassport = buyResult.getTicket();
+        Inheritance_Ticket twoDayPassport = buyResult.getTicket();
         showTicketIfNeeds(twoDayPassport);
     }
 
     // done ayamin { を下ろすなら下ろすのに徹底したほうが良いかも。今だと独立ifに見えちゃう... by jflute (2025/08/22)
-    private void showTicketIfNeeds(Ticket ticket) {
+    private void showTicketIfNeeds(Inheritance_Ticket ticket) {
         if (ticket.isNightOnly()) {
             log("それは夜間専用2日パスポートだよ");
         } else if (ticket.getValidDays() == 2) {
@@ -219,7 +219,7 @@ public class Step05ClassTest extends PlainTestCase {
         TicketBooth booth = new TicketBooth(new SystemClockProvider());
         int handedMoney = 25000;
         TicketBuyResult buyResult = booth.buyFourDayPassport(handedMoney);
-        Ticket fourDayPassport = buyResult.getTicket();
+        Inheritance_Ticket fourDayPassport = buyResult.getTicket();
         int change = buyResult.getChange();
 
         log("--- FourDayPassport Purchase & Usage ---");
@@ -268,7 +268,7 @@ public class Step05ClassTest extends PlainTestCase {
 
         TicketBooth nightBooth = new TicketBooth(new TestClockProvider(nightTime));
         TicketBuyResult nightBuyResult = nightBooth.buyNightOnlyTwoDayPassport(handedMoney);
-        Ticket nightTicket = nightBuyResult.getTicket();
+        Inheritance_Ticket nightTicket = nightBuyResult.getTicket();
         int nightChange = nightBuyResult.getChange();
 
         log("夜間専用TwoDayPassportの価格: " + nightTicket.getDisplayPrice());
@@ -305,7 +305,7 @@ public class Step05ClassTest extends PlainTestCase {
         // 別の夜間チケットを購入
         TicketBooth dayBooth = new TicketBooth(new TestClockProvider(dayTime));
         TicketBuyResult anotherNightBuyResult = dayBooth.buyNightOnlyTwoDayPassport(handedMoney);
-        Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
+        Inheritance_Ticket anotherNightTicket = anotherNightBuyResult.getTicket();
 
         log("別の夜間専用TwoDayPassportの価格: " + anotherNightTicket.getDisplayPrice());
         log("夜間専用か: " + anotherNightTicket.isNightOnly());
@@ -351,38 +351,39 @@ public class Step05ClassTest extends PlainTestCase {
     // 既存の今のコードは残しつつ、なんかクラス名にprefix付けるなどして、独立して作った方がいいかも。
     // #1on1: 継承は、"OneDayPassport extends Ticket" のこと (2025/10/03)
     // Ticketは普通のクラスになって、種別を違う方法で表現することになる。
+    // TODO jflute インターフェースを使った実装にしようと思っていますが、アリですか？(step05でインターフェースって学んでいましたっけ？) by ayamin (2025/10/06)
     public void test_class_moreFix_whetherTicketType_withPolymorphism() {
         // チケットブースをインスタンス化
         TicketBooth booth = new TicketBooth(new SystemClockProvider());
 
         // 1日パスポートを購入し、チケット種別を表示
-        Ticket oneDayPassport = booth.buyOneDayPassport(30000).getTicket();
-        if (oneDayPassport instanceof TwoDayPassport) {
+        Inheritance_Ticket oneDayPassport = booth.buyOneDayPassport(30000).getTicket();
+        if (oneDayPassport instanceof Extends_TwoDayPassport) {
             log("それは1日パスポートです");
         } else {
             log("それは1日パスポートではありません");
         }
 
         // 2日パスポートを購入し、チケット種別を表示
-        Ticket twoDayPassport = booth.buyTwoDayPassport(30000).getTicket();
+        Inheritance_Ticket twoDayPassport = booth.buyTwoDayPassport(30000).getTicket();
         // done ayamin 一応、if文で分岐(確認)できるプログラムも書いておきましょう(instanceof) by jflute (2025/09/05)
-        if (twoDayPassport instanceof TwoDayPassport) {
+        if (twoDayPassport instanceof Extends_TwoDayPassport) {
             log("それは2日パスポートです");
         } else {
             log("それは2日パスポートではありません");
         }
 
         // 4日パスポートを購入し、チケット種別を表示
-        Ticket fourDayPassport = booth.buyFourDayPassport(30000).getTicket();
-        if (fourDayPassport instanceof TwoDayPassport) {
+        Inheritance_Ticket fourDayPassport = booth.buyFourDayPassport(30000).getTicket();
+        if (fourDayPassport instanceof Extends_TwoDayPassport) {
             log("それは2日パスポートです");
         } else {
             log("それは2日パスポートではありません");
         }
 
         // 夜間専用2日パスポートを購入し、チケット種別を表示
-        Ticket nightOnlyPassport = booth.buyNightOnlyTwoDayPassport(30000).getTicket();
-        if (nightOnlyPassport instanceof TwoDayPassport) {
+        Inheritance_Ticket nightOnlyPassport = booth.buyNightOnlyTwoDayPassport(30000).getTicket();
+        if (nightOnlyPassport instanceof Extends_TwoDayPassport) {
             log("それは2日パスポートです");
         } else {
             log("それは2日パスポートではありません");

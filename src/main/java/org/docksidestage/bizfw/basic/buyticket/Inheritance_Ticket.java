@@ -35,7 +35,7 @@ import java.time.format.DateTimeFormatter;
  * @author jflute
  * @author ayamin
  */
-public abstract class Ticket  {
+public abstract class Inheritance_Ticket {
     
     // done ayamin 一応、インスタンス変数、コンストラクター、メソッドというの定義順序の基本ではあるので... by jflute (2025/09/05)
     // 少なくとも、コンストラクターよりも下のどこかに定義しましょう。
@@ -58,7 +58,7 @@ public abstract class Ticket  {
     // #1on1: コンストラクターが一個しか無いので、重要なの@param, 説明がなくてもいいかも
     // 一方で、TicketBoothみたいに、コンストラクターあって用途の区別があるのであればそれは説明したい。
     // #1on1: (NotNull) の話
-    public Ticket(int displayPrice, int validDays, boolean nightOnly, ClockProvider clockProvider) {
+    public Inheritance_Ticket(int displayPrice, int validDays, boolean nightOnly, ClockProvider clockProvider) {
         this.displayPrice = displayPrice;
         this.validDays = validDays;
         this.nightOnly = nightOnly;
