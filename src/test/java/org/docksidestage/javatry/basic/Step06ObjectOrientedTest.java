@@ -95,6 +95,50 @@ javatryのbizfwとは？ => business frameworkの略
 
 // TODO jflute どこか1on1で、フレームワークとpackageの関係性の話 (2025/10/17)
 
+/*
+DBFluteのセットアップで学んだことを踏まえて、質問
+Classificationが分からない
+ConditionBeanあるなら、Behaviorクラスいらなくない？役割の違いを知りたい！
+
+区分値とは？
+ v 選択してください
+  - 正式会員
+  - 仮会員
+  - 退会会員
+  
+  もし、正式会員 -> 正式会印と直すとしたら...
+
+あやみんさんの理解:
+o Behaviorとは？ => DBにアクセスするためのクラス
+o ConditionBeanとは？ => SQLを組み立てるクラス
+
+CBは、SQLを組み立てる "だけ" のクラス。(文字列操作だけをしてる)
+なので、DBへの接続情報も持ってないし、SQLを実行する能力もない。
+
+Bhvは、SQLを組み立てる能力もってない、指定されたCB(など)を実行する "だけ" のクラス。
+
+CBにDBにアクセスする能力をもたせれば、CB.select()みたいにできるのに...
+外だしSQLはCB使わないし、insert/updateもCB使わない...けどDBアクセスはしたい。
+なので、CBだけDBにアクセスする能力があっても成り立たない。
+まあ、外だしSQL.select(), Entity.insert(), みたいな作り方もできなくはないかも。
+でも、入口は同じ方がわかりやすいと考えた。(入口はBehaviorに集約)
+
+外だしSQLの意義とは？
+CBは便利だけど、CBだけで全部は賄えないことは確定している。
+CBは不自由でレールを敷いた道具なので、トリッキー/レアなケースはCBでは実現できない。
+なので、そういうときは外だしSQLを使う。
+
+じゃあ、外だしSQLとCBの使いどころの違いは？
+基点テーブルが定まるかどうか？
+// ConditionBeanのスコープ | DBFlute
+https://dbflute.seasar.org/ja/manual/function/ormapper/conditionbean/cbscope.html
+プラス、CBは不自由なので、そもそもできることが限られている。
+限ってることで安全性と統一性を得ている。
+
+ということで、DBFluteはバランス指向で、8:2でCBと外だしSQLを使い分けるスタイル。
+8なのか9なのかは、DBが綺麗かどうか？正規化されているかどうか？に依る。
+ */
+
 /**
  * The test of object-oriented. <br>
  * Operate exercise as javadoc. If it's question style, write your answer before test execution. <br>
