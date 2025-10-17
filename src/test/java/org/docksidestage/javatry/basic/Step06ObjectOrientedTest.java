@@ -40,19 +40,60 @@ import org.docksidestage.javatry.basic.st6.os.OldWindows;
 // ハンズオンのコーディングポリシー - 4. 空行マネジメント
 // https://dbflute.seasar.org/ja/tutorial/handson/review/codingpolicy.html#emptyline
 
-// TODO done ayamin [読み物課題] ホワイトボードを買ってこよう by jflute (2025/09/26)
+// done ayamin [読み物課題] ホワイトボードを買ってこよう by jflute (2025/09/26)
 // https://jflute.hatenadiary.jp/entry/20110607/1307440686
 // ↑ 図で表現する習慣を
 
-// TODO done ayamin [読み物課題] まず何より、目の前の道具を使いこなしてください by jflute (2025/09/26)
+// done ayamin [読み物課題] まず何より、目の前の道具を使いこなしてください by jflute (2025/09/26)
 // https://jflute.hatenadiary.jp/entry/20180223/mastercurrent
 // ↑ "目の前は学びの宝庫"
 // 身をつまされました。土日にしているお勉強、目の前のチャーハンを作ることにきちんと役に立っているのか、今は確かめようがないような気がしていて、不安です。、
+// #1on1: そのときに業務で触れたものを勉強しているが、脱線してる？ピラフかも？ by jflute
+// まあ、ピラフは悪くない、元から関連を辿っているので、元の本質を理解するきっかけになる。
+// ピラフに行くことでチャーハンで見えてくるものもある。
+// 適宜立ち返るの大事 by あやみんさん
+// "業務で触れたものを勉強" はGood, ぼくは「オンデマンド勉強」と読んでた by jflute
+// 土日の話: ぼくは平日happyでいたい。 by jflute
+// オンデマンド勉強のメリットは興味を持ってるものを勉強できる by jflute
+// オンデマンド勉強のデメリットはつまみ食いになりがちなので、記憶に残す工夫を by jflute
+// 1on1で人に話すとかも思い出に残るGood。
 
-// TODO done ayamin [読み物課題] 使いこなしてないAと使いこなしてるA by jflute (2025/09/26)
+// done ayamin [読み物課題] 使いこなしてないAと使いこなしてるA by jflute (2025/09/26)
 // https://jflute.hatenadiary.jp/entry/20140922/twotools
 // ↑ 使いこなしてるAフレームワークと、使いこなしてないAフレームワーク、
 // 同じ A だけど、別物と言える。
+
+/*
+Javaのディレクトリ構成の慣習/ルールについて
+srcの中にmainとtestがある、
+(Mavenを使う場合)pom.xmlはルートディレクトリの直下に置く、
+くらいのことしか知らないので、ご存知のルールや慣習があれば教えてください。
+実業務において、「どこに何があるのか」ということをディレクトリから判断がつけば、
+作業スピードが早くなりそうだなあ、と思いこの質問をさせていただきます。
+
+元々Javaでは、そんなにディレクトリの規約はなく自由だった
+Mavenが、ソースディレクトリを、
+src/main/java, src/main/resources, src/test/java, src/test/resources
+とする規約を出して広がっていった。(Maven以外でもそれを踏襲していった)
+
+あと、pom.xml, build.gradleはプロジェクトルートディレクトリに置くのもビルドツールの規約。
+あと、targetはMavenの出力ディレクトリ (classes と test-classes)
+ちなみに、Gradleの場合は、出力ディレクトリはbuildディレクトリとか(だったかな)
+
+IntelliJだったら、.ideaというディレクトリに設定ファイルを置く。
+Eclipseだったら、.settingsというディレクトリに設定ファイルを置く。
+etcはそのまま、雑多に何か置く場所。(これはそんなに規約ではない)
+
+現場のマルチプロジェクト構成について。
+
+packageとは？ => C#だと namespace (住所/苗字みたいなもの)
+ただ、Javaだと、packageとディレクトリ構成が一致しないといけないという規約がある。
+一致するメリットとデメリット。自由がいいのか？不自由がいいのか？ (不自由をレールと捉えられるか？)
+
+javatryのbizfwとは？ => business frameworkの略
+ */
+
+// TODO jflute どこか1on1で、フレームワークとpackageの関係性の話 (2025/10/17)
 
 /**
  * The test of object-oriented. <br>
