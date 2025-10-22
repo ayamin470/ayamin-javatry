@@ -489,6 +489,7 @@ public class Step11ClassicStringTest extends PlainTestCase {
      * (カラーボックスの中に入っている java.util.Map を "map:{ key = value ; key = value ; ... }" という形式で表示すると？)
      */
     //TODO カラーボックスの中に入っている java.util.Mapがなんなのかよくわからない...importされているjava.util.Mapではない？
+    // TODO ayamin [ふぉろー] カラーボックスのspaceのcontentに、Map型のオブジェクトが格納されているので、それを↑の形式で表示してください by jflute (2025/10/22)
     public void test_showMap_flat() {
     }
 
