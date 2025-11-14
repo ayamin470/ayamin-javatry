@@ -351,12 +351,18 @@ public class Step05ClassTest extends PlainTestCase {
     // 既存の今のコードは残しつつ、なんかクラス名にprefix付けるなどして、独立して作った方がいいかも。
     // #1on1: 継承は、"OneDayPassport extends Ticket" のこと (2025/10/03)
     // Ticketは普通のクラスになって、種別を違う方法で表現することになる。
-    // TODO done jflute インターフェースを使った実装にしようと思っていますが、アリですか？(step05でインターフェースって学んでいましたっけ？) by ayamin (2025/10/06)
+    // done jflute インターフェースを使った実装にしようと思っていますが、アリですか？(step05でインターフェースって学んでいましたっけ？) by ayamin (2025/10/06)
     // インターフェースにしちゃうと、「Ticketは普通のクラスになって」という条件を満たせないから意味ないかも
     // TODO ayamin [へんじ] interfaceは当然step5では登場してないけど、でも使ってもOK。もう修行レベルだしね by jflute (2025/10/22)
     // ただ、あやみんさんの言う通り普通のクラスにならないし、やることは継承モデルと特に変わらないと思います。
     // (結局、OneDay, TwoDayという種別をクラス(単位)で表現することになる)
     // hint1: チケットは、Ticket.java という class ただ一つで表現をして、別の方法でチケット種別を管理するという感じですね。
+    // hint2: チケット種別という概念を、種別要素一つ一つをクラスで表現するのがあやみんさんの方法だった...
+    //  e.g. OneDayクラス、TwoDayクラス...
+    // チケット種別を class ただ一つで表現するというhint1の話...
+    // クラスは一個だから種別要素をクラスで表現はできない。クラスの中にはどんな文法がある？
+    // チケット種別に対して、種別要素を複数(OneDay, TwoDay...)、つまり one-to-manyの関係性。
+    // クラスに対して、複数になる文法は？ (振る舞い=メソッドも複数定義できる、属性=インスタンス変数も複数定義できる)
     public void test_class_moreFix_whetherTicketType_withPolymorphism() {
         // チケットブースをインスタンス化
         Inherutance_TicketBooth booth = new Inherutance_TicketBooth(new Util_SystemClockProvider());
