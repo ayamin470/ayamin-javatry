@@ -36,12 +36,12 @@ import java.time.format.DateTimeFormatter;
  * @author ayamin
  */
 public abstract class Inheritance_Ticket {
-    
+
     // done ayamin 一応、インスタンス変数、コンストラクター、メソッドというの定義順序の基本ではあるので... by jflute (2025/09/05)
     // 少なくとも、コンストラクターよりも下のどこかに定義しましょう。
     // done jflute [質問] 調べたところではAttributeとインスタンス変数は厳密には異なるようですが、ここでは同じ意味で使っていますか？ by ayamin (2025/09/30)
     // #1on1: オブジェクト指向用語(概念世界の用語)、プログラミング用語(Java用語)、Attributeは属性。
-    
+
     // done ayamin あごが開いている by jflute (2025/09/05)
     // ===================================================================================
     //                                                                           Attribute
@@ -80,7 +80,7 @@ public abstract class Inheritance_Ticket {
         if (entryCount >= validDays) {
             throw new IllegalStateException("有効日数を超えています。現在の入園カウント: " + entryCount + ", 有効日数: " + validDays);
         }
-        
+
         LocalTime currentTime = clockProvider.getCurrentTime();
         if (nightOnly && Util_DayNightChecker.isDay(currentTime)) {
             // done ayamin 変数は先頭小文字が慣習 by jflute (2025/08/06)
@@ -93,52 +93,52 @@ public abstract class Inheritance_Ticket {
         entryCount++;
     }
 
-    // ===================================================================================
-    //                                                                            Accessor
-    //                                                                            ========
-    // #1on1: getterのjavadoc, 書かれないことが多いけど...特に業務の項目に関しては、javadocあると嬉しい。
-    // #1on1: privateのインスタンス変数にあるよりかは、publicのgetterにある方が呼び出し側にとって嬉しい。
-    // #1on1: オウム返し問題の話、個人的には@returnのみのjavadocでもいいかなと思う、よくやる。
-    /**
-     * チケットに表示されている価格を取得
-     * @return チケットの表示価格
-     */
-    public int getDisplayPrice() {
-        return displayPrice;
-    }
-    /**
-     * 一度でも入園したことがあるかを判定
-     * @return 入園済みであればtrue
-     */
-    public boolean isAlreadyIn() {
-        return entryCount > 0;
-    }
-    /**
-     * まだ入園できるかを判定
-     * @return 入園可能であればtrue
-     */
-    public boolean canEnterPark() {
-        return entryCount < validDays;
-    }
-    /**
-     * チケットの有効日数を取得
-     * @return 有効日数
-     */
-    public int getValidDays() {
-        return validDays;
-    }
-    /**
-     * 現在の入園カウントを取得
-     * @return 入園した回数
-     */
-    public int getEntryCount() {
-        return entryCount;
-    }
-    /**
-     * このチケットが夜間専用であるかを判定
-     * @return 夜間専用であればtrue
-     */
-    public boolean isNightOnly() {
-        return nightOnly;
-    }
+//    // ===================================================================================
+//    //                                                                            Accessor
+//    //                                                                            ========
+//    // #1on1: getterのjavadoc, 書かれないことが多いけど...特に業務の項目に関しては、javadocあると嬉しい。
+//    // #1on1: privateのインスタンス変数にあるよりかは、publicのgetterにある方が呼び出し側にとって嬉しい。
+//    // #1on1: オウム返し問題の話、個人的には@returnのみのjavadocでもいいかなと思う、よくやる。
+//    /**
+//     * チケットに表示されている価格を取得
+//     * @return チケットの表示価格
+//     */
+//    public int getDisplayPrice() {
+//        return displayPrice;
+//    }
+//    /**
+//     * 一度でも入園したことがあるかを判定
+//     * @return 入園済みであればtrue
+//     */
+//    public boolean isAlreadyIn() {
+//        return entryCount > 0;
+//    }
+//    /**
+//     * まだ入園できるかを判定
+//     * @return 入園可能であればtrue
+//     */
+//    public boolean canEnterPark() {
+//        return entryCount < validDays;
+//    }
+//    /**
+//     * チケットの有効日数を取得
+//     * @return 有効日数
+//     */
+//    public int getValidDays() {
+//        return validDays;
+//    }
+//    /**
+//     * 現在の入園カウントを取得
+//     * @return 入園した回数
+//     */
+//    public int getEntryCount() {
+//        return entryCount;
+//    }
+//    /**
+//     * このチケットが夜間専用であるかを判定
+//     * @return 夜間専用であればtrue
+//     */
+//    public boolean isNightOnly() {
+//        return nightOnly;
+//    }
 }

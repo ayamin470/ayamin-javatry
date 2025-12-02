@@ -15,7 +15,6 @@ public class Interface_OneDayPassport implements Interface_Ticket {
         this.price = price;
         this.used = false;
     }
-
     @Override
     public int getPrice() {
         return 0;
