@@ -72,6 +72,8 @@ public abstract class Inheritance_Ticket {
 
     public abstract String getTicketTypeDisplayName();
 
+    // #1on1: このメソッドのニュアンスが「チケットに関する一回の入園処理を実行する」だったら、 (2025/12/02)
+    // もっとオブジェクト指向的にしっくりくるかもしれない。
     /**
      * チケットを使って遊園地に入園する
      * @throws IllegalStateException 入園条件を満たさない場合。
